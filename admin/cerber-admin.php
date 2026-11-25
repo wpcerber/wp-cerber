@@ -725,7 +725,15 @@ add_action( 'wp_ajax_cerber_scan_bulk_files', function () {
 
 	crb_scan_diagnostic_log( $errors );
 
-	cerber_end_ajax( array( 'errors' => $errors, 'number' => $i, 'processed' => $crb_list ) );
+	$response = array( 'errors' => $errors, 'number' => $i, 'processed' => $crb_list );
+
+	// The retention period must come from the website that holds the quarantine. With Cerber.Hub, this handler runs on the managed website,
+	// while crb_scan_messages() is output in the admin footer of the main website, so a period put there would be the one of the main website.
+	if ( $operation == 'delete_file' && $crb_list ) {
+		$response['processed_title'] = crb_qr_moved_notice( count( $crb_list ) );
+	}
+
+	cerber_end_ajax( $response );
 
 } );
 
@@ -762,6 +770,15 @@ function crb_admin_stop_ajax( $msg = '' ) {
 	}
 }
 
+/**
+ * Render the Quarantine tab: a paginated table of quarantined files with Delete and Restore links.
+ *
+ * Supports filtering by scan via the 'scan' query parameter. The automatic deletion date shown for
+ * each file is calculated by crb_qr_deletion_time(), the same as in the daily cleanup.
+ * Synchronizes the counter of quarantined files with the total number of listed files.
+ *
+ * @return void Outputs HTML.
+ */
 function cerber_show_quarantine() {
 
 	$folder = cerber_get_the_folder( true );
@@ -793,7 +810,6 @@ function cerber_show_quarantine() {
 	}
 
 	$rows = array();
-	$ofs = get_option( 'gmt_offset' ) * 3600;
 
 	foreach ( $list as $file ) {
 		$p = array(
@@ -808,14 +824,21 @@ function cerber_show_quarantine() {
 		$p['crb_scan_adm'] = 'restore';
 		$restore = ( ! $file['can'] ) ? '' : ' | <a class="crb-confirm-action" href="' . cerber_admin_link_add( $p ) . '">' . __( 'Restore', 'wp-cerber' ) . '</a>';
 
-		$moved = strtotime( $file['date'] ) - $ofs;
-		$will = cerber_auto_date( $file['scan_id'] + DAY_IN_SECONDS * crb_get_settings( 'scan_qcleanup' ) );
+		// Use the same deletion time as the daily cleanup, see crb_qr_cleanup()
+		$will = cerber_auto_date( crb_qr_deletion_time( $file['scan_id'], $file['qtime'] ) );
+
+		if ( $file['qtime'] ) {
+			$moved = '<span title="' . cerber_date( $file['qtime'] ) . '">' . cerber_auto_date( $file['qtime'] ) . '</span>';
+		}
+		else {
+			$moved = crb_escape_html( $file['date'] );
+		}
 
 		$file_name = str_replace( DIRECTORY_SEPARATOR, '<wbr>' . DIRECTORY_SEPARATOR, $file['source'] );
 
 		$rows[] = array(
 			'<span title="' . cerber_date( $file['scan_id'] ) . '">' . cerber_auto_date( $file['scan_id'] ) . '</span>',
-			'<span title="' . cerber_date( $moved ) . '">' . cerber_auto_date( $moved ) . '</span>',
+			$moved,
 			$will,
 			$file['size'],
 			$file_name,
@@ -882,7 +905,7 @@ function cerber_quarantine_do( $what, $scan_id, $qfile ) {
 
 	$data = null;
 	while ( ( $line = fgets( $handle ) ) !== false ) {
-		if ( $p = crb_parse_qline( $dir, $line ) ) {
+		if ( $p = crb_qr_parse_line( $dir, $line ) ) {
 			if ( $p['qfile'] == $qfile ) {
 				$data = $p;
 				break;
@@ -1727,7 +1750,13 @@ add_action( 'manage_application-passwords-user_custom_column', function ( $colum
 	}
 	if ( $column_name == 'app_cerber_log_fail' ) {
 		$user = get_user_by( 'ID', $user_id );
-		$link = cerber_activity_link( array( 8 ) ) . '&amp;filter_login=' . $user->user_email . '|' . $user->user_login;
+
+		// The pipe makes the Activity log match either the email or the login.
+		// Valid email addresses may contain &, # and +, so the value is query-encoded.
+		$link = crb_admin_link_for_html( 'activity', array(
+			'filter_activity' => array( 8 ),
+			'filter_login'    => $user->user_email . '|' . $user->user_login,
+		) );
 		echo '<a href="' . $link . '">View Log</a>';
 	}
 
@@ -2039,8 +2068,9 @@ function cerber_export_activity( $params = array() ) {
  * Sends HTTP headers and outputs the initial metadata and column headings for a CSV export.
  *
  * Generated metadata, additional info rows, and headings are all escaped by
- * cerber_send_csv_line(). The output uses CRLF line endings to preserve the
- * historical CSV export format.
+ * cerber_send_csv_line(). The generated metadata includes a note that cells which
+ * would start a spreadsheet formula are prefixed with a TAB character. The output
+ * uses CRLF line endings to preserve the historical CSV export format.
  *
  * @param string $file_name_prefix Prefix for the downloaded file.
  * @param int $total Total number of rows expected.
@@ -2067,6 +2097,10 @@ function cerber_send_csv_header( string $file_name_prefix, int $total, array $he
 		cerber_send_csv_line( $info_row );
 	}
 
+	// The note closes the metadata block. The header is sent before any row, so the note is
+	// unconditional. See crb_neutralize_csv_formula().
+	cerber_send_csv_line( array( 'Note:', 'Cells that start with =, +, - or @ are prefixed with a TAB character to prevent formula execution.' ) );
+
 	echo "\r\n";
 
 	if ( empty( $heading ) ) {
@@ -2077,16 +2111,48 @@ function cerber_send_csv_header( string $file_name_prefix, int $total, array $he
 }
 
 /**
- * Formats and outputs a CSV line
+ * Neutralizes a CSV cell that a spreadsheet application would evaluate as a formula.
  *
- * @param string[] $row_values
+ * A cell is treated as a formula when it starts with =, +, - or @ (CSV injection, also known as
+ * formula injection). Such a cell is prefixed with a TAB character, so spreadsheet applications
+ * show it as text. Numeric values, including negative and explicitly signed numbers, are returned
+ * unchanged because a spreadsheet only evaluates them as numbers.
+ *
+ * The function expects a trimmed value: a leading TAB or CR, which some applications also treat
+ * as a formula trigger, cannot occur after trim().
+ *
+ * @param string $cell_text Trimmed text of a single CSV cell, before CSV quoting.
+ *
+ * @return string The cell text, prefixed with a TAB character if it would start a formula.
+ *
+ * @since 10.0.1
+ */
+function crb_neutralize_csv_formula( string $cell_text ): string {
+
+	if ( $cell_text === ''
+	     || strpos( '=+-@', $cell_text[0] ) === false
+	     || is_numeric( $cell_text ) ) {
+		return $cell_text;
+	}
+
+	return "\t" . $cell_text;
+}
+
+/**
+ * Formats and outputs a CSV line.
+ *
+ * Each value is converted to a string, trimmed, neutralized by crb_neutralize_csv_formula() if it
+ * would start a spreadsheet formula, and enclosed in double quotes with embedded double quotes
+ * doubled. A neutralized value therefore starts with a TAB character in the exported file.
+ *
+ * @param string[] $row_values Cell values of the line, in column order.
  *
  * @return void
  */
 function cerber_send_csv_line( array $row_values ) {
 
 	foreach ( $row_values as &$value ) {
-		$value = '"' . str_replace( '"', '""', trim( (string) $value ) ) . '"';
+		$value = '"' . str_replace( '"', '""', crb_neutralize_csv_formula( trim( (string) $value ) ) ) . '"';
 	}
 
 	echo implode( ',', $row_values ) . "\r\n";

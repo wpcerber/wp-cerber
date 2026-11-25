@@ -915,6 +915,7 @@ function cerber_load_admin_code() {
 			'CRB_Settings_Renderer'  => '/admin/includes/CRB_Settings_Renderer.php',
 			'CRB_Settings_Registry'  => '/admin/includes/CRB_Settings_Registry.php',
 			'CRB_Sessions_Table'     => '/admin/includes/CRB_Sessions_Table.php',
+			'CRB_Log_Quick_Filters'  => '/admin/includes/CRB_Log_Quick_Filters.php',
 		];
 
 		if ( $file = $classes[ $class_name ] ?? '' ) {
@@ -942,6 +943,7 @@ function cerber_load_admin_code() {
 	require_once( __DIR__ . '/admin/kb/cerber-azoth.php' );
 	require_once( __DIR__ . '/admin/cerber-admin-help.php' );
 	require_once( __DIR__ . '/admin/cerber-admin-acl.php' );
+	require_once( __DIR__ . '/admin/cerber-command-palette.php' );
 
 }
 
@@ -3347,16 +3349,108 @@ function cerber_can_show_messages() {
 // Cookies ---------------------------------------------------------------------------------
 
 add_action( 'auth_cookie_valid', 'cerber_cookie_one', 10, 2 );
-function cerber_cookie_one( $cookie_elements = null, $user = null ) {
-	if ( ! $user ) {
-		$user = wp_get_current_user();
+/**
+ * Registers the owner of the authentication cookie of the current request as the user of the request.
+ *
+ * WordPress fires 'auth_cookie_valid' for every cookie that passes wp_validate_auth_cookie(), including
+ * a cookie supplied by the calling code that belongs to a different user, e.g. the cookie of the original
+ * user retained by a user switching plugin. Such a cookie does not authenticate the request and is ignored.
+ *
+ * The cookie of the request is also ignored once WordPress has set up a different current user. After
+ * a session switch within the request, the cookie the browser sent still belongs to the previous user.
+ *
+ * @param array<string,string> $cookie_elements Components of the validated cookie passed by WordPress.
+ * @param WP_User $user The owner of the validated cookie.
+ *
+ * @return void
+ */
+function cerber_cookie_one( $cookie_elements, $user ) {
+	global $current_user;
+
+	if ( ! crb_is_request_auth_cookie( (array) $cookie_elements ) ) {
+		return;
 	}
 
-	CRB_Globals::$user_id = $user->ID;
+	// The global is read directly: wp_get_current_user() would re-enter the authentication if WordPress
+	// has not set up its current user yet. An anonymous current user (ID 0) is not a conflict.
+
+	if ( $current_user instanceof WP_User
+	     && $current_user->ID
+	     && $current_user->ID !== (int) $user->ID ) {
+		return;
+	}
+
+	crb_set_request_user( (int) $user->ID );
+}
+
+/**
+ * Checks if a validated authentication cookie is the one the browser sent to authenticate the current request.
+ *
+ * The validated cookie is compared with the standard WordPress cookie of the same scheme in the request.
+ * The cookie of the request is only parsed here, not validated, so the check never re-enters the WordPress
+ * authentication and is safe to use inside the 'auth_cookie_valid' action before WordPress has set up
+ * its current user.
+ *
+ * @param array<string,string> $cookie_elements Components of a cookie validated by wp_validate_auth_cookie():
+ *        'username', 'expiration', 'token', 'hmac', and 'scheme'.
+ *
+ * @return bool True if the request carries the same cookie in the standard WordPress cookie of that scheme.
+ *         False for any other scheme: no cookie of the request can be valid for it.
+ */
+function crb_is_request_auth_cookie( array $cookie_elements ): bool {
+
+	// Resolve the standard cookie of the scheme the cookie has been validated for
+
+	switch ( $cookie_elements['scheme'] ) {
+		case 'auth':
+			$cookie_name = AUTH_COOKIE;
+			break;
+		case 'secure_auth':
+			$cookie_name = SECURE_AUTH_COOKIE;
+			break;
+		case 'logged_in':
+			$cookie_name = LOGGED_IN_COOKIE;
+			break;
+		default:
+			return false;
+	}
+
+	// PHP turns a cookie sent with array notation into an array, which wp_parse_auth_cookie() cannot handle
+
+	$request_cookie_string = $_COOKIE[ $cookie_name ] ?? '';
+
+	if ( ! is_string( $request_cookie_string ) || $request_cookie_string === '' ) {
+		return false;
+	}
+
+	$request_cookie = wp_parse_auth_cookie( $request_cookie_string, $cookie_elements['scheme'] );
+
+	if ( ! $request_cookie ) {
+		return false;
+	}
+
+	return $request_cookie['username'] === $cookie_elements['username']
+	       && $request_cookie['expiration'] === $cookie_elements['expiration']
+	       && $request_cookie['token'] === $cookie_elements['token']
+	       && $request_cookie['hmac'] === $cookie_elements['hmac'];
+}
+
+/**
+ * Registers a user as the user of the current request and marks the browser with Cerber Groove.
+ *
+ * Must be called only for the user the request itself is authenticated as, see CRB_Globals::$user_id.
+ * The lifetime of Cerber Groove is derived from the session expiration that applies to this user.
+ *
+ * @param int $user_id ID of the user the current request is authenticated as.
+ *
+ * @return void
+ */
+function crb_set_request_user( int $user_id ): void {
+	CRB_Globals::$user_id = $user_id;
 
 	// Mark user with Cerber Groove
 	// TODO: remove filter, add IP address and user agent
-	$expire = time() + apply_filters( 'auth_cookie_expiration', 14 * 24 * 3600, $user->ID, true ) + ( 24 * 3600 );
+	$expire = time() + apply_filters( 'auth_cookie_expiration', 14 * 24 * 3600, $user_id, true ) + ( 24 * 3600 );
 	cerber_set_groove( $expire );
 }
 
@@ -6165,7 +6259,6 @@ function cerber_generate_email_report( $args ) {
 	$report = '';
 
 	$kpi_rows = array();
-	$base_url = cerber_admin_link( 'activity', array(), false, false );
 	$css_table = 'width: 95%; max-width: 1000px; margin:0 auto; margin-bottom: 10px; background-color: #f5f5f5; text-align: center; font-family: Arial, Helvetica, sans-serif;';
 	$css_td = 'padding: 0.5em 0.5em 0.5em 1em; text-align: left;';
 	$css_border = 'border-bottom: solid 2px #f9f9f9;';
@@ -6197,7 +6290,8 @@ function cerber_generate_email_report( $args ) {
 		$lables = cerber_get_labels();
 
 		foreach ( $activites as $a ) {
-			$rows[] = '<td style="' . $css_border . $css_td . '">' . $lables[ $a->activity ] . '</td><td style="padding: 0.5em; text-align: center; width:10%;' . $css_border . '"><a href="' . $base_url . '&filter_activity=' . $a->activity . '">' . $a->cnt . '</a></td>';
+			$activity_log_url = crb_admin_link_for_html( 'activity', array( 'filter_activity' => $a->activity ) );
+			$rows[] = '<td style="' . $css_border . $css_td . '">' . $lables[ $a->activity ] . '</td><td style="padding: 0.5em; text-align: center; width:10%;' . $css_border . '"><a href="' . $activity_log_url . '">' . $a->cnt . '</a></td>';
 		}
 
 		$report .= '<table style="border-collapse: collapse; ' . $css_table . '"><tr>' . implode( '</tr><tr>', $rows ) . '</tr></table>';
@@ -6209,7 +6303,10 @@ function cerber_generate_email_report( $args ) {
 			$rows = array();
 			$rows[] = '<td style="' . $css_td . $css_border . '" colspan="2"><p style="line-height: 1.5em; font-weight: bold;">' . __( 'Attempts to log in with non-existing usernames', 'wp-cerber' ) . '</p></td>';
 			foreach ( $attempts as $a ) {
-				$rows[] = '<td style="' . $css_border . $css_td . '">' . crb_escape_html( $a->user_login ) . '</td><td style="padding: 0.5em; text-align: center; width:10%;' . $css_border . '"><a href="' . $base_url . '&filter_login=' . $a->user_login . '">' . $a->cnt . '</a></td>';
+				// The username is supplied by an unauthenticated client: it is query-encoded as a parameter,
+				// and the complete URL is then escaped for the attribute.
+				$login_log_url = crb_admin_link_for_html( 'activity', array( 'filter_login' => $a->user_login ) );
+				$rows[] = '<td style="' . $css_border . $css_td . '">' . crb_escape_html( $a->user_login ) . '</td><td style="padding: 0.5em; text-align: center; width:10%;' . $css_border . '"><a href="' . $login_log_url . '">' . $a->cnt . '</a></td>';
 			}
 			$report .= '<table style="border-collapse: collapse; ' . $css_table . '"><tr>' . implode( '</tr><tr>', $rows ) . '</tr></table>';
 		}
@@ -6474,27 +6571,7 @@ function cerber_daily_run() {
 	CRB_Cache::reset();
 
 	// Cleanup the quarantine folder
-	if ( $dirs = glob( cerber_get_the_folder() . 'quarantine' . '/*', GLOB_ONLYDIR ) ) {
-		$sync = false;
-		foreach ( $dirs as $dir ) {
-			$d = basename( $dir );
-			if ( is_numeric( $d ) ) {
-				if ( $d < ( time() - DAY_IN_SECONDS * crb_get_settings( 'scan_qcleanup' ) ) ) {
-					$fs = cerber_init_wp_filesystem();
-					if ( ! crb_is_wp_error( $fs ) ) {
-						$fs->delete( $dir, true );
-						$sync = true;
-					}
-				}
-			}
-		}
-		if ( $sync ) {
-			_crb_qr_total_sync();
-		}
-	}
-	else {
-		_crb_qr_total_sync( 0 );
-	}
+	crb_qr_cleanup();
 
 	cerber_upgrade_db_deferred();
 
@@ -6791,7 +6868,7 @@ register_activation_hook( cerber_plugin_file(), function () {
 
 	cerber_upgrade_all( true );
 
-	cerber_cookie_one();
+	crb_set_request_user( get_current_user_id() );
 
 	cerber_load_admin_code();
 

@@ -86,7 +86,7 @@ final class CRB_Traffic_Log_Screen {
 		$total_rows = (int) $fetched->get_element( 'total', 0 );
 
 		if ( $this->ui_controls_enabled ) {
-			$toolbar_html = self::render_toolbar( $this->traffic_log_empty, (int) crb_get_settings( 'tithreshold' ), (bool) $total_rows );
+			$toolbar_html = self::render_toolbar( $this->traffic_log_empty, (bool) $total_rows );
 			$info_blocks_html = self::render_info_blocks( $filters['ip'], $filters['user'] );
 			$form_html = self::render_search_form();
 
@@ -243,40 +243,24 @@ final class CRB_Traffic_Log_Screen {
 	/**
 	 * Renders the top toolbar with quick filters and action buttons.
 	 *
+	 * The quick filters are the ones of the Live Traffic log, see
+	 * CRB_Log_Quick_Filters::get_traffic_filters().
+	 *
 	 * @param bool $is_log_empty Whether the log is completely empty.
-	 * @param int $threshold The processing time threshold for a "long" request.
 	 * @param bool $has_results Whether there are log rows to display.
 	 *
 	 * @return string The HTML for the toolbar.
 	 *
 	 * @since 9.6.9.7
 	 */
-	private static function render_toolbar( $is_log_empty, $threshold, $has_results ) {
+	private static function render_toolbar( $is_log_empty, $has_results ) {
 		$filter_links = '';
 		$search_button = '';
 		$export_button = '';
 		$refresh_button = '';
 
 		if ( ! $is_log_empty ) {
-			$nav_links = array(
-				array( array(), __( 'View all', 'wp-cerber' ) ),
-				array( array( 'filter_set' => 1 ), __( 'Suspicious requests', 'wp-cerber' ) ),
-				array( array( 'filter_http_code' => 399, 'filter_http_code_mode' => 'GT' ), __( 'Errors', 'wp-cerber' ) ),
-				array( array( 'filter_user' => '*' ), __( 'Users', 'wp-cerber' ) ),
-				array( array( 'filter_user' => 0 ), __( 'Non-authenticated', 'wp-cerber' ) ),
-				array( array( 'filter_method' => 'POST', 'filter_wp_type' => 520, 'filter_wp_type_mode' => 'GT' ), __( 'Form submissions', 'wp-cerber' ) ),
-				array( array( 'filter_http_code' => 404 ), __( 'Page Not Found', 'wp-cerber' ) ),
-				array( array( 'filter_wp_type' => 520 ), 'REST API' ),
-				array( array( 'filter_wp_type' => 515 ), 'XML-RPC' ),
-				array( array( 'filter_user' => get_current_user_id() ), __( 'My requests', 'wp-cerber' ) ),
-				array( array( 'filter_ip' => cerber_get_remote_ip() ), __( 'My IP', 'wp-cerber' ) ),
-			);
-
-			if ( $threshold ) {
-				$nav_links[] = array( array( 'filter_processing' => $threshold ), __( 'Longer than', 'wp-cerber' ) . ' ' . (int) $threshold . ' ms' );
-			}
-
-			$filter_links = crb_build_quick_nav_block( $nav_links, 'traffic' );
+			$filter_links = crb_build_quick_filter_nav( CRB_Log_Quick_Filters::get_traffic_filters() );
 			$search_button = '<a href="#" id="traffic-search-btn" class="button button-secondary cerber-button" title="Search in the request history"><i class="crb-icon crb-icon-bx-search"></i> ' . __( 'Advanced Search', 'wp-cerber' ) . '</a>';
 		}
 

@@ -218,7 +218,7 @@ final class CRB_Traffic_Log {
 		// Activity filter.
 		$activity_in = array();
 		if ( $q->filter_set ) {
-			$activity_in = crb_get_filter_set( $q->filter_set );
+			$activity_in = crb_resolve_log_filter_set( $q->filter_set );
 		}
 		elseif ( $q->filter_activity ) {
 			$activity_in = crb_sanitize_int( $q->filter_activity );

@@ -1,3 +1,25 @@
+= 10.1 =
+New: On WordPress 6.9 and later, admins can use the WordPress Command Palette (`Cmd+K` / `Ctrl+K`) to find and open WP Cerber settings. Selecting a suggestion opens the corresponding admin page, scrolls to the setting, and highlights it.
+New: Search WP Cerber settings by title, section name, or setting ID. Queries need at least three characters, and common generic terms return no WP Cerber results.
+New: The "Limit Command Palette suggestions" option in `Main Settings` > `Personal Preferences` keeps all WP Cerber commands available on WP Cerber pages while limiting suggestions on other WordPress admin pages to WP Cerber tabs. It is disabled by default, applies site-wide, and does not affect commands from WordPress or other plugins.
+New: When the WP Cerber admin interface is displayed in a non-English language, Command Palette searches now recognize the original English setting names as well.
+New: WP Cerber can now be [installed and updated with Composer](https://wpcerber.com/install-and-update-wp-cerber-with-composer/) using the official `wpcerber/wp-cerber` package from Packagist.
+Security: CSV log exports now neutralize values that spreadsheet applications could evaluate as formulas. Exported files include a notice about this, and the stored log data remains unchanged.
+Security: Improved the handling of login filter links in the Activity log, Users screen, and application password records when account names contain special characters.
+Important: If a plugin or custom integration passes WordPress authentication cookies through nonstandard names or HTTP headers, WP Cerber may no longer associate those requests with a user. Review user attribution if your website relies on custom authentication handling.
+Important: In CSV log exports, cells with formula-like values now begin with a TAB character. Ordinary numeric values are not changed.
+Important: Existing quarantine restore records are not rewritten. Corrections to stored file names after quarantine name collisions apply only to newly created records.
+Changed: While an administrator is switched to another user with a user-switching plugin, the Activity log now attributes WP Cerber actions to that user. Requests made while switched off are logged in Traffic Inspector as anonymous instead of under the original user.
+Fixed: Quarantined files in the [malware scanner](https://wpcerber.com/wordpress-security-scanner/) could be deleted before the configured retention period ended. Retention now counts from each file's quarantine time instead of the scan start, and the Quarantine tab shows the matching deletion date.
+Fixed: Newly quarantined files renamed to avoid a name collision now appear in the Quarantine tab and can be restored from there.
+Fixed: Newly quarantined files no longer reuse names still associated with older restore records after a restore or manual deletion. This prevents incorrect quarantine dates and restoration to the wrong location.
+Fixed: Quarantining a file named `.restore` could list the restore registry as a quarantined file and allow its deletion from the Quarantine tab. New quarantined files no longer use the reserved names `.restore` or `.htaccess`.
+Fixed: Quarantine records for file names containing `|` no longer truncate original file paths. Malformed records no longer trigger an `Undefined array key` warning.
+Fixed: Daily quarantine cleanup now stops safely when the WP Cerber storage folder is unavailable.
+Fixed: A quarantine registry read error no longer prints `Error: unexpected I/O Error` into the page output. The error is recorded in the diagnostic log, and the Quarantine tab skips the affected folder.
+Fixed: The Quarantine tab no longer shows misleading dates for unrecognized quarantine date values and displays the stored value instead.
+Fixed: The Quarantine tab now counts quarantined files accurately when duplicate registry records exist.
+
 = 10 =
 New: Added optional [email diagnostic logging to help troubleshoot missing WP Cerber notifications](https://wpcerber.com/troubleshooting-wp-cerber-email-notifications/).
 New: You can now hide the documentation link on WP Cerber's 403 access denied page by setting `CERBER_HIDE_403_DOC_LINK` to `true` in `wp-config.php`.

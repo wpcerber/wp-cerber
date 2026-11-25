@@ -606,7 +606,8 @@ jQuery( function( $ ) {
             }
 
             if (server_response.processed && server_response.processed.length) {
-                msg = msg + '<div><p><b>' + crb_scan_msg_misc[operation][1] + '</b></p><p>' + server_response.processed.map(crb_scan_html_text).join('</p><p>') + '</p></div>';
+                // A server older than this version does not send processed_title, so the static text is the fallback
+                msg = msg + '<div><p><b>' + crb_scan_html_text(server_response.processed_title || crb_scan_msg_misc[operation][1]) + '</b></p><p>' + server_response.processed.map(crb_scan_html_text).join('</p><p>') + '</p></div>';
             }
 
             if (!title) {

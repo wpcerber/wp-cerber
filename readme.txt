@@ -3,8 +3,8 @@ Contributors: gioni
 Tags: security, malware scanner, antispam, firewall, limit login attempts, custom login url, 2FA, recaptcha, captcha, activity, log, logging, access list
 Requires at least: 5.8
 Requires PHP: 7.4
-Tested up to: 7.1
-Stable tag: 10.0.0
+Tested up to: 7.1.5
+Stable tag: 10.1.0
 License: GPLv2
 
 Protection against hacker attacks and bots. Malware scanner & integrity checker. User activity log. Antispam reCAPTCHA. Limit login attempts.

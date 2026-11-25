@@ -5343,11 +5343,20 @@ function cerber_check_theme_data( $folder ) {
 }
 
 /**
- * @param int $first
- * @param int $last
- * @param int $filter_scan
+ * List quarantined files across all quarantine folders, with pagination and an optional filter by scan.
  *
- * @return array|WP_Error
+ * Records are read with crb_qr_read_registry(), so each quarantined file is listed once and only
+ * if it still exists. A folder whose restore registry cannot be read is skipped, and the failure
+ * is passed to crb_scan_diagnostic_log().
+ *
+ * @param int $first Zero-based position of the first file to include in the list.
+ * @param int|null $last Position of the last file to include in the list. Null or 0 means no upper limit.
+ * @param int|null $filter_scan Scan ID to list files of a single scan only. Null or 0 lists files of all scans.
+ *
+ * @return array{0: array<int, array{date: string, size: string, qfile: string, source: string, can: bool, qtime: int, scan_id: string}>, 1: int, 2: array<int, string>}|WP_Error
+ *  A list with three elements: the files on the requested page, the total number of files matching
+ *  the filter, and the IDs of all scans that have quarantined files regardless of the filter.
+ *  WP_Error if the WP Cerber folder is not available.
  *
  * @since 8.6.4
  */
@@ -5366,67 +5375,423 @@ function cerber_quarantine_get_files( $first = 0, $last = null, $filter_scan = n
 	}
 
 	foreach ( $dirs as $dir ) {
-		$f = $dir . '/.restore';
 		$scan_id = basename( $dir );
-		$inc = false;
-		if ( file_exists( $f ) && $handle = @fopen( $f, "r" ) ) {
-			$ln = 0;
-			$included = array();
-			while ( ( $line = fgets( $handle ) ) !== false ) {
-				$ln ++;
-				if ( $ln <= 4 || empty( $line ) ) {
-					continue;
-				}
-				$line = trim( $line );
-				if ( empty( $line ) ) {
-					continue;
-				}
-				$v = crb_parse_qline( $dir, $line );
-				if ( $v ) {
-					if ( in_array( $v['qfile'], $included ) ) {
-						continue; // Prevent listing the same file several times
-					}
-					$inc = true;
-					if ( ! $filter_scan || $filter_scan == $scan_id ) {
-						if ( $count >= $first && ( ! $last || $count <= $last ) ) {
-							$v['scan_id'] = $scan_id;
-							$list[] = $v;
-							$included[] = $v['qfile'];
-						}
-						$count ++;
-					}
-					else {
-						continue; // skip the rest of the lines
-					}
-				}
-			}
-			if ( ! feof( $handle ) ) {
-				echo "Error: unexpected I/O Error";
-			}
-			fclose( $handle );
+
+		$records = crb_qr_read_registry( $dir );
+		if ( crb_is_wp_error( $records ) ) {
+			crb_scan_diagnostic_log( $records );
+			continue;
 		}
-		if ( $inc ) {
-			$scan_list[] = $scan_id;
+
+		if ( ! $records ) {
+			continue;
+		}
+
+		$scan_list[] = $scan_id;
+
+		if ( $filter_scan && $filter_scan != $scan_id ) {
+			continue;
+		}
+
+		foreach ( $records as $record ) {
+			if ( $count >= $first && ( ! $last || $count <= $last ) ) {
+				$record['scan_id'] = $scan_id;
+				$list[] = $record;
+			}
+			$count ++;
 		}
 	}
 
 	return array( $list, $count, $scan_list );
 }
 
-function crb_parse_qline( $dir, $line ) {
-	if ( ! $line
-	     || ! strpos( $line, '|' )
-	     || ! strpos( $line, '=>' ) ) {
+/**
+ * Read the restore registry (the .restore file) of a quarantine folder.
+ *
+ * Only records of files that still exist in the folder are returned. Each quarantined file
+ * is returned once: if the registry contains several records for the same file name,
+ * the first one is used. The registry file itself is never returned as a quarantined file.
+ * This is the single place that defines which record describes a quarantined file,
+ * so the Quarantine tab and the automatic cleanup cannot diverge.
+ *
+ * @param string $dir Absolute path to a quarantine folder, without a trailing separator.
+ *
+ * @return array<string, array{date: string, size: string, qfile: string, source: string, can: bool, qtime: int}>|WP_Error
+ *  Records keyed by the quarantined file name. The 'qtime' element is the quarantine time as a Unix timestamp,
+ *  0 if the recorded date cannot be parsed. An empty array if the registry does not exist or lists no existing files.
+ *  WP_Error if the registry exists but cannot be read completely.
+ *
+ * @since 10.0.5
+ */
+function crb_qr_read_registry( $dir ) {
+	$registry_file = $dir . '/.restore';
+
+	if ( ! file_exists( $registry_file ) ) {
+		return array();
+	}
+
+	$handle = @fopen( $registry_file, 'r' );
+	if ( ! $handle ) {
+		return new WP_Error( 'cerber-qr-registry', 'Unable to open the quarantine restore file ' . $registry_file );
+	}
+
+	// The registry stores quarantine dates in the site local time. WordPress keeps the PHP default time zone at UTC,
+	// so strtotime() reads a local date as UTC, and the current offset converts it back. The offset may differ from
+	// the one at the time of writing (DST, a time zone change), which is acceptable for a period measured in days.
+	$gmt_offset = (int) ( (float) get_option( 'gmt_offset' ) * HOUR_IN_SECONDS );
+
+	$records = array();
+	$line_num = 0;
+
+	while ( ( $line = fgets( $handle ) ) !== false ) {
+		$line_num ++;
+
+		// Skip the header written by cerber_quarantine_file(), records start after it
+		if ( $line_num <= 4 ) {
+			continue;
+		}
+
+		$line = trim( $line );
+		if ( $line === '' ) {
+			continue;
+		}
+
+		$record = crb_qr_parse_line( $dir, $line );
+		if ( ! $record ) {
+			continue;
+		}
+
+		// The registry itself is never a quarantined file. A record written for a quarantined file named .restore before the stored name was recorded points to it.
+		if ( $record['qfile'] === '.restore' ) {
+			continue;
+		}
+
+		// The registry is append-only, keep the first record to prevent listing the same file several times
+		if ( isset( $records[ $record['qfile'] ] ) ) {
+			continue;
+		}
+
+		// A misparsed date cannot cause an early deletion, crb_qr_deletion_time() never counts from a time before the scan start
+		$quarantine_time = strtotime( $record['date'] );
+		$record['qtime'] = ( $quarantine_time === false ) ? 0 : $quarantine_time - $gmt_offset;
+		$records[ $record['qfile'] ] = $record;
+	}
+
+	$is_complete = feof( $handle );
+	fclose( $handle );
+
+	if ( ! $is_complete ) {
+		return new WP_Error( 'cerber-qr-registry', 'Unable to read the quarantine restore file ' . $registry_file );
+	}
+
+	return $records;
+}
+
+/**
+ * Calculate when a quarantined file is due for automatic deletion.
+ *
+ * The retention period set by the 'scan_qcleanup' setting is counted from the time the file
+ * was moved to the quarantine. If that time is unknown (0) or earlier than the scan start,
+ * the scan start is used. A file is therefore never deleted earlier than the retention
+ * period counted from the scan start.
+ *
+ * @param int $scan_id Scan ID which is the scan start Unix timestamp. It is also the name of the quarantine folder.
+ * @param int $quarantine_time Quarantine time of the file as a Unix timestamp, 0 if unknown.
+ *
+ * @return int Unix timestamp of the deletion. The file is deleted by the daily cleanup once this time has passed.
+ *
+ * @since 10.0.5
+ */
+function crb_qr_deletion_time( $scan_id, $quarantine_time = 0 ) {
+	$retention_start = max( (int) $scan_id, (int) $quarantine_time );
+
+	return $retention_start + DAY_IN_SECONDS * absint( crb_get_settings( 'scan_qcleanup' ) );
+}
+
+/**
+ * Build the heading shown to the admin after files have been moved to the quarantine.
+ *
+ * The heading states the number of moved files and the retention period set by the
+ * 'scan_qcleanup' setting of the website that runs this function. The period is counted from
+ * the time each file is moved to the quarantine, see crb_qr_deletion_time(), so right after
+ * the move it equals the setting.
+ *
+ * Must be invoked on the website where the files are quarantined: with Cerber.Hub it is the
+ * managed website, whose setting may differ from the one of the main website.
+ *
+ * @param int $file_count Number of files that have been moved to the quarantine, at least 1.
+ *
+ * @return string Translated plain text, not HTML-escaped.
+ *
+ * @since 10.0.5
+ */
+function crb_qr_moved_notice( int $file_count ) {
+	// The settings form enforces a minimum of 1 day
+	$days = absint( crb_get_settings( 'scan_qcleanup' ) );
+
+	// Two complete sentences, because gettext selects a plural form by one number only
+	$moved = crb_determine_plural_text(
+		$file_count,
+		__( 'The file has been moved to the quarantine.', 'wp-cerber' ),
+
+		/* translators: %d is the number of files moved to the quarantine. */
+		_n(
+			'%d file has been moved to the quarantine.',
+			'%d files have been moved to the quarantine.',
+			$file_count,
+			'wp-cerber'
+		)
+	);
+
+	// The pronoun refers to one file or to several files, a matter of meaning rather than of plural rules, so it follows the same exact count as crb_determine_plural_text().
+	// That helper cannot be used here, because it inserts the file count while this sentence states the number of days.
+	if ( 1 === $file_count ) {
+		/* translators: %d is the number of days the quarantined file is kept before automatic deletion. */
+		$retention = sprintf( _n( 'It will be automatically deleted from the quarantine in %d day.', 'It will be automatically deleted from the quarantine in %d days.', $days, 'wp-cerber' ), $days );
+	}
+	else {
+		/* translators: %d is the number of days the quarantined files are kept before automatic deletion. */
+		$retention = sprintf( _n( 'They will be automatically deleted from the quarantine in %d day.', 'They will be automatically deleted from the quarantine in %d days.', $days, 'wp-cerber' ), $days );
+	}
+
+	return $moved . ' ' . $retention;
+}
+
+/**
+ * Delete quarantined files whose retention period has expired and synchronize the counter of quarantined files.
+ *
+ * Intended to be run by the daily maintenance task. The retention period is counted per file,
+ * see crb_qr_deletion_time(). A quarantine folder, including its restore registry, is deleted
+ * as a whole once none of its files is retained anymore. Files without a valid registry record
+ * follow the retention period counted from the scan start. Folders whose names are not numeric
+ * scan IDs are ignored.
+ *
+ * A failure to delete a file or a folder does not stop the cleanup of other files and folders.
+ * Failures are passed to crb_scan_diagnostic_log(), which writes them only if scan diagnostic
+ * logging is enabled. If the WP Cerber folder is not available, nothing is done. If there are no
+ * quarantine folders, the counter is set to 0.
+ *
+ * @return void
+ *
+ * @since 10.0.5
+ */
+function crb_qr_cleanup() {
+	$folder = cerber_get_the_folder();
+	if ( ! $folder ) {
+		return;
+	}
+
+	$dirs = glob( $folder . 'quarantine' . DIRECTORY_SEPARATOR . '*', GLOB_ONLYDIR );
+	if ( ! $dirs ) {
+		_crb_qr_total_sync( 0 );
+
+		return;
+	}
+
+	$now = time();
+	$is_changed = false;
+
+	foreach ( $dirs as $dir ) {
+		$scan_id = basename( $dir );
+		if ( ! is_numeric( $scan_id ) ) {
+			continue;
+		}
+
+		// No file in this folder can be due before the deletion time counted from the scan start
+		if ( crb_qr_deletion_time( $scan_id ) >= $now ) {
+			continue;
+		}
+
+		if ( crb_qr_cleanup_folder( $dir, (int) $scan_id, $now ) ) {
+			$is_changed = true;
+		}
+	}
+
+	if ( $is_changed ) {
+		_crb_qr_total_sync();
+	}
+}
+
+/**
+ * Delete expired files from a single quarantine folder whose scan-based retention period has already expired.
+ *
+ * The caller must ensure that the retention period counted from the scan start has expired,
+ * because files without a valid registry record are treated as expired. If the registry cannot
+ * be read, all files are treated this way.
+ *
+ * If none of the files is retained, the whole folder is deleted recursively. Otherwise, expired
+ * files and files not listed in the registry are deleted one by one, while retained files,
+ * the restore registry (.restore), and the lock file (.htaccess) are kept.
+ * Failures are passed to crb_scan_diagnostic_log() and do not stop processing.
+ *
+ * @param string $dir Absolute path to the quarantine folder, without a trailing separator.
+ * @param int $scan_id Scan ID, the name of the quarantine folder.
+ * @param int $now Current Unix timestamp used to decide which files are expired.
+ *
+ * @return bool True if files may have been deleted and the counter of quarantined files must be
+ *  synchronized, including a recursive folder deletion that failed partway. False if nothing was deleted.
+ *
+ * @since 10.0.5
+ */
+function crb_qr_cleanup_folder( $dir, $scan_id, $now ) {
+
+	// Without a readable registry all files follow the scan-based rule, which has already expired for this folder
+	$records = crb_qr_read_registry( $dir );
+	if ( crb_is_wp_error( $records ) ) {
+		crb_scan_diagnostic_log( $records );
+		$records = array();
+	}
+
+	// Find files that must be kept for now
+	$retained = array();
+	foreach ( $records as $qfile => $record ) {
+		if ( crb_qr_deletion_time( $scan_id, $record['qtime'] ) >= $now ) {
+			$retained[ $qfile ] = true;
+		}
+	}
+
+	// Nothing to keep: delete the folder as a whole, including anything not listed in the registry
+	if ( ! $retained ) {
+		$fs = cerber_init_wp_filesystem();
+		if ( crb_is_wp_error( $fs ) ) {
+			crb_scan_diagnostic_log( 'Unable to delete the quarantine folder ' . $dir . ': ' . $fs->get_error_message(), true );
+
+			return false;
+		}
+
+		if ( ! $fs->delete( $dir, true ) ) {
+			crb_scan_diagnostic_log( 'Unable to delete the quarantine folder ' . $dir, true );
+		}
+
+		// A failed recursive deletion may have deleted some files, the caller must synchronize the counter anyway
+		return true;
+	}
+
+	// Some files are retained: delete only expired files and keep the service files of the folder
+	$entries = @scandir( $dir );
+	if ( ! $entries ) {
+		crb_scan_diagnostic_log( 'Unable to list files in the quarantine folder ' . $dir, true );
+
 		return false;
 	}
-	list( $date, $info ) = explode( '|', $line );
-	list( $qfile, $source ) = explode( '=>', $info );
-	$date = trim( $date );
-	$qfile = trim( $qfile );
-	$source = trim( $source );
-	if ( ! $qfile ) {
+
+	// The registry and the lock file must stay while the folder holds retained files, even if an expired record has the same name
+	$service_files = array( '.restore', '.htaccess' );
+	$is_deleted = false;
+
+	foreach ( $entries as $entry ) {
+		if ( isset( $retained[ $entry ] ) || in_array( $entry, $service_files, true ) ) {
+			continue;
+		}
+
+		$file_path = $dir . DIRECTORY_SEPARATOR . $entry;
+		if ( ! is_file( $file_path ) ) {
+			continue;
+		}
+
+		if ( @unlink( $file_path ) ) {
+			$is_deleted = true;
+		}
+		else {
+			crb_scan_diagnostic_log( 'Unable to delete the quarantined file ' . $file_path, true );
+		}
+	}
+
+	return $is_deleted;
+}
+
+/**
+ * Split a restore registry line into its parts without checking the file system.
+ *
+ * A record line has the format "date | quarantined name => original path". The line is split
+ * at the first '|' and then at the first '=>', so the original path may contain these characters.
+ * The date is not validated.
+ *
+ * @param string $line A line of a restore registry.
+ *
+ * @return array{date: string, qfile: string, source: string}|array{} Trimmed parts.
+ *  An empty array if a separator is missing or the quarantined name is empty.
+ *
+ * @since 10.0.5
+ */
+function crb_qr_split_line( $line ) {
+	$main_parts = explode( '|', $line, 2 );
+	if ( count( $main_parts ) < 2 ) {
+		return array();
+	}
+
+	$file_parts = explode( '=>', $main_parts[1], 2 );
+	if ( count( $file_parts ) < 2 ) {
+		return array();
+	}
+
+	$qfile = trim( $file_parts[0] );
+	if ( $qfile === '' ) {
+		return array();
+	}
+
+	return array(
+		'date'   => trim( $main_parts[0] ),
+		'qfile'  => $qfile,
+		'source' => trim( $file_parts[1] ),
+	);
+}
+
+/**
+ * Collect all file names ever recorded in a restore registry, including names of files that no longer exist.
+ *
+ * Unlike crb_qr_read_registry(), records are not filtered by the existence of the quarantined file:
+ * a name stays reserved after its file was deleted or restored, because its record remains
+ * in the append-only registry and would otherwise be associated with a new file of the same name.
+ *
+ * @param string $registry_file Absolute path to a .restore file.
+ *
+ * @return array<string, true> Recorded names as keys. An empty array if the registry does not exist or cannot be read.
+ *
+ * @since 10.0.5
+ */
+function crb_qr_recorded_names( $registry_file ) {
+	if ( ! file_exists( $registry_file ) ) {
+		return array();
+	}
+
+	$lines = @file( $registry_file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES );
+	if ( ! $lines ) {
+		return array();
+	}
+
+	$names = array();
+	foreach ( $lines as $line ) {
+		$parts = crb_qr_split_line( $line );
+		if ( $parts ) {
+			$names[ $parts['qfile'] ] = true;
+		}
+	}
+
+	return $names;
+}
+
+/**
+ * Parse a restore registry line into a record of a quarantined file that exists in the given folder.
+ *
+ * @param string $dir Absolute path to the quarantine folder that holds the registry, without a trailing separator.
+ * @param string $line A line of the registry.
+ *
+ * @return array{date: string, size: string, qfile: string, source: string, can: bool}|false
+ *  The recorded date as written (site local time), the formatted file size, the quarantined file name,
+ *  the original path, and whether the file can be restored (always true). False if the line is not
+ *  a record or the quarantined file does not exist in the folder.
+ *
+ * @since 10.0.5 Renamed from crb_parse_qline().
+ */
+function crb_qr_parse_line( $dir, $line ) {
+	$parts = crb_qr_split_line( (string) $line );
+	if ( ! $parts ) {
 		return false;
 	}
+	$date = $parts['date'];
+	$qfile = $parts['qfile'];
+	$source = $parts['source'];
 	$fname = $dir . '/' . $qfile;
 	if ( ! @is_file( $fname ) ) {
 		return false;
@@ -5451,13 +5816,20 @@ function crb_parse_qline( $dir, $line ) {
 }
 
 /**
- * Move files to the quarantine folder
+ * Move or copy a file to the quarantine folder of a scan and record it in the folder's restore registry.
  *
- * @param string $file_name
- * @param integer $scan_id
+ * The file is stored under its base name. If that name is used by a file in the folder, is recorded
+ * in the registry, even for a file that is no longer there, or is .restore or .htaccess, a numeric
+ * suffix is appended (name.2, name.3, and so on). The registry record contains the stored name,
+ * the original path, and the quarantine time in the site local time. The counter of quarantined
+ * files is incremented on success.
+ *
+ * @param string $file_name Absolute path to the file to quarantine.
+ * @param integer $scan_id Scan ID that defines the quarantine folder. Must be a positive integer.
  * @param bool $move true to delete the file in its original location @since 8.6.1
  *
- * @return bool|WP_Error
+ * @return bool|WP_Error True on success. False if the file is not a regular file or the scan ID is invalid.
+ *  WP_Error if the file may not be deleted, or if the quarantine folder, the registry, or the file cannot be written.
  */
 function cerber_quarantine_file( $file_name, $scan_id, $move = true ) {
 	static $folder;
@@ -5521,16 +5893,27 @@ function cerber_quarantine_file( $file_name, $scan_id, $move = true ) {
 		}
 	}
 
-	// Avoid file name collisions
-	$name = cerber_mb_basename( $file_name );
-	$new_name = $quarantine . $name;
-	if ( file_exists( $new_name ) ) {
-		$i = 2;
-		while ( file_exists( $new_name ) ) {
-			$new_name = $quarantine . $name . '.' . $i;
-			$i ++;
-		}
+	// Avoid file name collisions with existing files and with names recorded earlier. A recorded name stays reserved
+	// after its file is gone, otherwise the new file would inherit the old record (first record wins).
+	// The names are cached per folder since this function is the only writer of the registry.
+	static $reserved_names = array();
+
+	if ( ! isset( $reserved_names[ $quarantine ] ) ) {
+		$reserved_names[ $quarantine ] = crb_qr_recorded_names( $restore );
+
+		// Service files of the folder are never used for quarantined files
+		$reserved_names[ $quarantine ]['.restore'] = true;
+		$reserved_names[ $quarantine ]['.htaccess'] = true;
 	}
+
+	$name = cerber_mb_basename( $file_name );
+	$stored_name = $name;
+	$i = 2;
+	while ( isset( $reserved_names[ $quarantine ][ $stored_name ] ) || file_exists( $quarantine . $stored_name ) ) {
+		$stored_name = $name . '.' . $i;
+		$i ++;
+	}
+	$new_name = $quarantine . $stored_name;
 
 	if ( ! crb_move_copy( $file_name, $new_name, $move ) ) {
 		$dir = dirname( $file_name );
@@ -5553,8 +5936,11 @@ function cerber_quarantine_file( $file_name, $scan_id, $move = true ) {
 		$gmt_offset = get_option( 'gmt_offset' ) * 3600;
 	}
 
-	fwrite( $f, PHP_EOL . date( 'Y-m-d H:i:s', time() + $gmt_offset ) . ' | ' . $name . ' => ' . $file_name );
+	// Record the name the file is stored under, so a file renamed to avoid a collision has its own record
+	fwrite( $f, PHP_EOL . date( 'Y-m-d H:i:s', time() + $gmt_offset ) . ' | ' . $stored_name . ' => ' . $file_name );
 	fclose( $f );
+
+	$reserved_names[ $quarantine ][ $stored_name ] = true;
 
 	crb_qr_total_update( 1 );
 

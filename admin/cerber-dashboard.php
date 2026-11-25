@@ -34,6 +34,14 @@ if ( ! defined( 'WPINC' ) ) {
 	exit;
 }
 
+// Title of the WP Cerber top-level item in the WordPress admin menu. WordPress core starts the
+// commands it builds from the admin menu with it, and the Command Palette integration starts
+// the labels of WP Cerber commands with it. The HTML title of WP Cerber admin pages includes it.
+const CRB_ADMIN_MENU_TITLE = 'WP Cerber';
+
+// Separates the parts of the HTML title of WP Cerber admin pages, the character WordPress core uses in admin titles
+const CRB_ADMIN_TITLE_SEPARATOR = ' ‹ ';
+
 const CRB_ADMIN_ICONS = array(
 	'settings'  => 'bx-slider',
 	'activity'  => 'bx-pulse',
@@ -49,6 +57,38 @@ else {
 	define( 'CRB_ADMIN_CAP', 'manage_network' );
 }
 
+/**
+ * Tells whether a WP Cerber admin page is enabled in the current environment.
+ *
+ * This is the single definition of the conditions under which WP Cerber leaves an admin page
+ * out of the WordPress admin menu, which makes WordPress deny access to the page: the Data
+ * Shield page requires a valid PRO license, the Site Integrity page requires an uploads
+ * directory, and the add-ons page requires at least one registered add-on. Any other page ID
+ * is reported as enabled, the function does not check that the ID names an existing admin page.
+ *
+ * The answer does not depend on the admin area of the current request, so it is also valid on
+ * the admin screens of an individual site of a multisite network, where the WP Cerber menu is
+ * not built.
+ *
+ * @param string $admin_page_id WP Cerber admin page ID, the value of the page query parameter.
+ *
+ * @return bool True when the page is enabled, false when WP Cerber does not add it to the admin menu.
+ *
+ * @since 10.0.1
+ */
+function crb_is_admin_page_enabled( string $admin_page_id ): bool {
+	switch ( $admin_page_id ) {
+		case 'cerber-shield':
+			return (bool) lab_lab();
+		case 'cerber-integrity':
+			return (bool) cerber_get_upload_dir_mu();
+		case CRB_ADDON_PAGE:
+			return ! CRB_Addons::none();
+	}
+
+	return true;
+}
+
 function cerber_admin_menu() {
 
 	$position = 100;
@@ -59,39 +99,39 @@ function cerber_admin_menu() {
 		}
 	}
 
-	$hook = add_menu_page( 'WP Cerber Security', 'WP Cerber', CRB_ADMIN_CAP, 'cerber-security', 'cerber_render_admin_page', 'dashicons-shield', $position );
+	$hook = add_menu_page( 'WP Cerber Security', CRB_ADMIN_MENU_TITLE, CRB_ADMIN_CAP, 'cerber-security', 'cerber_render_admin_page', 'dashicons-shield', $position );
 	add_action( 'load-' . $hook, 'crb_admin_screen_options' );
-	add_submenu_page( 'cerber-security', __( 'WP Cerber Dashboard', 'wp-cerber' ), __( 'Dashboard', 'wp-cerber' ), CRB_ADMIN_CAP, 'cerber-security', 'cerber_render_admin_page' );
+	add_submenu_page( 'cerber-security', __( 'WP Cerber Dashboard', 'wp-cerber' ), crb_get_admin_page_menu_title( 'cerber-security' ), CRB_ADMIN_CAP, 'cerber-security', 'cerber_render_admin_page' );
 
-	$hook = add_submenu_page( 'cerber-security', __( 'WP Cerber: Traffic Inspector', 'wp-cerber' ), __( 'Traffic Inspector', 'wp-cerber' ), CRB_ADMIN_CAP, 'cerber-traffic', 'cerber_render_admin_page' );
+	$hook = add_submenu_page( 'cerber-security', __( 'WP Cerber: Traffic Inspector', 'wp-cerber' ), crb_get_admin_page_menu_title( 'cerber-traffic' ), CRB_ADMIN_CAP, 'cerber-traffic', 'cerber_render_admin_page' );
 	add_action( 'load-' . $hook, 'crb_admin_screen_options' );
 
-	if ( lab_lab() ) {
-		add_submenu_page( 'cerber-security', __( 'WP Cerber: Data Shield Policies', 'wp-cerber' ), __( 'Data Shield', 'wp-cerber' ), CRB_ADMIN_CAP, 'cerber-shield', 'cerber_render_admin_page' );
+	if ( crb_is_admin_page_enabled( 'cerber-shield' ) ) {
+		add_submenu_page( 'cerber-security', __( 'WP Cerber: Data Shield Policies', 'wp-cerber' ), crb_get_admin_page_menu_title( 'cerber-shield' ), CRB_ADMIN_CAP, 'cerber-shield', 'cerber_render_admin_page' );
 		//add_submenu_page( 'cerber-security', __( 'Cerber Security Rules', 'wp-cerber' ), __( 'Security Rules', 'wp-cerber' ), CRB_ADMIN_CAP, 'cerber-rules', 'cerber_render_admin_page' );
 	}
 
-	add_submenu_page( 'cerber-security', __( 'WP Cerber: Security Rules', 'wp-cerber' ), __( 'Security Rules', 'wp-cerber' ), CRB_ADMIN_CAP, 'cerber-rules', 'cerber_render_admin_page' );
+	add_submenu_page( 'cerber-security', __( 'WP Cerber: Security Rules', 'wp-cerber' ), crb_get_admin_page_menu_title( 'cerber-rules' ), CRB_ADMIN_CAP, 'cerber-rules', 'cerber_render_admin_page' );
 
-	add_submenu_page( 'cerber-security', __( 'WP Cerber: User Security', 'wp-cerber' ), __( 'User Policies', 'wp-cerber' ), CRB_ADMIN_CAP, 'cerber-users', 'cerber_render_admin_page' );
+	add_submenu_page( 'cerber-security', __( 'WP Cerber: User Security', 'wp-cerber' ), crb_get_admin_page_menu_title( 'cerber-users' ), CRB_ADMIN_CAP, 'cerber-users', 'cerber_render_admin_page' );
 
-	if ( cerber_get_upload_dir_mu() ) {
-		$hook = add_submenu_page( 'cerber-security', 'WP Cerber: Site Integrity', __( 'Site Integrity', 'wp-cerber' ), CRB_ADMIN_CAP, 'cerber-integrity', 'cerber_render_admin_page' );
+	if ( crb_is_admin_page_enabled( 'cerber-integrity' ) ) {
+		$hook = add_submenu_page( 'cerber-security', 'WP Cerber: Site Integrity', crb_get_admin_page_menu_title( 'cerber-integrity' ), CRB_ADMIN_CAP, 'cerber-integrity', 'cerber_render_admin_page' );
 		add_action( 'load-' . $hook, 'crb_admin_screen_options' );
 	}
 
-	add_submenu_page( 'cerber-security', __( 'WP Cerber: Anti-spam Settings', 'wp-cerber' ), __( 'Anti-spam', 'wp-cerber' ), CRB_ADMIN_CAP, 'cerber-recaptcha', 'cerber_render_admin_page' );
+	add_submenu_page( 'cerber-security', __( 'WP Cerber: Anti-spam Settings', 'wp-cerber' ), crb_get_admin_page_menu_title( 'cerber-recaptcha' ), CRB_ADMIN_CAP, 'cerber-recaptcha', 'cerber_render_admin_page' );
 
-	$hook = add_submenu_page( 'cerber-security', 'Cerber.Hub', 'Cerber.Hub', CRB_ADMIN_CAP, 'cerber-nexus', 'nexus_admin_page' );
+	$hook = add_submenu_page( 'cerber-security', 'Cerber.Hub', crb_get_admin_page_menu_title( CRB_NEXUS_PAGE ), CRB_ADMIN_CAP, 'cerber-nexus', 'nexus_admin_page' );
 	if ( nexus_is_main() ) {
 		add_action( 'load-' . $hook, 'nexus_master_screen' );
 	}
 
-	if ( ! CRB_Addons::none() ) {
-		add_submenu_page( 'cerber-security', __( 'WP Cerber: Add-ons', 'wp-cerber' ), __( 'Add-ons', 'wp-cerber' ), CRB_ADMIN_CAP, CRB_ADDON_PAGE, 'cerber_render_admin_page' );
+	if ( crb_is_admin_page_enabled( CRB_ADDON_PAGE ) ) {
+		add_submenu_page( 'cerber-security', __( 'WP Cerber: Add-ons', 'wp-cerber' ), crb_get_admin_page_menu_title( CRB_ADDON_PAGE ), CRB_ADMIN_CAP, CRB_ADDON_PAGE, 'cerber_render_admin_page' );
 	}
 
-	add_submenu_page( 'cerber-security', __( 'WP Cerber: Tools', 'wp-cerber' ), __( 'Tools', 'wp-cerber' ), CRB_ADMIN_CAP, 'cerber-tools', 'cerber_render_admin_page' );
+	add_submenu_page( 'cerber-security', __( 'WP Cerber: Tools', 'wp-cerber' ), crb_get_admin_page_menu_title( 'cerber-tools' ), CRB_ADMIN_CAP, 'cerber-tools', 'cerber_render_admin_page' );
 
 	/* We use an ugly hack to make a link in the admin menu */
 
@@ -496,7 +536,6 @@ function cerber_admin_ajax() {
 				}
 				break;
 			case 'cbfl':
-				$base = cerber_activity_link( array( CRB_EV_LFL ) );
 				foreach ( $list as $user_id ) {
 					$u = crb_get_userdata( $user_id );
 					$val = 0;
@@ -504,7 +543,14 @@ function cerber_admin_ajax() {
 					$failed = crb_q_cache_get( 'SELECT COUNT(user_id) FROM ' . CERBER_LOG_TABLE . ' WHERE ( user_login = "' . $u->user_login . '" OR user_login = "' . $u->user_email . '" ) AND activity = ' . CRB_EV_LFL . ' AND stamp > ' . ( time() - 7 * 24 * 3600 ), CERBER_LOG_TABLE );
 
 					if ( ! empty( $failed[0][0] ) ) {
-						$val = '<a href="' . $base . '&amp;filter_login=' . $u->user_email . '|' . $u->user_login . '">' . $failed[0][0] . '</a>';
+
+						// The pipe makes the Activity log match either the email or the login.
+						// Valid email addresses may contain &, # and +, so the value is query-encoded.
+						$failed_log_url = crb_admin_link_for_html( 'activity', array(
+							'filter_activity' => array( CRB_EV_LFL ),
+							'filter_login'    => $u->user_email . '|' . $u->user_login,
+						) );
+						$val = '<a href="' . $failed_log_url . '">' . $failed[0][0] . '</a>';
 					}
 
 					$response_data[ $user_id ] = $val;
@@ -1120,91 +1166,85 @@ function crb_admin_get_tokenized_link() {
 }
 
 /**
- * Returns HTML code of a set of navigation links to be used for quick filtering logs.
+ * Returns HTML code of a set of navigation links to be used for quick filtering the Activity log.
  *
- * @param string $context Defines what links are included in the set
+ * The links are built from the quick filters of the Activity log, see
+ * CRB_Log_Quick_Filters::get_activity_filters(). The Activity log screen displays all of them.
+ * A dashboard widget displays the few that belong to its topic, and titles the one that selects
+ * everything the widget is about as a link to view all.
+ *
+ * @param string $filter_id ID of the quick filter a dashboard widget displays as a link to view
+ *                          all: users, suspicious, new_users, or login_issues. The users filter is
+ *                          followed by the new_users and login_issues filters, the others are
+ *                          displayed alone. An empty string selects all quick filters for the
+ *                          Activity log screen. Any other value is treated as an empty string.
  *
  * @return string Escaped HTML code
  */
-function crb_admin_activity_nav_links( $context = '' ) {
+function crb_admin_activity_nav_links( $filter_id = '' ) {
+	$quick_filters = CRB_Log_Quick_Filters::get_activity_filters();
 
-	$links = array();
-
-	if ( ! $context ) {
-		$links[] = array( array(), __( 'View all', 'wp-cerber' ) );
-
-		$labels = cerber_get_labels( 'activity' );
-
-		$set = array( CRB_EV_LIN );
-		foreach ( $set as $item ) {
-			$links[] = array( array( 'filter_activity' => $item ), $labels[ $item ] );
-		}
+	switch ( $filter_id ) {
+		case 'users':
+			$view_all_filter = $quick_filters['users'];
+			$view_all_filter['title'] = __( 'View all', 'wp-cerber' );
+			$quick_filters = array( $view_all_filter, $quick_filters['new_users'], $quick_filters['login_issues'] );
+			break;
+		case 'suspicious':
+		case 'new_users':
+		case 'login_issues':
+			$view_all_filter = $quick_filters[ $filter_id ];
+			$view_all_filter['title'] = __( 'View all', 'wp-cerber' );
+			$quick_filters = array( $view_all_filter );
+			break;
 	}
 
-	if ( $context == 'users' ) {
-		$links[] = array( array( 'filter_user' => '*' ), __( 'View all', 'wp-cerber' ) );
-	}
-
-	if ( $context != 'suspicious' ) {
-		$links[] = array( array( 'filter_activity' => array( 1, 2 ) ), __( 'New users', 'wp-cerber' ) );
-		$links[] = array( array( 'filter_set' => 2 ), __( 'Login issues', 'wp-cerber' ) );
-	}
-
-	if ( $context != 'users' ) {
-		if ( ! $context ) {
-			$txt = __( 'Suspicious activity', 'wp-cerber' );
-		}
-		else {
-			$txt = __( 'View all', 'wp-cerber' );
-		}
-
-		$links[] = array( array( 'filter_set' => 1 ), $txt );
-	}
-
-	if ( ! $context ) {
-		$links[] = array( array( 'filter_status' => array( CRB_STS_11, CRB_STS_532, 706 ) ), __( 'Spam Events', 'wp-cerber' ) );
-		$links[] = array( array( 'filter_activity' => array( CRB_EV_IPL, CRB_EV_NEL ) ), __( 'IP locked out', 'wp-cerber' ) );
-		$links[] = array( array( 'filter_user' => '*' ), __( 'Users', 'wp-cerber' ) );
-		$links[] = array( array( 'filter_user' => 0 ), __( 'Non-authenticated', 'wp-cerber' ) );
-		if ( ! nexus_is_valid_request() ) {
-			$links[] = array( array( 'filter_user' => get_current_user_id() ), __( 'My activity', 'wp-cerber' ) );
-			$links[] = array( array( 'filter_ip' => cerber_get_remote_ip() ), __( 'My IP', 'wp-cerber' ) );
-		}
-	}
-
-	return crb_build_quick_nav_block( $links, 'activity' );
-
+	return crb_build_quick_filter_nav( $quick_filters );
 }
 
 /**
- * Generates a quick navigation block and highlights the link matching the current query parameters.
+ * Generates a quick navigation block out of quick filter definitions of a log.
  *
- * @param array $link_list A list of UI navigation link definitions.
- * @param string $tab Admin page tab to generate links for.
- * @param string $class CSS class for the link wrapper.
+ * This is how a log screen displays its quick filters. The definitions come from
+ * CRB_Log_Quick_Filters: a link per filter in the given order leads to the url of the filter.
+ * The URLs are used as they are, this function does not build any. The ad hoc links of
+ * crb_build_quick_nav_block() are displayed here as well, converted to the same shape.
+ *
+ * A filter is highlighted instead of being linked when it has query parameters, every one of
+ * them is present in the query parameters of the current admin page with the same value, and the
+ * current page has no other non-empty query parameters besides page, tab, and pagen. A scalar
+ * parameter matches a current single-item list with the same value. A list parameter matches
+ * when every item is present under the same key. A filter without query parameters is never
+ * highlighted.
+ *
+ * @param array<int|string,array{query_params:array<string,mixed>,title:string,url:string}> $quick_filters
+ *        Quick filter definitions to display in the given order. The keys are not used. The
+ *        query parameters are used only to detect the highlighted filter, so they must be the
+ *        ones the url was derived from. The title is plain text and the url is a raw URL, both
+ *        are escaped here.
+ * @param string $css_class CSS class for the link wrapper. Characters other than letters,
+ *                          digits, underscores, and hyphens are removed.
  *
  * @return string Escaped HTML.
  *
- * @since 8.8.3.2
+ * @since 10.0.1
  */
-function crb_build_quick_nav_block( $link_list, $tab = 'activity', $class = '' ) {
+function crb_build_quick_filter_nav( array $quick_filters, string $css_class = '' ): string {
 
 	$current_params = crb_get_referrer_params();
 	unset( $current_params['page'], $current_params['tab'], $current_params['pagen'] );
 
 	$html = '';
 
-	foreach ( $link_list as $link_config ) {
-		$query_string = '';
+	foreach ( $quick_filters as $quick_filter ) {
 		$selected = false;
 		$remaining_params = $current_params;
 
-		if ( $parameters = $link_config[0] ?? '' ) {
+		if ( $quick_filter['query_params'] ) {
 
-			$query_string .= '&' . http_build_query( $parameters );
 			$selected = true;
 
-			foreach ( $parameters as $name => $expected_value ) {
+			foreach ( $quick_filter['query_params'] as $name => $expected_value ) {
 				if ( ! is_array( $expected_value ) ) {
 					$actual_value = crb_array_get( $current_params, $name );
 
@@ -1243,17 +1283,47 @@ function crb_build_quick_nav_block( $link_list, $tab = 'activity', $class = '' )
 			return $val === 0 || ! empty( $val );
 		} );
 
-		$anchor = crb_escape_html( $link_config[1] );
+		$anchor = crb_escape_html( $quick_filter['title'] );
 
 		if ( $selected && empty( $remaining_params ) ) {
 			$html .= '<span class="crb_selected">' . $anchor . '</span> ';
 		}
 		else {
-			$html .= '<a class="crb-nav-link" href="' . crb_escape_url( cerber_admin_link( $tab ) . $query_string ) . '">' . $anchor . '</a> ';
+			$html .= '<a class="crb-nav-link" href="' . crb_escape_url( $quick_filter['url'] ) . '">' . $anchor . '</a> ';
 		}
 	}
 
-	return '<div class="crb-tag-buttons ' . crb_sanitize_alphanum( $class ) . '">' . $html . '</div>';
+	return '<div class="crb-tag-buttons ' . crb_sanitize_alphanum( $css_class ) . '">' . $html . '</div>';
+}
+
+/**
+ * Generates a quick navigation block and highlights the link matching the current query parameters.
+ *
+ * @param array $link_list A list of UI navigation link definitions.
+ * @param string $tab Admin page tab to generate links for.
+ * @param string $class CSS class for the link wrapper.
+ *
+ * @return string Escaped HTML.
+ *
+ * @since 8.8.3.2
+ */
+function crb_build_quick_nav_block( $link_list, $tab = 'activity', $class = '' ) {
+	$nav_links = array();
+	$tab_url = cerber_admin_link( $tab );
+
+	foreach ( $link_list as $link_config ) {
+		$query_params = ( $link_config[0] ?? array() ) ?: array();
+
+		// Ad hoc links only: predefined log quick filters have their URLs in CRB_Log_Quick_Filters and are passed to crb_build_quick_filter_nav() directly.
+		// The URL is built exactly as before, so existing callers get unchanged links.
+		$nav_links[] = array(
+			'query_params' => $query_params,
+			'title'        => $link_config[1],
+			'url'          => $query_params ? $tab_url . '&' . http_build_query( $query_params ) : $tab_url,
+		);
+	}
+
+	return crb_build_quick_filter_nav( $nav_links, $class );
 }
 
 /**
@@ -1448,7 +1518,11 @@ function crb_render_activity_view( $args = array(), $echo = true ): string {
 			if ( ! isset( $hidden['crb_username_col'] ) ) {
 				if ( $row->user_login ) {
 					$login_used = crb_escape_html( $row->user_login );
-					$username_cell = '<a href="' . $base_url . '&amp;filter_login=' . $login_used . '">' . $login_used . '</a>';
+
+					// HTML escaping alone does not stop &, # and + of a logged username from changing the query
+					// after the attribute is decoded, so the username is query-encoded as a parameter first.
+					$login_log_url = crb_admin_link_for_html( 'activity', array( 'filter_login' => $row->user_login ) );
+					$username_cell = '<a href="' . $login_log_url . '">' . $login_used . '</a>';
 				}
 
 				$username_cell = '<td>' . $username_cell . '</td>';
@@ -2336,10 +2410,13 @@ function cerber_quick_w() {
 		}
 	}
 
+	// The lockouts link leads to the IP locked out quick filter of the Activity log, its URL is defined there
+	$locked_out_url = CRB_Log_Quick_Filters::get_activity_filters()['ip_locked_out']['url'];
+
 	echo '<div class="cerber-widget">';
 
 	echo '<table style="width:100%;"><tr><td style="width:50%; vertical-align:top;"><table><tr><td class="bigdig">' . $failed . '</td><td class="per">' . $failed_ch . '</td></tr></table><p>' . __( 'failed attempts in the last 24 hours', 'wp-cerber' ) . '<br/>(<a href="' . $act . '&amp;filter_activity=' . CRB_EV_LFL . '">' . __( 'view all', 'wp-cerber' ) . '</a>)</p></td>';
-	echo '<td style="width:50%; vertical-align:top;"><table><tr><td class="bigdig">' . $locked . '</td><td class="per">' . $locked_ch . '</td></tr></table><p>' . __( 'lockouts in the last 24 hours', 'wp-cerber' ) . '<br/>(<a href="' . $act . '&amp;filter_activity[]=' . CRB_EV_IPL . '&filter_activity[]=' . CRB_EV_NEL . '">' . __( 'view all', 'wp-cerber' ) . '</a>)</p></td></tr></table>';
+	echo '<td style="width:50%; vertical-align:top;"><table><tr><td class="bigdig">' . $locked . '</td><td class="per">' . $locked_ch . '</td></tr></table><p>' . __( 'lockouts in the last 24 hours', 'wp-cerber' ) . '<br/>(<a href="' . crb_escape_url( $locked_out_url ) . '">' . __( 'view all', 'wp-cerber' ) . '</a>)</p></td></tr></table>';
 
 	echo '<table id="quick-info"><tr><td>' . __( 'Active lockouts', 'wp-cerber' ) . '</td><td><b><a href="' . $locks . '">' . $lockouts . '</a></b></td></tr>';
 	echo '<tr><td>' . __( 'Last lockout', 'wp-cerber' ) . '</td><td>' . $last . '</td></tr>';
@@ -2526,7 +2603,7 @@ function cerber_widgets_init() {
 	CRB_Widgets::register( 'wgt_new_users',
 		__( 'New Users', 'wp-cerber' ),
 		__( 'most recent user registrations', 'wp-cerber' ),
-		crb_build_quick_nav_block( array( array( array( 'filter_activity' => array( 1, 2 ) ), __( 'View all', 'wp-cerber' ) ) ), 'activity' ),
+		crb_admin_activity_nav_links( 'new_users' ),
 		function () {
 
 			$logged = cerber_db_get_var( 'SELECT ip FROM ' . CERBER_LOG_TABLE . ' WHERE activity IN (1,2) LIMIT 1' );
@@ -2552,7 +2629,7 @@ function cerber_widgets_init() {
 	CRB_Widgets::register( 'wgt_login_issues',
 		__( 'Login Issues', 'wp-cerber' ),
 		__( 'most recent authentication issues and requests', 'wp-cerber' ),
-		crb_build_quick_nav_block( array( array( array( 'filter_set' => '2' ), __( 'View all', 'wp-cerber' ) ) ), 'activity' ),
+		crb_admin_activity_nav_links( 'login_issues' ),
 		function () {
 
 			$in = crb_get_activity_set( 'login_issues', true );
@@ -5002,16 +5079,29 @@ function cerber_get_admin_page_config( $page = '' ) {
  * Configuration data describing UI of all WP Cerber admin pages.
  * To get UI phrases translated, must be invoked on or after the 'init' hook.
  *
+ * The configuration is built once per request and then served from a cache. A configuration
+ * built before the 'init' hook is not cached, so its untranslated phrases do not stay for the
+ * rest of the request.
+ *
+ * The menu_title key of a page is the title of the page in the WordPress admin menu. It is the
+ * single definition of that title, read through crb_get_admin_page_menu_title().
+ *
  * @param string $page
  *
  * @return array[]|false
  */
 function crb_get_admin_ui_config( $page = '' ) {
+	static $cached_admin_pages = null;
+
+	if ( $cached_admin_pages !== null ) {
+		return $page ? crb_array_get( $cached_admin_pages, $page ) : $cached_admin_pages;
+	}
 
 	// Note: Tab titles (and other phrases) are not translated if it's called before the 'init' hook
 
 	$admin_pages = array(
 		'cerber-security'  => array(
+			'menu_title' => __( 'Dashboard', 'wp-cerber' ),
 			'title'      => 'WP Cerber Security',
 			'tabs'       => array(
 				'dashboard'     => array( 'bxs-dashboard', __( 'Dashboard', 'wp-cerber' ) ),
@@ -5073,6 +5163,7 @@ function crb_get_admin_ui_config( $page = '' ) {
 			}
 		),
 		'cerber-recaptcha' => array(
+			'menu_title' => __( 'Anti-spam', 'wp-cerber' ),
 			'title'    => __( 'Anti-spam and bot detection settings', 'wp-cerber' ),
 			'tabs'     => array(
 				'antispam' => array( 'bx-chip', __( 'Anti-spam engine', 'wp-cerber' ) ),
@@ -5093,6 +5184,7 @@ function crb_get_admin_ui_config( $page = '' ) {
 			}
 		),
 		'cerber-traffic'   => array(
+			'menu_title' => __( 'Traffic Inspector', 'wp-cerber' ),
 			'title'    => __( 'Traffic Inspector', 'wp-cerber' ),
 			'tabs'     => array(
 				'traffic'     => array( 'bx-show', __( 'Live Traffic', 'wp-cerber' ) ),
@@ -5109,6 +5201,7 @@ function crb_get_admin_ui_config( $page = '' ) {
 			}
 		),
 		'cerber-shield'    => array(
+			'menu_title' => __( 'Data Shield', 'wp-cerber' ),
 			'title'    => __( 'Data Shield Policies', 'wp-cerber' ),
 			'tabs'     => array(
 				'user_shield' => array( 'bx-group', __( 'Accounts & Roles', 'wp-cerber' ) ),
@@ -5119,6 +5212,7 @@ function crb_get_admin_ui_config( $page = '' ) {
 			}
 		),
 		'cerber-users'     => array(
+			'menu_title' => __( 'User Policies', 'wp-cerber' ),
 			'title'    => __( 'User Policies', 'wp-cerber' ),
 			'tabs'     => array(
 				'role_policies'   => array( 'bx-group', __( 'Role Policies', 'wp-cerber' ) ),
@@ -5138,6 +5232,7 @@ function crb_get_admin_ui_config( $page = '' ) {
 			}
 		),
 		'cerber-rules'     => array(
+			'menu_title' => __( 'Security Rules', 'wp-cerber' ),
 			'pro_page' => 1,
 			'title'    => __( 'Security Rules', 'wp-cerber' ),
 			'tabs'     => array(
@@ -5154,6 +5249,7 @@ function crb_get_admin_ui_config( $page = '' ) {
 			}
 		),
 		'cerber-integrity' => array(
+			'menu_title' => __( 'Site Integrity', 'wp-cerber' ),
 			'title'      => __( 'Site Integrity', 'wp-cerber' ),
 			'tabs'       => array(
 				'scan_main'       => array( 'bx-radar', __( 'Security Scanner', 'wp-cerber' ) ),
@@ -5211,6 +5307,7 @@ function crb_get_admin_ui_config( $page = '' ) {
 			}
 		),
 		'cerber-tools'     => array(
+			'menu_title' => __( 'Tools', 'wp-cerber' ),
 			'title'    => __( 'Tools', 'wp-cerber' ),
 			'tabs'     => array(
 				//'imex'       => array( 'bx-layer', __( 'Export & Import', 'wp-cerber' ) ),
@@ -5249,12 +5346,94 @@ function crb_get_admin_ui_config( $page = '' ) {
 		),
 	);
 
+	// Phrases are translated from the init hook on, an earlier build must not be kept for the request
+
+	if ( did_action( 'init' ) ) {
+		$cached_admin_pages = $admin_pages;
+	}
 
 	if ( ! $page ) {
 		return $admin_pages;
 	}
 
 	return crb_array_get( $admin_pages, $page );
+}
+
+/**
+ * Returns the title a WP Cerber admin page has in the WordPress admin menu.
+ *
+ * This is the single point the title is read from. The admin menu is built with it, see
+ * cerber_admin_menu(), and so are the labels of the Command Palette commands that lead to the
+ * tabs of the page. WordPress core builds its own Command Palette commands from the admin menu,
+ * so both kinds of commands name a page with the same text.
+ *
+ * The titles of the pages described by crb_get_admin_ui_config() are its menu_title keys. The
+ * Cerber.Hub page and the add-ons page are not part of that configuration, their titles are
+ * defined here.
+ *
+ * To get the title translated, must be invoked on or after the init hook.
+ *
+ * @param string $admin_page_id WP Cerber admin page ID, the value of the page query parameter.
+ *
+ * @return string Translated title, not escaped for any output context. An empty string if the
+ *                ID names no WP Cerber admin page.
+ *
+ * @since 10.0.1
+ */
+function crb_get_admin_page_menu_title( string $admin_page_id ): string {
+
+	// The pages that are not part of the admin UI configuration
+
+	switch ( $admin_page_id ) {
+		case CRB_NEXUS_PAGE:
+			return 'Cerber.Hub';
+		case CRB_ADDON_PAGE:
+			return __( 'Add-ons', 'wp-cerber' );
+	}
+
+	return (string) ( crb_get_admin_ui_config()[ $admin_page_id ]['menu_title'] ?? '' );
+}
+
+/**
+ * Converts a piece of admin UI text to plain text.
+ *
+ * Titles in the admin UI configuration are written for HTML output and may carry tags and
+ * character references, while some consumers render them as text, for instance Command Palette
+ * labels and the HTML title of admin pages. Tags are removed, character references are decoded,
+ * and whitespace is collapsed.
+ *
+ * @param string $ui_text Text from the admin UI configuration, possibly containing HTML.
+ *
+ * @return string Plain text without leading and trailing whitespace. It is not escaped for any output context.
+ *
+ * @since 10.0.1
+ */
+function crb_admin_ui_to_plain_text( string $ui_text ): string {
+	$plain_text = html_entity_decode( crb_strip_tags( $ui_text ), ENT_QUOTES | ENT_HTML5, 'UTF-8' );
+
+	return trim( (string) preg_replace( '/\s+/u', ' ', $plain_text ) );
+}
+
+/**
+ * Tells whether two titles of admin UI elements read the same, regardless of letter case.
+ *
+ * Callers use it to name a location once when its broader context has the same title, for
+ * instance a tab titled like its admin page. Without the mbstring extension only an exact match
+ * is detected, both titles are then kept.
+ *
+ * @param string $first_title Title to compare.
+ * @param string $second_title Title to compare with.
+ *
+ * @return bool True when the titles are equal regardless of letter case.
+ *
+ * @since 10.0.1
+ */
+function crb_admin_ui_is_same_title( string $first_title, string $second_title ): bool {
+	if ( ! function_exists( 'mb_strtolower' ) ) {
+		return $first_title === $second_title;
+	}
+
+	return mb_strtolower( $first_title ) === mb_strtolower( $second_title );
 }
 
 /**
@@ -5372,6 +5551,99 @@ function crb_admin_get_tab( $tabs = array() ): string {
 	}
 
 	return (string) $tab;
+}
+
+add_filter( 'admin_title', 'crb_admin_filter_page_title', 10, 2 );
+
+/**
+ * Replaces the HTML title of WP Cerber admin pages with "Tab ‹ Page ‹ WP Cerber ‹ Site name",
+ * so a bookmark or a browser window in a taskbar identifies the location by its most specific
+ * part first. Hooked to the admin_title filter of WordPress.
+ *
+ * The page part is omitted on the main WP Cerber page, whose menu title would mislabel its
+ * settings tabs, and when the page is named like the active tab. Empty parts are omitted.
+ * Titles of other admin pages and of WP Cerber pages missing from the admin UI configuration
+ * are returned unchanged. So is the title in the recovery mode of WordPress, which WordPress
+ * core marks in the title.
+ *
+ * @param string $admin_title The title built by WordPress core.
+ * @param string $title The title of the admin page, not used.
+ *
+ * @return string The HTML title of the page as plain text. WordPress core escapes it for output.
+ *
+ * @since 10.0.1
+ */
+function crb_admin_filter_page_title( $admin_title, $title ) {
+	if ( ! cerber_is_admin_page()
+	     || wp_is_recovery_mode() ) {
+		return $admin_title;
+	}
+
+	// Find the declared tabs of the page. The tab_filter callbacks are not invoked: they add
+	// counters to tab titles and run database queries.
+
+	$admin_page_id = crb_admin_get_page();
+
+	if ( $admin_page_id === CRB_NEXUS_PAGE ) {
+		$page_tabs = nexus_get_admin_tabs();
+	}
+	else {
+		$page_config = cerber_get_admin_page_config( $admin_page_id );
+
+		if ( ! $page_config ) {
+			return $admin_title;
+		}
+
+		$page_tabs = $page_config['tabs'] ?? array();
+	}
+
+	// The same tab the page renders, the Help tab is rendered on every page but is not declared among its tabs
+
+	$active_tab_id = crb_admin_get_tab( $page_tabs );
+	$tab_title = ( $active_tab_id === 'help' ) ? __( 'Help', 'wp-cerber' ) : (string) ( $page_tabs[ $active_tab_id ][1] ?? '' );
+	$plain_tab_title = crb_admin_ui_to_plain_text( $tab_title );
+
+	// The main page is represented by the WP Cerber part, a page named like its tab adds nothing
+
+	$plain_page_title = '';
+
+	if ( $admin_page_id !== 'cerber-security' ) {
+		$plain_page_title = crb_admin_ui_to_plain_text( crb_get_admin_page_menu_title( $admin_page_id ) );
+	}
+
+	if ( crb_admin_ui_is_same_title( $plain_tab_title, $plain_page_title ) ) {
+		$plain_page_title = '';
+	}
+
+	// Assemble the title from the most specific part to the broadest one
+
+	$title_parts = array( $plain_tab_title, $plain_page_title, CRB_ADMIN_MENU_TITLE, crb_admin_get_title_site_name() );
+
+	return implode( CRB_ADMIN_TITLE_SEPARATOR, array_filter( $title_parts, 'strlen' ) );
+}
+
+/**
+ * Returns the name of the website whose data the current WP Cerber admin page displays.
+ *
+ * While a remote website is managed through Cerber.Hub, that is the remote website. Otherwise,
+ * it is the network in the network admin or the current site.
+ *
+ * @return string Plain text name, empty if the website has no name. Not escaped for any output context.
+ *
+ * @since 10.0.1
+ */
+function crb_admin_get_title_site_name(): string {
+	$managed_site = nexus_get_context();
+
+	if ( $managed_site ) {
+		return crb_admin_ui_to_plain_text( (string) ( $managed_site->site_name ?? '' ) );
+	}
+
+	if ( is_network_admin() ) {
+		return crb_admin_ui_to_plain_text( (string) ( get_network()->site_name ?? '' ) );
+	}
+
+	return crb_admin_ui_to_plain_text( (string) get_bloginfo( 'name' ) );
 }
 
 function cerber_show_tabs( $active, $tabs = array() ) {

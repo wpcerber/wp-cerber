@@ -32,6 +32,9 @@
 
 if ( ! defined( 'WPINC' ) ) { exit; }
 
+// ID of the Cerber.Hub admin page. The set of tabs it offers depends on the Cerber.Hub mode, see nexus_get_admin_tabs().
+const CRB_NEXUS_PAGE = 'cerber-nexus';
+
 function nexus_init() {
 
 	if ( nexus_is_client()
@@ -82,17 +85,7 @@ function nexus_admin_page() {
 		return;
 	}
 
-	if ( nexus_is_main() ) {
-		$tabs = array(
-			'nexus_sites'  => array( 'bxs-world', __( 'My Websites', 'wp-cerber' ) ),
-			'nexus_master' => array( 'bx-cog', __( 'Settings', 'wp-cerber' ) ),
-		);
-	}
-	else {
-		$tabs = array(
-			'nexus_client' => array( 'bx-cog', __( 'Access Settings', 'wp-cerber' ) ),
-		);
-	}
+	$tabs = nexus_get_admin_tabs();
 
 	$t = ( nexus_is_client() ) ? __( 'Access Settings', 'wp-cerber' ) : __( 'My Websites', 'wp-cerber' );
 
@@ -114,6 +107,39 @@ function nexus_admin_page() {
 
 	} );
 
+}
+
+/**
+ * Returns the tabs the Cerber.Hub admin page offers in the current Cerber.Hub mode of the website.
+ *
+ * This is the single definition of the tab set of the Cerber.Hub admin page. The page is not
+ * part of the admin UI configuration returned by crb_get_admin_ui_config(), because its tabs
+ * depend on the mode: a main website and a managed website get different tabs, and a website
+ * with no mode selected gets none, the page then offers the mode selection only.
+ *
+ * Tab titles are translated, so the function must be invoked on or after the init hook.
+ *
+ * @return array<string,array{0:string,1:string}> Tabs keyed by admin page tab ID in the order
+ *         they are displayed. Each tab is a list: icon ID, translated tab title. Empty when no
+ *         Cerber.Hub mode is selected.
+ *
+ * @since 10.0.1
+ */
+function nexus_get_admin_tabs(): array {
+	if ( ! nexus_get_role_data() ) {
+		return array();
+	}
+
+	if ( nexus_is_main() ) {
+		return array(
+			'nexus_sites'  => array( 'bxs-world', __( 'My Websites', 'wp-cerber' ) ),
+			'nexus_master' => array( 'bx-cog', __( 'Settings', 'wp-cerber' ) ),
+		);
+	}
+
+	return array(
+		'nexus_client' => array( 'bx-cog', __( 'Access Settings', 'wp-cerber' ) ),
+	);
 }
 
 function nexus_site_manager() {

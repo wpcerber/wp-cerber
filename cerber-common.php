@@ -2622,14 +2622,24 @@ function crb_get_activity_label( $activity, $user_id = 0, $by_user_id = 0, $link
 }
 
 /**
- * Returns a predefined set of activity type IDs to build URLs and generates SQL clauses
- * Safe to use in any context.
+ * Resolves a numeric log filter set ID to its predefined activity event IDs.
  *
- * @param int $set_id The set IDs
+ * Maps the value of the filter_set query parameter to a named activity set
+ * defined by crb_get_activity_set(). Used by the Activity and Live Traffic
+ * log query handlers.
  *
- * @return int[]
+ * Supported filter set IDs:
+ * - 1: suspicious
+ * - 2: login_issues
+ * - 3: spam
+ *
+ * @param int $set_id Value of the filter_set query parameter.
+ *
+ * @return array<int,int> Activity event IDs, or an empty array for an unknown ID.
+ *
+ * @see crb_get_activity_set()
  */
-function crb_get_filter_set( $set_id ) {
+function crb_resolve_log_filter_set( $set_id ) {
 	static $list = array( 1 => 'suspicious', 2 => 'login_issues', 3 => 'spam' );
 
 	if ( ! isset( $list[ $set_id ] ) ) {
@@ -2640,12 +2650,35 @@ function crb_get_filter_set( $set_id ) {
 }
 
 /**
- * Returns a predefined set of activity type IDs.
+ * Retrieves a predefined, named set of WP Cerber activity event IDs.
  *
- * @param string $set_id
- * @param bool $implode
+ * These sets provide shared event classifications used across WP Cerber,
+ * including security enforcement, activity filtering, dashboard metrics,
+ * and event analysis. They are not limited to log UI filters.
  *
- * @return int[]|string
+ * Each set has a stable string identifier and defines a specific group
+ * of activity events. An event may belong to multiple sets.
+ *
+ * Available sets:
+ * - malicious: Events classified as malicious activity.
+ * - mitigation: Events used to trigger automated IP lockouts.
+ * - suspicious: Events included in the suspicious activity log filter.
+ * - dashboard: Events used for dashboard metrics.
+ * - denied_by_crb: Events representing actions denied by WP Cerber.
+ * - login_issues: Events related to authentication issues.
+ * - blocked: IP and subnet lockout events.
+ * - spam: Spam-related events.
+ *
+ * Event IDs are normalized to non-negative integers before returning.
+ * Unknown set identifiers return an empty array, regardless of $implode.
+ *
+ * @param string $set_id Named identifier of the activity set.
+ * @param bool $implode Whether to return a comma-separated string
+ *                      of event IDs instead of an array.
+ *
+ * @return array<int,int>|string Event IDs as an indexed array, or as a
+ *                               comma-separated string when $implode is true.
+ *                               An unknown set always returns an empty array.
  */
 function crb_get_activity_set( $set_id = 'malicious', $implode = false ) {
 
@@ -6447,7 +6480,23 @@ class CRB_Globals {
 	static $reset_pwd_denied = false;
 	static $retrieve_password = false; // User is trying to retrieve password
 	static $login_form_errors = array();
+
+	/**
+	 * ID of the user WP Cerber attributes the current request to. Empty if there is no such user.
+	 *
+	 * It is the user the request itself is authenticated as: the owner of the authentication cookie
+	 * the browser sent with the request, the user authenticated by the credentials of the request,
+	 * or the user whose session the request has started or terminated. Unlike the WordPress current
+	 * user, it is retained after the user logs out, so the rest of the request is still attributed
+	 * to that user.
+	 *
+	 * It must never be set from an identity check that does not authenticate the request itself,
+	 * such as the validation of an authentication cookie supplied by the calling code.
+	 *
+	 * @var int|null
+	 */
 	static $user_id;
+
 	static $req_status = 0;
 	private static $assets_url = '';
 	static $ajax_loader = '';

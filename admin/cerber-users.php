@@ -467,7 +467,7 @@ function crb_admin_render_role_form( $role_id, $role_policies ) {
 	    foreach ( $config['fields'] as $field_id => $field ) {
 
 		    $pro = ( isset( CRB_PRO_POLICIES[ $field_id ] ) && ! lab_lab() );
-		    $hide = ( $pro && CRB_PRO_POLICIES[ $field_id ][0] == 2 ) ? 'display:none;' : '';
+		    $hide = crb_is_role_policy_hidden( (string) $field_id ) ? 'display:none;' : '';
 
 		    $title = crb_array_get( $field, 'title', '' );
 
@@ -523,6 +523,26 @@ function crb_admin_render_role_form( $role_id, $role_policies ) {
 	$html .= '</table>';
 
 	return $html;
+}
+
+/**
+ * Tells whether the row of a role policy is hidden from the role policy form by the license.
+ *
+ * Without a valid PRO license a PRO-only role policy is either displayed grayed out or not
+ * displayed at all, depending on its entry in CRB_PRO_POLICIES. This is the single definition
+ * of the second case. The check does not cover a row collapsed by an unmet enabler, see
+ * crb_is_enabler_met(), which depends on the policies of a particular role.
+ *
+ * @param string $policy_id Role policy field ID as defined in crb_get_role_settings_config().
+ *
+ * @return bool True when the row of the policy is rendered but not displayed for any role.
+ *
+ * @since 10.0.1
+ */
+function crb_is_role_policy_hidden( string $policy_id ): bool {
+	return isset( CRB_PRO_POLICIES[ $policy_id ] )
+	       && CRB_PRO_POLICIES[ $policy_id ][0] == 2
+	       && ! lab_lab();
 }
 
 /**

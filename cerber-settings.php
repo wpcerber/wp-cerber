@@ -288,6 +288,7 @@ function cerber_get_defaults( string $setting = '', $resolve = true ) {
 			'admin_lang'     => 0,
 			'admin_locale'   => 0,
 			'top_admin_menu' => 1,
+			'wp_palette_reduce' => 0,
 			'no_white_my_ip' => 0,
 			//'log_errors'   => 1
 

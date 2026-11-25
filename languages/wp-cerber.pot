@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the WP Cerber Security plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: WP Cerber Security 10.0.0\n"
+"Project-Id-Version: WP Cerber Security 10.0.5\n"
 "Report-Msgid-Bugs-To: https://talk.wpcerber.com\n"
 "Last-Translator: WP Cerber Team\n"
 "Language-Team: WP Cerber\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-06T03:52:32+00:00\n"
+"POT-Creation-Date: 2026-11-24T23:59:37+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: wp-cerber\n"
@@ -50,17 +50,17 @@ msgid "The IP address you are trying to add is already in the list"
 msgstr ""
 
 #: admin/cerber-admin-acl.php:178
-#: admin/cerber-dashboard.php:1820
-#: admin/cerber-dashboard.php:1900
-#: admin/cerber-dashboard.php:2355
+#: admin/cerber-dashboard.php:1894
+#: admin/cerber-dashboard.php:1974
+#: admin/cerber-dashboard.php:2432
 msgid "Allowed IP Access List"
 msgstr ""
 
 #: admin/cerber-admin-acl.php:180
 #: admin/cerber-admin-acl.php:188
 #: admin/cerber-admin-acl.php:202
-#: admin/cerber-dashboard.php:2877
-#: admin/cerber-dashboard.php:3608
+#: admin/cerber-dashboard.php:2954
+#: admin/cerber-dashboard.php:3685
 msgid "View Activity"
 msgstr ""
 
@@ -74,9 +74,9 @@ msgid "IP addresses you trust and allow to access the site. Requests from these 
 msgstr ""
 
 #: admin/cerber-admin-acl.php:186
-#: admin/cerber-dashboard.php:1823
-#: admin/cerber-dashboard.php:1903
-#: admin/cerber-dashboard.php:2360
+#: admin/cerber-dashboard.php:1897
+#: admin/cerber-dashboard.php:1977
+#: admin/cerber-dashboard.php:2437
 msgid "Blocked IP Access List"
 msgstr ""
 
@@ -89,9 +89,9 @@ msgid "Your IP address"
 msgstr ""
 
 #: admin/cerber-admin-acl.php:302
-#: admin/cerber-dashboard.php:1890
-#: admin/cerber-dashboard.php:1951
-#: admin/cerber-dashboard.php:2175
+#: admin/cerber-dashboard.php:1964
+#: admin/cerber-dashboard.php:2025
+#: admin/cerber-dashboard.php:2249
 msgid "Check for activities"
 msgstr ""
 
@@ -132,7 +132,7 @@ msgid "IP address %s has been added to the Allowed IP Access List"
 msgstr ""
 
 #: admin/cerber-admin-help.php:379
-#: admin/includes/CRB_Settings_Registry.php:638
+#: admin/includes/CRB_Settings_Registry.php:717
 msgid "My site is behind a reverse proxy"
 msgstr ""
 
@@ -149,12 +149,12 @@ msgstr ""
 
 #: admin/cerber-admin-settings.php:148
 #: admin/cerber-admin-settings.php:196
-#: admin/includes/CRB_Settings_Registry.php:1409
+#: admin/includes/CRB_Settings_Registry.php:1496
 msgid "Click to send now"
 msgstr ""
 
 #: admin/cerber-admin-settings.php:248
-#: admin/cerber-dashboard.php:4312
+#: admin/cerber-dashboard.php:4389
 msgid "Save Changes"
 msgstr ""
 
@@ -243,16 +243,16 @@ msgid "For safety reasons, prohibited symbols and invalid values have been remov
 msgstr ""
 
 #. translators: %s is an invalid REGEX pattern.
-#: admin/cerber-admin-settings.php:1323
+#: admin/cerber-admin-settings.php:1342
 #, php-format
 msgid "The REGEX pattern %s is not valid."
 msgstr ""
 
-#: admin/cerber-admin-settings.php:1379
+#: admin/cerber-admin-settings.php:1398
 msgid "Invalid regular expression"
 msgstr ""
 
-#: admin/cerber-admin-settings.php:1441
+#: admin/cerber-admin-settings.php:1460
 msgid "Manage"
 msgstr ""
 
@@ -285,7 +285,7 @@ msgid "Critical issues"
 msgstr ""
 
 #: admin/cerber-admin.php:115
-#: cerber-scanner.php:5953
+#: cerber-scanner.php:6339
 msgid "Issues total"
 msgstr ""
 
@@ -316,8 +316,8 @@ msgid "Continue Scanning"
 msgstr ""
 
 #: admin/cerber-admin.php:226
-#: admin/cerber-admin.php:806
-#: admin/cerber-dashboard.php:1538
+#: admin/cerber-admin.php:822
+#: admin/cerber-dashboard.php:1612
 #: admin/cerber-tools.php:464
 msgid "Delete"
 msgstr ""
@@ -354,372 +354,326 @@ msgstr ""
 msgid "Executable files are not supported. Please upload a ZIP archive."
 msgstr ""
 
-#: admin/cerber-admin.php:786
+#: admin/cerber-admin.php:803
 msgid "There are no files in the quarantine at the moment."
 msgstr ""
 
-#: admin/cerber-admin.php:789
+#: admin/cerber-admin.php:806
 msgid "No files match the specified filter."
 msgstr ""
 
-#: admin/cerber-admin.php:789
+#: admin/cerber-admin.php:806
 msgid "Click here to see the full list of files"
 msgstr ""
 
-#: admin/cerber-admin.php:809
+#: admin/cerber-admin.php:825
 msgid "Restore"
 msgstr ""
 
-#: admin/cerber-admin.php:827
+#: admin/cerber-admin.php:850
 msgid "Scanned"
 msgstr ""
 
-#: admin/cerber-admin.php:828
+#: admin/cerber-admin.php:851
 msgid "Quarantined"
 msgstr ""
 
-#: admin/cerber-admin.php:829
+#: admin/cerber-admin.php:852
 msgid "Automatic deletion"
 msgstr ""
 
-#: admin/cerber-admin.php:830
-#: admin/cerber-admin.php:976
-#: admin/cerber-admin.php:1482
+#: admin/cerber-admin.php:853
+#: admin/cerber-admin.php:999
+#: admin/cerber-admin.php:1505
 msgid "Size"
 msgstr ""
 
-#: admin/cerber-admin.php:831
-#: admin/cerber-admin.php:977
+#: admin/cerber-admin.php:854
+#: admin/cerber-admin.php:1000
 msgid "File"
 msgstr ""
 
-#: admin/cerber-admin.php:832
-#: admin/cerber-admin.php:978
-#: admin/cerber-dashboard.php:278
+#: admin/cerber-admin.php:855
+#: admin/cerber-admin.php:1001
+#: admin/cerber-dashboard.php:318
 #: admin/includes/CRB_Sessions_Table.php:29
 msgid "Action"
 msgstr ""
 
-#: admin/cerber-admin.php:842
+#: admin/cerber-admin.php:865
 msgid "All scans"
 msgstr ""
 
-#: admin/cerber-admin.php:904
+#: admin/cerber-admin.php:927
 msgid "The file has been deleted from the quarantine."
 msgstr ""
 
-#: admin/cerber-admin.php:919
+#: admin/cerber-admin.php:942
 msgid "The file has been restored to its original location."
 msgstr ""
 
-#: admin/cerber-admin.php:946
+#: admin/cerber-admin.php:969
 msgid "The list is empty."
 msgstr ""
 
-#: admin/cerber-admin.php:962
+#: admin/cerber-admin.php:985
 msgid "Remove from the list"
 msgstr ""
 
-#: admin/cerber-admin.php:974
+#: admin/cerber-admin.php:997
 msgid "Added"
 msgstr ""
 
-#: admin/cerber-admin.php:975
-#: admin/cerber-admin.php:1483
+#: admin/cerber-admin.php:998
+#: admin/cerber-admin.php:1506
 msgid "Modified"
 msgstr ""
 
-#: admin/cerber-admin.php:1011
+#: admin/cerber-admin.php:1034
 msgid "No data for generating reports"
 msgstr ""
 
-#: admin/cerber-admin.php:1012
+#: admin/cerber-admin.php:1035
 msgid "Please run the Full Scan. After the scan is completed, analytics reports will be generated."
 msgstr ""
 
-#: admin/cerber-admin.php:1068
+#: admin/cerber-admin.php:1091
 msgid "Files without extension"
 msgstr ""
 
-#: admin/cerber-admin.php:1069
+#: admin/cerber-admin.php:1092
 msgid "Back to list"
 msgstr ""
 
-#: admin/cerber-admin.php:1124
+#: admin/cerber-admin.php:1147
 msgid "Brief summary"
 msgstr ""
 
-#: admin/cerber-admin.php:1169
+#: admin/cerber-admin.php:1192
 msgid "Directory"
 msgstr ""
 
-#: admin/cerber-admin.php:1170
+#: admin/cerber-admin.php:1193
 msgid "Path"
 msgstr ""
 
-#: admin/cerber-admin.php:1171
-#: admin/cerber-admin.php:1286
+#: admin/cerber-admin.php:1194
+#: admin/cerber-admin.php:1309
 msgid "Files"
 msgstr ""
 
-#: admin/cerber-admin.php:1172
-#: admin/cerber-admin.php:1287
+#: admin/cerber-admin.php:1195
+#: admin/cerber-admin.php:1310
 msgid "Space Occupied"
 msgstr ""
 
-#: admin/cerber-admin.php:1256
+#: admin/cerber-admin.php:1279
 msgid "No extension"
 msgstr ""
 
-#: admin/cerber-admin.php:1282
+#: admin/cerber-admin.php:1305
 msgid "File extensions statistics"
 msgstr ""
 
-#: admin/cerber-admin.php:1285
+#: admin/cerber-admin.php:1308
 msgid "Extension"
 msgstr ""
 
-#: admin/cerber-admin.php:1288
+#: admin/cerber-admin.php:1311
 msgid "Smallest"
 msgstr ""
 
-#: admin/cerber-admin.php:1289
+#: admin/cerber-admin.php:1312
 msgid "Largest"
 msgstr ""
 
-#: admin/cerber-admin.php:1290
+#: admin/cerber-admin.php:1313
 msgid "Average Size"
 msgstr ""
 
-#: admin/cerber-admin.php:1291
+#: admin/cerber-admin.php:1314
 msgid "Oldest"
 msgstr ""
 
-#: admin/cerber-admin.php:1292
+#: admin/cerber-admin.php:1315
 msgid "Newest"
 msgstr ""
 
-#: admin/cerber-admin.php:1321
+#: admin/cerber-admin.php:1344
 msgid "Top 10 largest files"
 msgstr ""
 
-#: admin/cerber-admin.php:1422
-#: admin/cerber-dashboard.php:1530
-#: admin/cerber-dashboard.php:2039
-#: admin/cerber-dashboard.php:2535
-#: admin/cerber-dashboard.php:2562
-#: admin/cerber-dashboard.php:2631
+#: admin/cerber-admin.php:1445
+#: admin/cerber-dashboard.php:1604
+#: admin/cerber-dashboard.php:2113
+#: admin/cerber-dashboard.php:2612
+#: admin/cerber-dashboard.php:2639
+#: admin/cerber-dashboard.php:2708
 msgid "No activity has been logged yet."
 msgstr ""
 
-#: admin/cerber-admin.php:1481
+#: admin/cerber-admin.php:1504
 msgid "File Name"
 msgstr ""
 
-#: admin/cerber-admin.php:1716
+#: admin/cerber-admin.php:1739
 msgid "Authorized"
 msgstr ""
 
-#: admin/cerber-admin.php:1717
+#: admin/cerber-admin.php:1740
 msgid "Authorization Failed"
 msgstr ""
 
-#: admin/cerber-admin.php:1786
+#: admin/cerber-admin.php:1815
 msgid "IP address"
 msgstr ""
 
-#: admin/cerber-admin.php:1787
-#: admin/cerber-admin.php:1940
-#: admin/cerber-dashboard.php:1479
-#: admin/CRB_Traffic_Log_Screen.php:337
+#: admin/cerber-admin.php:1816
+#: admin/cerber-admin.php:1969
+#: admin/cerber-dashboard.php:1553
+#: admin/CRB_Traffic_Log_Screen.php:321
 msgid "Date"
 msgstr ""
 
-#: admin/cerber-admin.php:1792
-#: admin/cerber-admin.php:1945
+#: admin/cerber-admin.php:1821
+#: admin/cerber-admin.php:1974
 msgid "User ID"
 msgstr ""
 
-#: admin/cerber-admin.php:1793
+#: admin/cerber-admin.php:1822
 msgid "Page generation time"
 msgstr ""
 
-#: admin/cerber-admin.php:1808
+#: admin/cerber-admin.php:1837
 msgid "WP Cerber: unable to export the traffic log."
 msgstr ""
 
-#: admin/cerber-admin.php:1939
-#: admin/cerber-dashboard.php:273
-#: admin/cerber-dashboard.php:1476
-#: admin/cerber-dashboard.php:1750
-#: admin/CRB_Traffic_Log_Screen.php:339
+#: admin/cerber-admin.php:1968
+#: admin/cerber-dashboard.php:313
+#: admin/cerber-dashboard.php:1550
+#: admin/cerber-dashboard.php:1824
+#: admin/CRB_Traffic_Log_Screen.php:323
 #: admin/includes/CRB_Sessions_Table.php:27
 msgid "IP Address"
 msgstr ""
 
-#: admin/cerber-admin.php:1941
-#: admin/cerber-dashboard.php:1480
-#: admin/cerber-dashboard.php:1682
+#: admin/cerber-admin.php:1970
+#: admin/cerber-dashboard.php:1554
+#: admin/cerber-dashboard.php:1756
 msgid "Event"
 msgstr ""
 
-#: admin/cerber-admin.php:1942
+#: admin/cerber-admin.php:1971
 msgid "Status"
 msgstr ""
 
-#: admin/cerber-admin.php:1943
-#: admin/cerber-dashboard.php:1481
-#: admin/CRB_Traffic_Log_Screen.php:342
+#: admin/cerber-admin.php:1972
+#: admin/cerber-dashboard.php:1555
+#: admin/CRB_Traffic_Log_Screen.php:326
 msgid "Local User"
 msgstr ""
 
-#: admin/cerber-admin.php:1944
+#: admin/cerber-admin.php:1973
 msgid "User login"
 msgstr ""
 
-#: admin/cerber-admin.php:1946
-#: admin/cerber-dashboard.php:1482
+#: admin/cerber-admin.php:1975
+#: admin/cerber-dashboard.php:1556
 msgid "Username"
 msgstr ""
 
-#: admin/cerber-admin.php:1947
+#: admin/cerber-admin.php:1976
 msgid "By user"
 msgstr ""
 
-#: admin/cerber-admin.php:1962
+#: admin/cerber-admin.php:1991
 msgid "WP Cerber: unable to export the activity log."
 msgstr ""
 
-#: admin/cerber-dashboard.php:64
+#: admin/cerber-dashboard.php:104
 msgid "WP Cerber Dashboard"
 msgstr ""
 
-#: admin/cerber-dashboard.php:64
-#: admin/cerber-dashboard.php:2400
-#: admin/cerber-dashboard.php:3285
-#: admin/cerber-dashboard.php:5017
-msgid "Dashboard"
-msgstr ""
-
-#: admin/cerber-dashboard.php:66
+#: admin/cerber-dashboard.php:106
 msgid "WP Cerber: Traffic Inspector"
 msgstr ""
 
-#: admin/cerber-dashboard.php:66
-#: admin/cerber-dashboard.php:2364
-#: admin/cerber-dashboard.php:5096
-msgid "Traffic Inspector"
-msgstr ""
-
-#: admin/cerber-dashboard.php:70
+#: admin/cerber-dashboard.php:110
 msgid "WP Cerber: Data Shield Policies"
 msgstr ""
 
-#: admin/cerber-dashboard.php:70
-msgid "Data Shield"
-msgstr ""
-
-#: admin/cerber-dashboard.php:74
+#: admin/cerber-dashboard.php:114
 msgid "WP Cerber: Security Rules"
 msgstr ""
 
-#: admin/cerber-dashboard.php:74
-#: admin/cerber-dashboard.php:5142
-msgid "Security Rules"
-msgstr ""
-
-#: admin/cerber-dashboard.php:76
+#: admin/cerber-dashboard.php:116
 msgid "WP Cerber: User Security"
 msgstr ""
 
-#: admin/cerber-dashboard.php:76
-#: admin/cerber-dashboard.php:5122
-msgid "User Policies"
-msgstr ""
-
-#: admin/cerber-dashboard.php:79
-#: admin/cerber-dashboard.php:5157
-msgid "Site Integrity"
-msgstr ""
-
-#: admin/cerber-dashboard.php:83
+#: admin/cerber-dashboard.php:123
 msgid "WP Cerber: Anti-spam Settings"
 msgstr ""
 
-#: admin/cerber-dashboard.php:83
-msgid "Anti-spam"
-msgstr ""
-
-#: admin/cerber-dashboard.php:91
+#: admin/cerber-dashboard.php:131
 msgid "WP Cerber: Add-ons"
 msgstr ""
 
-#: admin/cerber-dashboard.php:91
-#: includes/addons/cerber-addons.php:403
-msgid "Add-ons"
-msgstr ""
-
-#: admin/cerber-dashboard.php:94
+#: admin/cerber-dashboard.php:134
 msgid "WP Cerber: Tools"
 msgstr ""
 
-#: admin/cerber-dashboard.php:94
-#: admin/cerber-dashboard.php:5214
-msgid "Tools"
-msgstr ""
-
-#: admin/cerber-dashboard.php:98
+#: admin/cerber-dashboard.php:138
 msgid "User Sessions"
 msgstr ""
 
-#: admin/cerber-dashboard.php:235
+#: admin/cerber-dashboard.php:275
 #: admin/kb/cerber-azoth.php:331
 msgid "View the log of suspicious and malicious activity from this IP address"
 msgstr ""
 
 #. translators: Control button label. Unlock means lifting the active lockout for an IP address.
-#: admin/cerber-dashboard.php:266
+#: admin/cerber-dashboard.php:306
 msgid "Unlock"
 msgstr ""
 
-#: admin/cerber-dashboard.php:274
-#: admin/cerber-dashboard.php:1477
-#: admin/cerber-dashboard.php:1750
+#: admin/cerber-dashboard.php:314
+#: admin/cerber-dashboard.php:1551
+#: admin/cerber-dashboard.php:1824
 msgid "Hostname"
 msgstr ""
 
-#: admin/cerber-dashboard.php:275
-#: admin/cerber-dashboard.php:1478
-#: admin/cerber-dashboard.php:1753
+#: admin/cerber-dashboard.php:315
+#: admin/cerber-dashboard.php:1552
+#: admin/cerber-dashboard.php:1827
 msgid "Country"
 msgstr ""
 
-#: admin/cerber-dashboard.php:276
+#: admin/cerber-dashboard.php:316
 #: admin/includes/CRB_Sessions_Table.php:26
 msgid "Expires"
 msgstr ""
 
-#: admin/cerber-dashboard.php:277
+#: admin/cerber-dashboard.php:317
 msgid "Reason"
 msgstr ""
 
-#: admin/cerber-dashboard.php:287
+#: admin/cerber-dashboard.php:327
 msgid "Click the IP address to see its activity"
 msgstr ""
 
-#: admin/cerber-dashboard.php:302
-#: admin/cerber-dashboard.php:2656
+#: admin/cerber-dashboard.php:342
+#: admin/cerber-dashboard.php:2733
 msgid "No lockouts at the moment. The sky is clear."
 msgstr ""
 
-#: admin/cerber-dashboard.php:456
-#: admin/cerber-dashboard.php:479
+#: admin/cerber-dashboard.php:496
+#: admin/cerber-dashboard.php:519
 #: admin/CRB_Traffic_Log_Screen.php:215
-#: cerber-common.php:2733
+#: cerber-common.php:2771
 #: cerber-lab.php:864
 #: includes/cerber-geo.php:315
 #: includes/cerber-geo.php:323
-#: includes/CRB_Messaging.php:205
+#: includes/CRB_Messaging.php:208
 #: includes/CRB_User_Agent_Parser.php:142
 #: includes/CRB_User_Agent_Parser.php:212
 #: nexus/cerber-nexus-list.php:335
@@ -727,611 +681,583 @@ msgstr ""
 msgid "Unknown"
 msgstr ""
 
-#: admin/cerber-dashboard.php:492
-#: admin/cerber-dashboard.php:2321
-#: admin/cerber-dashboard.php:2382
-#: cerber-common.php:3063
+#: admin/cerber-dashboard.php:532
+#: admin/cerber-dashboard.php:2395
+#: admin/cerber-dashboard.php:2459
+#: cerber-common.php:3101
 #: nexus/cerber-nexus-list.php:349
 msgid "Never"
 msgstr ""
 
-#: admin/cerber-dashboard.php:692
+#: admin/cerber-dashboard.php:738
 msgid "unknown"
 msgstr ""
 
 #. translators: %s is the IP address.
-#: admin/cerber-dashboard.php:784
+#: admin/cerber-dashboard.php:830
 #, php-format
 msgid "Lockout for %s was removed"
 msgstr ""
 
-#: admin/cerber-dashboard.php:821
+#: admin/cerber-dashboard.php:867
 msgid "TEST MESSAGE"
 msgstr ""
 
 #. translators: Here %s is the name of a mobile device or/and email addresses.
-#: admin/cerber-dashboard.php:828
+#: admin/cerber-dashboard.php:874
 #, php-format
 msgid "A message has been sent to %s"
 msgstr ""
 
-#: admin/cerber-dashboard.php:831
+#: admin/cerber-dashboard.php:877
 msgid "Unable to send a message"
 msgstr ""
 
-#: admin/cerber-dashboard.php:905
+#: admin/cerber-dashboard.php:951
 msgid "Default settings have been loaded"
 msgstr ""
 
-#: admin/cerber-dashboard.php:1005
+#: admin/cerber-dashboard.php:1051
 msgid "The license key has been removed."
 msgstr ""
 
-#: admin/cerber-dashboard.php:1012
+#: admin/cerber-dashboard.php:1058
 #, php-format
 msgid "The license key you entered is not valid. A license key must be exactly %d characters long."
 msgstr ""
 
-#: admin/cerber-dashboard.php:1028
+#: admin/cerber-dashboard.php:1074
 msgid "Great! Your license key is valid."
 msgstr ""
 
-#: admin/cerber-dashboard.php:1029
+#: admin/cerber-dashboard.php:1075
 msgid "Now, whenever you see a green shield icon in the top right-hand corner of any WP Cerber admin page, it means the professional version works as intended, and your website is protected by WP Cerber Security Cloud."
 msgstr ""
 
 #. translators: %s is the URL to the client portal.
-#: admin/cerber-dashboard.php:1031
+#: admin/cerber-dashboard.php:1077
 #, php-format
 msgid "Please use our client portal to manage your subscription, license keys and get support at %s"
 msgstr ""
 
-#: admin/cerber-dashboard.php:1032
+#: admin/cerber-dashboard.php:1078
 msgid "Thank you for being our client."
 msgstr ""
 
-#: admin/cerber-dashboard.php:1043
+#: admin/cerber-dashboard.php:1089
 msgid "Error! You have entered an invalid or expired license key."
 msgstr ""
 
-#: admin/cerber-dashboard.php:1044
+#: admin/cerber-dashboard.php:1090
 #, php-format
 msgid "Error Code: %s"
 msgstr ""
 
-#: admin/cerber-dashboard.php:1134
-#: admin/cerber-dashboard.php:1145
-#: admin/cerber-dashboard.php:1158
-#: admin/cerber-dashboard.php:2529
-#: admin/cerber-dashboard.php:2555
-#: admin/cerber-dashboard.php:2650
-#: admin/CRB_Traffic_Log_Screen.php:262
+#: admin/cerber-dashboard.php:1190
+#: admin/cerber-dashboard.php:1197
+#: admin/cerber-dashboard.php:2727
+#: admin/includes/CRB_Log_Quick_Filters.php:82
+#: admin/includes/CRB_Log_Quick_Filters.php:149
 msgid "View all"
 msgstr ""
 
-#: admin/cerber-dashboard.php:1149
-msgid "New users"
-msgstr ""
-
-#: admin/cerber-dashboard.php:1150
-msgid "Login issues"
-msgstr ""
-
-#: admin/cerber-dashboard.php:1155
-msgid "Suspicious activity"
-msgstr ""
-
-#: admin/cerber-dashboard.php:1165
-msgid "Spam Events"
-msgstr ""
-
-#: admin/cerber-dashboard.php:1166
-msgid "IP locked out"
-msgstr ""
-
-#: admin/cerber-dashboard.php:1167
-#: admin/CRB_Traffic_Log_Screen.php:265
-msgid "Users"
-msgstr ""
-
-#: admin/cerber-dashboard.php:1168
-#: admin/CRB_Traffic_Log_Screen.php:266
-msgid "Non-authenticated"
-msgstr ""
-
-#: admin/cerber-dashboard.php:1170
-msgid "My activity"
-msgstr ""
-
-#: admin/cerber-dashboard.php:1171
-#: admin/CRB_Traffic_Log_Screen.php:272
-msgid "My IP"
-msgstr ""
-
-#: admin/cerber-dashboard.php:1514
-#: admin/CRB_Traffic_Log_Screen.php:286
+#: admin/cerber-dashboard.php:1588
+#: admin/CRB_Traffic_Log_Screen.php:270
 msgid "Export"
 msgstr ""
 
-#: admin/cerber-dashboard.php:1533
+#: admin/cerber-dashboard.php:1607
 msgid "No events found using the given search criteria"
 msgstr ""
 
-#: admin/cerber-dashboard.php:1537
+#: admin/cerber-dashboard.php:1611
 msgid "You will be notified when such an event occurs"
 msgstr ""
 
-#: admin/cerber-dashboard.php:1542
+#: admin/cerber-dashboard.php:1616
 msgid "Get me notified when such an event occurs"
 msgstr ""
 
-#: admin/cerber-dashboard.php:1547
+#: admin/cerber-dashboard.php:1621
 msgid "View all logged events"
 msgstr ""
 
-#: admin/cerber-dashboard.php:1555
+#: admin/cerber-dashboard.php:1629
 msgid "Check for requests from the IP address"
 msgstr ""
 
-#: admin/cerber-dashboard.php:1571
+#: admin/cerber-dashboard.php:1645
 #: admin/includes/CRB_Sessions_Table.php:71
 msgid "Filter by registered user"
 msgstr ""
 
-#: admin/cerber-dashboard.php:1572
+#: admin/cerber-dashboard.php:1646
 msgid "Search for IP or username"
 msgstr ""
 
-#: admin/cerber-dashboard.php:1575
+#: admin/cerber-dashboard.php:1649
 msgid "Request ID"
 msgstr ""
 
-#: admin/cerber-dashboard.php:1576
+#: admin/cerber-dashboard.php:1650
 msgid "Search in URL"
 msgstr ""
 
-#: admin/cerber-dashboard.php:1583
+#: admin/cerber-dashboard.php:1657
 msgid "Filter"
 msgstr ""
 
-#: admin/cerber-dashboard.php:1682
+#: admin/cerber-dashboard.php:1756
 msgid "Known Users"
 msgstr ""
 
-#: admin/cerber-dashboard.php:1715
+#: admin/cerber-dashboard.php:1789
 msgid "No malicious activity detected in the past 24 hours."
 msgstr ""
 
-#: admin/cerber-dashboard.php:1756
+#: admin/cerber-dashboard.php:1830
 msgid "Incidents"
 msgstr ""
 
-#: admin/cerber-dashboard.php:1757
+#: admin/cerber-dashboard.php:1831
 msgid "Spam"
 msgstr ""
 
-#: admin/cerber-dashboard.php:1758
+#: admin/cerber-dashboard.php:1832
 msgid "Locked Out"
 msgstr ""
 
-#: admin/cerber-dashboard.php:1912
+#: admin/cerber-dashboard.php:1986
 msgid "Locked out"
 msgstr ""
 
 #. translators: %s is the network CIDR.
-#: admin/cerber-dashboard.php:1950
+#: admin/cerber-dashboard.php:2024
 #, php-format
 msgid "Network: %s"
 msgstr ""
 
-#: admin/cerber-dashboard.php:1967
+#: admin/cerber-dashboard.php:2041
 msgid "Block subnet"
 msgstr ""
 
-#: admin/cerber-dashboard.php:1973
+#: admin/cerber-dashboard.php:2047
 msgid "Block IP address"
 msgstr ""
 
-#: admin/cerber-dashboard.php:2110
+#: admin/cerber-dashboard.php:2184
 msgid "Last seen"
 msgstr ""
 
-#: admin/cerber-dashboard.php:2119
-#: admin/cerber-dashboard.php:2221
+#: admin/cerber-dashboard.php:2193
+#: admin/cerber-dashboard.php:2295
 msgid "Last login"
 msgstr ""
 
-#: admin/cerber-dashboard.php:2126
-#: admin/cerber-dashboard.php:2223
+#: admin/cerber-dashboard.php:2200
+#: admin/cerber-dashboard.php:2297
 msgid "Registered"
 msgstr ""
 
-#: admin/cerber-dashboard.php:2159
+#: admin/cerber-dashboard.php:2233
 msgid "Activated"
 msgstr ""
 
-#: admin/cerber-dashboard.php:2165
+#: admin/cerber-dashboard.php:2239
 msgid "Active sessions"
 msgstr ""
 
-#: admin/cerber-dashboard.php:2220
+#: admin/cerber-dashboard.php:2294
 msgid "Comments"
 msgstr ""
 
-#: admin/cerber-dashboard.php:2222
+#: admin/cerber-dashboard.php:2296
 msgid "Failed login attempts"
 msgstr ""
 
-#: admin/cerber-dashboard.php:2264
+#: admin/cerber-dashboard.php:2338
 #: admin/includes/CRB_Sessions_Table.php:182
 #: cerber-common.php:2095
 msgid "You"
 msgstr ""
 
-#: admin/cerber-dashboard.php:2286
+#: admin/cerber-dashboard.php:2360
 msgid "Cerber Quick View"
 msgstr ""
 
-#: admin/cerber-dashboard.php:2328
-#: admin/cerber-dashboard.php:2368
+#: admin/cerber-dashboard.php:2402
+#: admin/cerber-dashboard.php:2445
 msgid "Active"
 msgstr ""
 
-#: admin/cerber-dashboard.php:2328
+#: admin/cerber-dashboard.php:2402
 msgid "deactivate"
 msgstr ""
 
-#: admin/cerber-dashboard.php:2332
+#: admin/cerber-dashboard.php:2406
 msgid "Inactive"
 msgstr ""
 
-#: admin/cerber-dashboard.php:2335
-#: admin/cerber-dashboard.php:2363
-#: admin/cerber-dashboard.php:2388
-#: admin/cerber-dashboard.php:2390
+#: admin/cerber-dashboard.php:2409
+#: admin/cerber-dashboard.php:2440
+#: admin/cerber-dashboard.php:2465
+#: admin/cerber-dashboard.php:2467
 #: admin/cerber-users.php:53
 #: admin/cerber-users.php:79
-#: admin/cerber-users.php:719
-#: admin/cerber-users.php:733
-#: admin/cerber-users.php:749
-#: admin/includes/CRB_Settings_Registry.php:1248
-#: admin/includes/CRB_Settings_Registry.php:1685
-#: admin/includes/CRB_Settings_Registry.php:1764
-#: admin/includes/CRB_Settings_Registry.php:1923
-#: admin/includes/CRB_Settings_Registry.php:1932
-#: admin/includes/CRB_Settings_Registry.php:2467
+#: admin/cerber-users.php:739
+#: admin/cerber-users.php:753
+#: admin/cerber-users.php:769
+#: admin/includes/CRB_Settings_Registry.php:1335
+#: admin/includes/CRB_Settings_Registry.php:1772
+#: admin/includes/CRB_Settings_Registry.php:1851
+#: admin/includes/CRB_Settings_Registry.php:2010
+#: admin/includes/CRB_Settings_Registry.php:2019
+#: admin/includes/CRB_Settings_Registry.php:2554
 #: cerber-scanner.php:2258
 msgid "Disabled"
 msgstr ""
 
-#: admin/cerber-dashboard.php:2341
+#: admin/cerber-dashboard.php:2418
 msgid "failed attempts in the last 24 hours"
 msgstr ""
 
-#: admin/cerber-dashboard.php:2341
-#: admin/cerber-dashboard.php:2342
+#: admin/cerber-dashboard.php:2418
+#: admin/cerber-dashboard.php:2419
 msgid "view all"
 msgstr ""
 
-#: admin/cerber-dashboard.php:2342
+#: admin/cerber-dashboard.php:2419
 msgid "lockouts in the last 24 hours"
 msgstr ""
 
-#: admin/cerber-dashboard.php:2344
+#: admin/cerber-dashboard.php:2421
 msgid "Active lockouts"
 msgstr ""
 
-#: admin/cerber-dashboard.php:2345
+#: admin/cerber-dashboard.php:2422
 msgid "Last lockout"
 msgstr ""
 
 #. translators: %d is the number of the users.
-#: admin/cerber-dashboard.php:2348
+#: admin/cerber-dashboard.php:2425
 #, php-format
 msgid "%d user"
 msgid_plural "%d users"
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/cerber-dashboard.php:2350
+#: admin/cerber-dashboard.php:2427
 msgid "Logged-in users"
 msgstr ""
 
 #. translators: %d is the number of entries in the list.
-#: admin/cerber-dashboard.php:2353
-#: admin/cerber-dashboard.php:2358
-#: admin/cerber-dashboard.php:3248
+#: admin/cerber-dashboard.php:2430
+#: admin/cerber-dashboard.php:2435
+#: admin/cerber-dashboard.php:3325
 #, php-format
 msgid "%d entry"
 msgid_plural "%d entries"
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/cerber-dashboard.php:2361
-#: admin/includes/CRB_Settings_Registry.php:729
+#: admin/cerber-dashboard.php:2438
+#: admin/includes/CRB_Settings_Registry.php:808
 msgid "Citadel mode"
 msgstr ""
 
-#: admin/cerber-dashboard.php:2363
+#: admin/cerber-dashboard.php:2440
 msgid "Enabled"
 msgstr ""
 
-#: admin/cerber-dashboard.php:2368
+#: admin/cerber-dashboard.php:2441
+#: admin/cerber-dashboard.php:5187
+#: admin/cerber-dashboard.php:5188
+msgid "Traffic Inspector"
+msgstr ""
+
+#: admin/cerber-dashboard.php:2445
 msgid "No connection"
 msgstr ""
 
-#: admin/cerber-dashboard.php:2385
+#: admin/cerber-dashboard.php:2462
 msgctxt "Example: Last malware scan: 23 Jan 2018"
 msgid "Last malware scan"
 msgstr ""
 
-#: admin/cerber-dashboard.php:2389
+#: admin/cerber-dashboard.php:2466
 #: cerber-scanner.php:1243
 msgid "Quick Scan"
 msgstr ""
 
-#: admin/cerber-dashboard.php:2391
+#: admin/cerber-dashboard.php:2468
 #: cerber-scanner.php:1243
 msgid "Full Scan"
 msgstr ""
 
-#: admin/cerber-dashboard.php:2401
-#: admin/cerber-dashboard.php:5018
+#: admin/cerber-dashboard.php:2477
+#: admin/cerber-dashboard.php:3362
+#: admin/cerber-dashboard.php:5104
+#: admin/cerber-dashboard.php:5107
+msgid "Dashboard"
+msgstr ""
+
+#: admin/cerber-dashboard.php:2478
+#: admin/cerber-dashboard.php:5108
 #: admin/includes/CRB_Sessions_Table.php:235
-#: admin/includes/CRB_Settings_Registry.php:771
+#: admin/includes/CRB_Settings_Registry.php:850
 msgid "Activity"
 msgstr ""
 
-#: admin/cerber-dashboard.php:2402
+#: admin/cerber-dashboard.php:2479
 #: admin/includes/CRB_Sessions_Table.php:236
 msgid "Traffic"
 msgstr ""
 
-#: admin/cerber-dashboard.php:2403
+#: admin/cerber-dashboard.php:2480
 msgid "Integrity"
 msgstr ""
 
-#: admin/cerber-dashboard.php:2407
+#: admin/cerber-dashboard.php:2484
 msgid "A new version is available"
 msgstr ""
 
-#: admin/cerber-dashboard.php:2473
+#: admin/cerber-dashboard.php:2550
 msgid "Security Status Monitor"
 msgstr ""
 
-#: admin/cerber-dashboard.php:2495
+#: admin/cerber-dashboard.php:2572
 msgid "Activity Breakdown"
 msgstr ""
 
-#: admin/cerber-dashboard.php:2496
+#: admin/cerber-dashboard.php:2573
 msgid "most frequent incidents and events in the last 24 hours"
 msgstr ""
 
-#: admin/cerber-dashboard.php:2517
+#: admin/cerber-dashboard.php:2594
 msgid "Top Offending IP Addresses"
 msgstr ""
 
-#: admin/cerber-dashboard.php:2518
+#: admin/cerber-dashboard.php:2595
 msgid "most active in the last 24 hours"
 msgstr ""
 
-#: admin/cerber-dashboard.php:2527
+#: admin/cerber-dashboard.php:2604
 msgid "New Users"
 msgstr ""
 
-#: admin/cerber-dashboard.php:2528
+#: admin/cerber-dashboard.php:2605
 msgid "most recent user registrations"
 msgstr ""
 
-#: admin/cerber-dashboard.php:2553
+#: admin/cerber-dashboard.php:2630
 msgid "Login Issues"
 msgstr ""
 
-#: admin/cerber-dashboard.php:2554
+#: admin/cerber-dashboard.php:2631
 msgid "most recent authentication issues and requests"
 msgstr ""
 
-#: admin/cerber-dashboard.php:2581
+#: admin/cerber-dashboard.php:2658
 msgid "Users' Activity"
 msgstr ""
 
-#: admin/cerber-dashboard.php:2582
+#: admin/cerber-dashboard.php:2659
 msgid "most recent user events"
 msgstr ""
 
-#: admin/cerber-dashboard.php:2597
+#: admin/cerber-dashboard.php:2674
 #, php-format
 msgid "An error occurred while retrieving data from the database table %s."
 msgstr ""
 
-#: admin/cerber-dashboard.php:2604
+#: admin/cerber-dashboard.php:2681
 msgid "No user activity has been logged yet."
 msgstr ""
 
-#: admin/cerber-dashboard.php:2622
+#: admin/cerber-dashboard.php:2699
 msgid "Malicious Activity"
 msgstr ""
 
-#: admin/cerber-dashboard.php:2623
+#: admin/cerber-dashboard.php:2700
 msgid "most recent violations of security rules"
 msgstr ""
 
-#: admin/cerber-dashboard.php:2648
+#: admin/cerber-dashboard.php:2725
 msgid "Recently locked out IP addresses"
 msgstr ""
 
-#: admin/cerber-dashboard.php:2668
+#: admin/cerber-dashboard.php:2745
 msgid "System Readiness"
 msgstr ""
 
-#: admin/cerber-dashboard.php:2669
+#: admin/cerber-dashboard.php:2746
 msgid "key factors affecting security and stability"
 msgstr ""
 
-#: admin/cerber-dashboard.php:2691
 #: admin/cerber-dashboard.php:2768
+#: admin/cerber-dashboard.php:2845
 msgid "Your system configuration and environment appear to be in a ready state. No issues affecting security or stability were detected."
 msgstr ""
 
 #. translators: %s is the date and time when the issue occurred last time.
-#: admin/cerber-dashboard.php:2729
+#: admin/cerber-dashboard.php:2806
 #, php-format
 msgid "Last occurrence: %s"
 msgstr ""
 
-#: admin/cerber-dashboard.php:2734
+#: admin/cerber-dashboard.php:2811
 msgid "Dismiss"
 msgstr ""
 
-#: admin/cerber-dashboard.php:2750
-#: admin/cerber-dashboard.php:3138
-#: admin/cerber-dashboard.php:3320
-#: admin/CRB_Traffic_Log_Screen.php:751
-#: admin/includes/CRB_Settings_Registry.php:646
+#: admin/cerber-dashboard.php:2827
+#: admin/cerber-dashboard.php:3215
+#: admin/cerber-dashboard.php:3397
+#: admin/CRB_Traffic_Log_Screen.php:735
+#: admin/includes/CRB_Settings_Registry.php:725
 #: admin/includes/CRB_Settings_Renderer.php:201
 #: includes/CRB_Issue_Monitor.php:397
 msgid "Documentation"
 msgstr ""
 
-#: admin/cerber-dashboard.php:2869
+#: admin/cerber-dashboard.php:2946
 msgid "Logins are currently blocked. Citadel Mode was activated by WP Cerber in response to a traffic anomaly detected on your site. Only IP addresses on the Allowed IP Access List can log in."
 msgstr ""
 
-#: admin/cerber-dashboard.php:2872
+#: admin/cerber-dashboard.php:2949
 msgid "Deactivate"
 msgstr ""
 
-#: admin/cerber-dashboard.php:2977
+#: admin/cerber-dashboard.php:3054
 msgid "Awesome!"
 msgstr ""
 
-#: admin/cerber-dashboard.php:3072
+#: admin/cerber-dashboard.php:3149
 msgid "Create Alert"
 msgstr ""
 
-#: admin/cerber-dashboard.php:3076
+#: admin/cerber-dashboard.php:3153
 msgid "Delete Alert"
 msgstr ""
 
-#: admin/cerber-dashboard.php:3097
+#: admin/cerber-dashboard.php:3174
 msgid "Channels to send alerts"
 msgstr ""
 
 #. translators: Here %s is the email address(es).
-#: admin/cerber-dashboard.php:3102
+#: admin/cerber-dashboard.php:3179
 #, php-format
 msgid "Send email alerts to %s"
 msgstr ""
 
-#: admin/cerber-dashboard.php:3107
+#: admin/cerber-dashboard.php:3184
 msgid "Send email alerts to my email"
 msgstr ""
 
-#: admin/cerber-dashboard.php:3112
+#: admin/cerber-dashboard.php:3189
 msgid "Please select at least one channel"
 msgstr ""
 
 #. translators: Here %s is the name of a mobile device.
-#: admin/cerber-dashboard.php:3118
+#: admin/cerber-dashboard.php:3195
 #, php-format
 msgid "Send mobile alerts to %s"
 msgstr ""
 
 #. translators: Here %s is the name of a mobile device.
-#: admin/cerber-dashboard.php:3129
+#: admin/cerber-dashboard.php:3206
 #, php-format
 msgid "Mobile alerts will be sent to %s"
 msgstr ""
 
-#: admin/cerber-dashboard.php:3132
+#: admin/cerber-dashboard.php:3209
 msgid "Mobile alerts are not configured"
 msgstr ""
 
-#: admin/cerber-dashboard.php:3135
+#: admin/cerber-dashboard.php:3212
 msgid "Email alerts will be sent to these emails:"
 msgstr ""
 
-#: admin/cerber-dashboard.php:3135
+#: admin/cerber-dashboard.php:3212
 msgid "Email alerts will be sent to this email:"
 msgstr ""
 
-#: admin/cerber-dashboard.php:3151
+#: admin/cerber-dashboard.php:3228
 msgid "Optional alert limits"
 msgstr ""
 
-#: admin/cerber-dashboard.php:3158
+#: admin/cerber-dashboard.php:3235
 msgid "Maximum number of alerts to send"
 msgstr ""
 
-#: admin/cerber-dashboard.php:3163
+#: admin/cerber-dashboard.php:3240
 msgid "No limit"
 msgstr ""
 
-#: admin/cerber-dashboard.php:3167
+#: admin/cerber-dashboard.php:3244
 msgid "Do not send alerts after this date"
 msgstr ""
 
-#: admin/cerber-dashboard.php:3172
+#: admin/cerber-dashboard.php:3249
 msgid "Ignore global rate limits"
 msgstr ""
 
-#: admin/cerber-dashboard.php:3288
-#: admin/cerber-dashboard.php:3314
+#: admin/cerber-dashboard.php:3365
+#: admin/cerber-dashboard.php:3391
 msgid "Support"
 msgstr ""
 
-#: admin/cerber-dashboard.php:3291
-#: admin/cerber-dashboard.php:3317
+#: admin/cerber-dashboard.php:3368
+#: admin/cerber-dashboard.php:3394
 msgid "Support Forum"
 msgstr ""
 
-#: admin/cerber-dashboard.php:3487
+#: admin/cerber-dashboard.php:3564
 msgid "BLOCKED"
 msgstr ""
 
-#: admin/cerber-dashboard.php:3491
+#: admin/cerber-dashboard.php:3568
 msgid "PROHIBITED"
 msgstr ""
 
-#: admin/cerber-dashboard.php:3593
+#: admin/cerber-dashboard.php:3670
 msgid "User is blocked"
 msgstr ""
 
-#: admin/cerber-dashboard.php:3600
+#: admin/cerber-dashboard.php:3677
 #: cerber-common.php:2510
 msgid "Username is prohibited"
 msgstr ""
 
-#: admin/cerber-dashboard.php:3613
-#: admin/cerber-dashboard.php:3631
-#: admin/cerber-dashboard.php:5019
+#: admin/cerber-dashboard.php:3690
+#: admin/cerber-dashboard.php:3708
+#: admin/cerber-dashboard.php:5109
 msgid "Sessions"
 msgstr ""
 
-#: admin/cerber-dashboard.php:3958
+#: admin/cerber-dashboard.php:4035
 msgid "Are you sure?"
 msgstr ""
 
-#: admin/cerber-dashboard.php:4346
+#: admin/cerber-dashboard.php:4423
 msgid "Role-based rules are configured"
 msgstr ""
 
-#: admin/cerber-dashboard.php:4396
+#: admin/cerber-dashboard.php:4473
 msgid "Start typing here to find a country"
 msgstr ""
 
-#: admin/cerber-dashboard.php:4403
+#: admin/cerber-dashboard.php:4480
 msgid "Save all rules"
 msgstr ""
 
 #. translators: %s is the name of a country.
-#: admin/cerber-dashboard.php:4420
+#: admin/cerber-dashboard.php:4497
 #, php-format
 msgid "Permitted for one country (%s)"
 msgstr ""
 
 #. translators: %d is the number of countries.
-#: admin/cerber-dashboard.php:4424
+#: admin/cerber-dashboard.php:4501
 #, php-format
 msgid "Permitted for %d country"
 msgid_plural "Permitted for %d countries"
@@ -1339,258 +1265,292 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. translators: %s is the name of a country.
-#: admin/cerber-dashboard.php:4430
+#: admin/cerber-dashboard.php:4507
 #, php-format
 msgid "Not permitted for one country (%s)"
 msgstr ""
 
 #. translators: %d is the number of countries.
-#: admin/cerber-dashboard.php:4434
+#: admin/cerber-dashboard.php:4511
 #, php-format
 msgid "Not permitted for %d country"
 msgid_plural "Not permitted for %d countries"
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/cerber-dashboard.php:4439
+#: admin/cerber-dashboard.php:4516
 msgid "Any country is permitted"
 msgstr ""
 
-#: admin/cerber-dashboard.php:4447
+#: admin/cerber-dashboard.php:4524
 msgid "User registration is disabled in the General WordPress Settings."
 msgstr ""
 
-#: admin/cerber-dashboard.php:4452
+#: admin/cerber-dashboard.php:4529
 msgid "Access to REST API is restricted in the WP Cerber settings."
 msgstr ""
 
-#: admin/cerber-dashboard.php:4457
+#: admin/cerber-dashboard.php:4534
 msgid "XML-RPC is disabled in the Hardening settings of WP Cerber."
 msgstr ""
 
-#: admin/cerber-dashboard.php:4463
+#: admin/cerber-dashboard.php:4540
 msgid "Heads up!"
 msgstr ""
 
-#: admin/cerber-dashboard.php:4524
+#: admin/cerber-dashboard.php:4601
 msgid "Click on a country name to add it to the list of selected countries"
 msgstr ""
 
 #. translators: 'selected countries' refers to a list of countries. 'to' is the marker of an infinitive verb, e.g., "to use it". Placeholder %s will be replaced by an action/operation, such as "Submit forms".
-#: admin/cerber-dashboard.php:4530
+#: admin/cerber-dashboard.php:4607
 #, php-format
 msgctxt "to is a marker of infinitive, e.g. \"to use it\""
 msgid "Only selected countries are permitted to %s. All others are not."
 msgstr ""
 
 #. translators: 'selected countries' refers to a list of countries. 'to' is the marker of an infinitive verb, e.g., "to use it". Placeholder %s will be replaced by an action/operation, such as "Submit forms".
-#: admin/cerber-dashboard.php:4536
+#: admin/cerber-dashboard.php:4613
 #, php-format
 msgctxt "to is a marker of infinitive, e.g. \"to use it\""
 msgid "Selected countries are not permitted to %s. All others are allowed to."
 msgstr ""
 
-#: admin/cerber-dashboard.php:4557
+#: admin/cerber-dashboard.php:4634
 msgid "Log into the website"
 msgstr ""
 
-#: admin/cerber-dashboard.php:4559
+#: admin/cerber-dashboard.php:4636
 msgid "All Users"
 msgstr ""
 
-#: admin/cerber-dashboard.php:4561
+#: admin/cerber-dashboard.php:4638
 msgid "Register on the website"
 msgstr ""
 
-#: admin/cerber-dashboard.php:4562
+#: admin/cerber-dashboard.php:4639
 msgid "Submit forms"
 msgstr ""
 
-#: admin/cerber-dashboard.php:4563
+#: admin/cerber-dashboard.php:4640
 msgid "Post comments"
 msgstr ""
 
-#: admin/cerber-dashboard.php:4564
+#: admin/cerber-dashboard.php:4641
 msgid "Use XML-RPC"
 msgstr ""
 
-#: admin/cerber-dashboard.php:4565
+#: admin/cerber-dashboard.php:4642
 msgid "Use REST API"
 msgstr ""
 
-#: admin/cerber-dashboard.php:4610
+#: admin/cerber-dashboard.php:4687
 msgid "Security rules have been updated"
 msgstr ""
 
-#: admin/cerber-dashboard.php:4955
-#: admin/cerber-dashboard.php:5432
+#: admin/cerber-dashboard.php:5032
+#: admin/cerber-dashboard.php:5704
 msgid "These features are available in the professional version of WP Cerber."
 msgstr ""
 
-#: admin/cerber-dashboard.php:4956
-#: admin/cerber-dashboard.php:5433
+#: admin/cerber-dashboard.php:5033
+#: admin/cerber-dashboard.php:5705
 msgid "Know more about all advantages at"
 msgstr ""
 
-#: admin/cerber-dashboard.php:5020
+#: admin/cerber-dashboard.php:5110
 msgid "Lockouts"
 msgstr ""
 
-#: admin/cerber-dashboard.php:5021
+#: admin/cerber-dashboard.php:5111
 msgid "Main Settings"
 msgstr ""
 
-#: admin/cerber-dashboard.php:5022
+#: admin/cerber-dashboard.php:5112
 #: admin/cerber-tools.php:38
 #: admin/cerber-tools.php:50
 msgid "Access Lists"
 msgstr ""
 
-#: admin/cerber-dashboard.php:5023
+#: admin/cerber-dashboard.php:5113
 msgid "Hardening"
 msgstr ""
 
-#: admin/cerber-dashboard.php:5025
+#: admin/cerber-dashboard.php:5115
 msgid "Notifications"
 msgstr ""
 
-#: admin/cerber-dashboard.php:5076
+#: admin/cerber-dashboard.php:5166
+msgid "Anti-spam"
+msgstr ""
+
+#: admin/cerber-dashboard.php:5167
 msgid "Anti-spam and bot detection settings"
 msgstr ""
 
-#: admin/cerber-dashboard.php:5078
+#: admin/cerber-dashboard.php:5169
 msgid "Anti-spam engine"
 msgstr ""
 
-#: admin/cerber-dashboard.php:5098
+#: admin/cerber-dashboard.php:5190
 msgid "Live Traffic"
 msgstr ""
 
-#: admin/cerber-dashboard.php:5099
-#: admin/cerber-dashboard.php:5160
+#: admin/cerber-dashboard.php:5191
+#: admin/cerber-dashboard.php:5256
 #: admin/cerber-tools.php:37
 #: admin/cerber-tools.php:49
-#: nexus/cerber-nexus.php:88
+#: nexus/cerber-nexus.php:136
 msgid "Settings"
 msgstr ""
 
-#: admin/cerber-dashboard.php:5112
+#: admin/cerber-dashboard.php:5204
+msgid "Data Shield"
+msgstr ""
+
+#: admin/cerber-dashboard.php:5205
 msgid "Data Shield Policies"
 msgstr ""
 
-#: admin/cerber-dashboard.php:5114
+#: admin/cerber-dashboard.php:5207
 msgid "Accounts & Roles"
 msgstr ""
 
-#: admin/cerber-dashboard.php:5115
+#: admin/cerber-dashboard.php:5208
 msgid "Site Settings"
 msgstr ""
 
-#: admin/cerber-dashboard.php:5124
-msgid "Role Policies"
-msgstr ""
-
-#: admin/cerber-dashboard.php:5125
-msgid "Global Policies"
-msgstr ""
-
-#: admin/cerber-dashboard.php:5144
-msgid "Countries"
-msgstr ""
-
-#: admin/cerber-dashboard.php:5159
-msgid "Security Scanner"
-msgstr ""
-
-#: admin/cerber-dashboard.php:5161
-msgid "Scheduling"
-msgstr ""
-
-#: admin/cerber-dashboard.php:5162
-msgid "Cleaning up"
-msgstr ""
-
-#: admin/cerber-dashboard.php:5163
-msgid "Ignore List"
-msgstr ""
-
-#: admin/cerber-dashboard.php:5164
-msgid "Quarantine"
-msgstr ""
-
-#: admin/cerber-dashboard.php:5165
-msgid "Analytics"
-msgstr ""
-
-#: admin/cerber-dashboard.php:5217
-msgid "Manage Settings"
+#: admin/cerber-dashboard.php:5215
+#: admin/cerber-dashboard.php:5216
+msgid "User Policies"
 msgstr ""
 
 #: admin/cerber-dashboard.php:5218
+msgid "Role Policies"
+msgstr ""
+
+#: admin/cerber-dashboard.php:5219
+msgid "Global Policies"
+msgstr ""
+
+#: admin/cerber-dashboard.php:5235
+#: admin/cerber-dashboard.php:5237
+msgid "Security Rules"
+msgstr ""
+
+#: admin/cerber-dashboard.php:5239
+msgid "Countries"
+msgstr ""
+
+#: admin/cerber-dashboard.php:5252
+#: admin/cerber-dashboard.php:5253
+msgid "Site Integrity"
+msgstr ""
+
+#: admin/cerber-dashboard.php:5255
+msgid "Security Scanner"
+msgstr ""
+
+#: admin/cerber-dashboard.php:5257
+msgid "Scheduling"
+msgstr ""
+
+#: admin/cerber-dashboard.php:5258
+msgid "Cleaning up"
+msgstr ""
+
+#: admin/cerber-dashboard.php:5259
+msgid "Ignore List"
+msgstr ""
+
+#: admin/cerber-dashboard.php:5260
+msgid "Quarantine"
+msgstr ""
+
+#: admin/cerber-dashboard.php:5261
+msgid "Analytics"
+msgstr ""
+
+#: admin/cerber-dashboard.php:5310
+#: admin/cerber-dashboard.php:5311
+msgid "Tools"
+msgstr ""
+
+#: admin/cerber-dashboard.php:5314
+msgid "Manage Settings"
+msgstr ""
+
+#: admin/cerber-dashboard.php:5315
 msgid "Diagnostic"
 msgstr ""
 
 #. translators: %s is a link to the Diagnostic Log page.
-#: admin/cerber-dashboard.php:5219
-#: admin/includes/CRB_Settings_Registry.php:430
+#: admin/cerber-dashboard.php:5316
+#: admin/includes/CRB_Settings_Registry.php:509
 msgid "Diagnostic Log"
 msgstr ""
 
-#: admin/cerber-dashboard.php:5220
+#: admin/cerber-dashboard.php:5317
 msgid "Changelog"
 msgstr ""
 
-#: admin/cerber-dashboard.php:5221
+#: admin/cerber-dashboard.php:5318
 msgid "License"
 msgstr ""
 
-#: admin/cerber-dashboard.php:5386
+#: admin/cerber-dashboard.php:5391
+#: includes/addons/cerber-addons.php:403
+msgid "Add-ons"
+msgstr ""
+
+#: admin/cerber-dashboard.php:5603
+#: admin/cerber-dashboard.php:5658
 msgid "Help"
 msgstr ""
 
-#: admin/cerber-dashboard.php:5468
+#: admin/cerber-dashboard.php:5740
 #: includes/cerber-ui-blocks.php:238
 msgid "Copy To Clipboard"
 msgstr ""
 
-#: admin/cerber-dashboard.php:5511
+#: admin/cerber-dashboard.php:5783
 msgid "Click to send test"
 msgstr ""
 
-#: admin/cerber-dashboard.php:5588
+#: admin/cerber-dashboard.php:5860
 msgid "OK"
 msgstr ""
 
-#: admin/cerber-dashboard.php:5589
+#: admin/cerber-dashboard.php:5861
 #: cerber-2fa.php:1460
 msgid "Cancel"
 msgstr ""
 
-#: admin/cerber-dashboard.php:5759
+#: admin/cerber-dashboard.php:6031
 msgid "Log In"
 msgstr ""
 
-#: admin/cerber-dashboard.php:5760
+#: admin/cerber-dashboard.php:6032
 msgid "Log Out"
 msgstr ""
 
-#: admin/cerber-dashboard.php:5761
+#: admin/cerber-dashboard.php:6033
 msgid "Register"
 msgstr ""
 
-#: admin/cerber-dashboard.php:5764
+#: admin/cerber-dashboard.php:6036
 msgid "WooCommerce Log In"
 msgstr ""
 
-#: admin/cerber-dashboard.php:5765
+#: admin/cerber-dashboard.php:6037
 msgid "WooCommerce Log Out"
 msgstr ""
 
-#: admin/cerber-dashboard.php:5848
+#: admin/cerber-dashboard.php:6120
 msgid "Select widgets to display"
 msgstr ""
 
-#: admin/cerber-dashboard.php:5853
+#: admin/cerber-dashboard.php:6125
 msgid "Please select at least one widget"
 msgstr ""
 
@@ -1740,7 +1700,7 @@ msgid "follow us on X"
 msgstr ""
 
 #: admin/cerber-users.php:45
-#: admin/cerber-users.php:726
+#: admin/cerber-users.php:746
 msgid "Two-Factor Authentication"
 msgstr ""
 
@@ -1750,7 +1710,7 @@ msgid "Determined by user role policies"
 msgstr ""
 
 #: admin/cerber-users.php:52
-#: admin/cerber-users.php:734
+#: admin/cerber-users.php:754
 msgid "Always enabled"
 msgstr ""
 
@@ -1759,30 +1719,30 @@ msgid "Allow user to remember devices for"
 msgstr ""
 
 #: admin/cerber-users.php:65
-#: admin/cerber-users.php:741
-#: admin/cerber-users.php:801
-#: admin/includes/CRB_Settings_Registry.php:775
-#: admin/includes/CRB_Settings_Registry.php:782
-#: admin/includes/CRB_Settings_Registry.php:1888
-#: admin/includes/CRB_Settings_Registry.php:1904
-#: admin/includes/CRB_Settings_Registry.php:2009
-#: admin/includes/CRB_Settings_Registry.php:2314
+#: admin/cerber-users.php:761
+#: admin/cerber-users.php:821
+#: admin/includes/CRB_Settings_Registry.php:854
+#: admin/includes/CRB_Settings_Registry.php:861
+#: admin/includes/CRB_Settings_Registry.php:1975
+#: admin/includes/CRB_Settings_Registry.php:1991
+#: admin/includes/CRB_Settings_Registry.php:2096
+#: admin/includes/CRB_Settings_Registry.php:2401
 msgid "days"
 msgstr ""
 
 #: admin/cerber-users.php:71
-#: admin/cerber-users.php:746
+#: admin/cerber-users.php:766
 msgid "Show sign-in attempt details in 2FA emails"
 msgstr ""
 
 #: admin/cerber-users.php:80
-#: admin/cerber-users.php:750
-#: admin/includes/CRB_Settings_Registry.php:1788
+#: admin/cerber-users.php:770
+#: admin/includes/CRB_Settings_Registry.php:1875
 msgid "Minimal"
 msgstr ""
 
 #: admin/cerber-users.php:81
-#: admin/cerber-users.php:751
+#: admin/cerber-users.php:771
 msgid "Full"
 msgstr ""
 
@@ -1820,7 +1780,7 @@ msgid "Only website administrators can see this note"
 msgstr ""
 
 #: admin/cerber-users.php:174
-#: admin/includes/CRB_Settings_Registry.php:499
+#: admin/includes/CRB_Settings_Registry.php:578
 msgid "Login Security"
 msgstr ""
 
@@ -1842,176 +1802,176 @@ msgstr ""
 msgid "Save All Changes"
 msgstr ""
 
-#: admin/cerber-users.php:644
+#: admin/cerber-users.php:664
 msgid "Block access to WordPress Dashboard"
 msgstr ""
 
-#: admin/cerber-users.php:649
+#: admin/cerber-users.php:669
 msgid "Hide Toolbar when viewing site"
 msgstr ""
 
-#: admin/cerber-users.php:655
+#: admin/cerber-users.php:675
 msgid "Redirection rules"
 msgstr ""
 
-#: admin/cerber-users.php:659
+#: admin/cerber-users.php:679
 msgid "Redirect user after login"
 msgstr ""
 
-#: admin/cerber-users.php:660
-#: admin/cerber-users.php:666
+#: admin/cerber-users.php:680
+#: admin/cerber-users.php:686
 msgid "Specify a relative or absolute URL"
 msgstr ""
 
-#: admin/cerber-users.php:665
+#: admin/cerber-users.php:685
 msgid "Redirect user after logout"
 msgstr ""
 
-#: admin/cerber-users.php:677
-#: admin/includes/CRB_Settings_Registry.php:1230
+#: admin/cerber-users.php:697
+#: admin/includes/CRB_Settings_Registry.php:1317
 msgid "User session expiration time"
 msgstr ""
 
-#: admin/cerber-users.php:678
-#: admin/includes/CRB_Settings_Registry.php:521
-#: admin/includes/CRB_Settings_Registry.php:755
+#: admin/cerber-users.php:698
+#: admin/includes/CRB_Settings_Registry.php:600
+#: admin/includes/CRB_Settings_Registry.php:834
 msgid "minutes"
 msgstr ""
 
-#: admin/cerber-users.php:690
+#: admin/cerber-users.php:710
 msgid "Number of allowed concurrent user sessions"
 msgstr ""
 
-#: admin/cerber-users.php:692
+#: admin/cerber-users.php:712
 msgid "unlimited"
 msgstr ""
 
-#: admin/cerber-users.php:696
+#: admin/cerber-users.php:716
 msgid "When the limit on concurrent user sessions is reached"
 msgstr ""
 
-#: admin/cerber-users.php:699
+#: admin/cerber-users.php:719
 msgid "Terminate the oldest user session on a new login"
 msgstr ""
 
-#: admin/cerber-users.php:700
+#: admin/cerber-users.php:720
 msgid "Deny further login attempts"
 msgstr ""
 
-#: admin/cerber-users.php:706
+#: admin/cerber-users.php:726
 msgid "Display this message if an attempt to log in is denied because the limit on concurrent user sessions has been reached"
 msgstr ""
 
-#: admin/cerber-users.php:708
+#: admin/cerber-users.php:728
 #: cerber-load.php:400
 msgid "You are not allowed to log in. Ask your administrator for assistance."
 msgstr ""
 
-#: admin/cerber-users.php:713
-#: admin/includes/CRB_Settings_Registry.php:1243
+#: admin/cerber-users.php:733
+#: admin/includes/CRB_Settings_Registry.php:1330
 msgid "Application Passwords"
 msgstr ""
 
-#: admin/cerber-users.php:716
+#: admin/cerber-users.php:736
 msgid "Use global policies"
 msgstr ""
 
-#: admin/cerber-users.php:717
-#: admin/includes/CRB_Settings_Registry.php:1246
+#: admin/cerber-users.php:737
+#: admin/includes/CRB_Settings_Registry.php:1333
 msgid "Enabled, access to API using standard user passwords is allowed"
 msgstr ""
 
-#: admin/cerber-users.php:718
-#: admin/includes/CRB_Settings_Registry.php:1247
+#: admin/cerber-users.php:738
+#: admin/includes/CRB_Settings_Registry.php:1334
 msgid "Enabled, no access to API using standard user passwords"
 msgstr ""
 
-#: admin/cerber-users.php:730
+#: admin/cerber-users.php:750
 msgid "Two-factor authentication"
 msgstr ""
 
-#: admin/cerber-users.php:735
+#: admin/cerber-users.php:755
 msgid "Advanced mode"
 msgstr ""
 
-#: admin/cerber-users.php:739
+#: admin/cerber-users.php:759
 msgid "Allow users to remember their devices for"
 msgstr ""
 
-#: admin/cerber-users.php:757
+#: admin/cerber-users.php:777
 msgid "Enforce two-factor authentication if any of the following conditions is true"
 msgstr ""
 
-#: admin/cerber-users.php:763
+#: admin/cerber-users.php:783
 msgid "Login from a different country"
 msgstr ""
 
-#: admin/cerber-users.php:769
+#: admin/cerber-users.php:789
 msgid "Login from a different network Class C"
 msgstr ""
 
-#: admin/cerber-users.php:775
+#: admin/cerber-users.php:795
 msgid "Login from a different IP address"
 msgstr ""
 
-#: admin/cerber-users.php:781
+#: admin/cerber-users.php:801
 msgid "Login from a different browser or device"
 msgstr ""
 
-#: admin/cerber-users.php:787
+#: admin/cerber-users.php:807
 msgid "If the number of concurrent user sessions is greater"
 msgstr ""
 
-#: admin/cerber-users.php:793
+#: admin/cerber-users.php:813
 msgid "Enforce two-factor authentication with fixed intervals"
 msgstr ""
 
-#: admin/cerber-users.php:799
+#: admin/cerber-users.php:819
 msgid "Regular time intervals"
 msgstr ""
 
-#: admin/cerber-users.php:806
+#: admin/cerber-users.php:826
 msgid "Fixed number of logins"
 msgstr ""
 
-#: admin/cerber-users.php:808
+#: admin/cerber-users.php:828
 msgid "number of logins"
 msgstr ""
 
-#: admin/cerber-users.php:859
+#: admin/cerber-users.php:879
 msgid "Role policies have been updated"
 msgstr ""
 
-#: admin/cerber-users.php:1003
+#: admin/cerber-users.php:1023
 msgid "Unable to retrieve Activity Log records for the personal data export."
 msgstr ""
 
-#: admin/cerber-users.php:1252
+#: admin/cerber-users.php:1272
 msgid "username is prohibited"
 msgstr ""
 
-#: admin/cerber-users.php:1253
+#: admin/cerber-users.php:1273
 msgid "Check users' settings"
 msgstr ""
 
-#: admin/cerber-users.php:1261
+#: admin/cerber-users.php:1281
 msgid "The IP address used in the last failed login attempt is locked out"
 msgstr ""
 
-#: admin/cerber-users.php:1263
+#: admin/cerber-users.php:1283
 msgid "If necessary, click here to unblock the IP address."
 msgstr ""
 
-#: admin/cerber-users.php:1281
+#: admin/cerber-users.php:1301
 msgid "The last attempt to log in was denied due to the following reason"
 msgstr ""
 
-#: admin/cerber-users.php:1287
+#: admin/cerber-users.php:1307
 msgid "If necessary, check and update settings."
 msgstr ""
 
 #. translators: %s is the specific reason why the user cannot log in.
-#: admin/cerber-users.php:1310
+#: admin/cerber-users.php:1330
 #, php-format
 msgid "User is not allowed to log in - %s"
 msgstr ""
@@ -2020,109 +1980,150 @@ msgstr ""
 msgid "Logging is currently disabled, you are viewing historical information."
 msgstr ""
 
-#: admin/CRB_Traffic_Log_Screen.php:263
-msgid "Suspicious requests"
-msgstr ""
-
 #: admin/CRB_Traffic_Log_Screen.php:264
-msgid "Errors"
-msgstr ""
-
-#: admin/CRB_Traffic_Log_Screen.php:267
-msgid "Form submissions"
-msgstr ""
-
-#: admin/CRB_Traffic_Log_Screen.php:268
-msgid "Page Not Found"
-msgstr ""
-
-#: admin/CRB_Traffic_Log_Screen.php:271
-msgid "My requests"
-msgstr ""
-
-#: admin/CRB_Traffic_Log_Screen.php:276
-msgid "Longer than"
-msgstr ""
-
-#: admin/CRB_Traffic_Log_Screen.php:280
 msgid "Advanced Search"
 msgstr ""
 
-#: admin/CRB_Traffic_Log_Screen.php:290
+#: admin/CRB_Traffic_Log_Screen.php:274
 msgid "Refresh"
 msgstr ""
 
-#: admin/CRB_Traffic_Log_Screen.php:338
+#: admin/CRB_Traffic_Log_Screen.php:322
 msgid "Request"
 msgstr ""
 
-#: admin/CRB_Traffic_Log_Screen.php:340
+#: admin/CRB_Traffic_Log_Screen.php:324
 #: admin/includes/CRB_Sessions_Table.php:28
 msgid "Host Info"
 msgstr ""
 
-#: admin/CRB_Traffic_Log_Screen.php:341
+#: admin/CRB_Traffic_Log_Screen.php:325
 msgid "User Agent"
 msgstr ""
 
-#: admin/CRB_Traffic_Log_Screen.php:512
+#: admin/CRB_Traffic_Log_Screen.php:496
 msgid "Form Fields"
 msgstr ""
 
-#: admin/CRB_Traffic_Log_Screen.php:515
+#: admin/CRB_Traffic_Log_Screen.php:499
 msgid "JSON Payload"
 msgstr ""
 
-#: admin/CRB_Traffic_Log_Screen.php:518
+#: admin/CRB_Traffic_Log_Screen.php:502
 msgid "Query Parameters"
 msgstr ""
 
-#: admin/CRB_Traffic_Log_Screen.php:534
+#: admin/CRB_Traffic_Log_Screen.php:518
 msgid "Files Submitted"
 msgstr ""
 
-#: admin/CRB_Traffic_Log_Screen.php:540
+#: admin/CRB_Traffic_Log_Screen.php:524
 msgid "XML-RPC Payload"
 msgstr ""
 
-#: admin/CRB_Traffic_Log_Screen.php:543
+#: admin/CRB_Traffic_Log_Screen.php:527
 msgid "Client Request Headers"
 msgstr ""
 
-#: admin/CRB_Traffic_Log_Screen.php:549
+#: admin/CRB_Traffic_Log_Screen.php:533
 msgid "Server Response Headers"
 msgstr ""
 
-#: admin/CRB_Traffic_Log_Screen.php:553
+#: admin/CRB_Traffic_Log_Screen.php:537
 msgid "Client Request Cookies"
 msgstr ""
 
-#: admin/CRB_Traffic_Log_Screen.php:570
+#: admin/CRB_Traffic_Log_Screen.php:554
 msgid "Server Response Cookies"
 msgstr ""
 
-#: admin/CRB_Traffic_Log_Screen.php:589
+#: admin/CRB_Traffic_Log_Screen.php:573
 msgid "Software Errors"
 msgstr ""
 
-#: admin/CRB_Traffic_Log_Screen.php:694
+#: admin/CRB_Traffic_Log_Screen.php:678
 msgid "Details"
 msgstr ""
 
-#: admin/CRB_Traffic_Log_Screen.php:739
+#: admin/CRB_Traffic_Log_Screen.php:723
 msgid "No requests found using the given search criteria"
 msgstr ""
 
-#: admin/CRB_Traffic_Log_Screen.php:741
+#: admin/CRB_Traffic_Log_Screen.php:725
 msgid "View all logged requests"
 msgstr ""
 
-#: admin/CRB_Traffic_Log_Screen.php:745
+#: admin/CRB_Traffic_Log_Screen.php:729
 msgid "No requests have been logged yet."
 msgstr ""
 
-#: admin/CRB_Traffic_Log_Screen.php:749
+#: admin/CRB_Traffic_Log_Screen.php:733
 msgid "Note: Logging is currently disabled"
+msgstr ""
+
+#: admin/includes/CRB_Log_Quick_Filters.php:90
+msgid "New users"
+msgstr ""
+
+#: admin/includes/CRB_Log_Quick_Filters.php:94
+msgid "Login issues"
+msgstr ""
+
+#: admin/includes/CRB_Log_Quick_Filters.php:98
+msgid "Suspicious activity"
+msgstr ""
+
+#: admin/includes/CRB_Log_Quick_Filters.php:102
+msgid "Spam Events"
+msgstr ""
+
+#: admin/includes/CRB_Log_Quick_Filters.php:106
+msgid "IP locked out"
+msgstr ""
+
+#: admin/includes/CRB_Log_Quick_Filters.php:110
+#: admin/includes/CRB_Log_Quick_Filters.php:161
+msgid "Users"
+msgstr ""
+
+#: admin/includes/CRB_Log_Quick_Filters.php:114
+#: admin/includes/CRB_Log_Quick_Filters.php:165
+msgid "Non-authenticated"
+msgstr ""
+
+#: admin/includes/CRB_Log_Quick_Filters.php:123
+msgid "My activity"
+msgstr ""
+
+#: admin/includes/CRB_Log_Quick_Filters.php:127
+#: admin/includes/CRB_Log_Quick_Filters.php:189
+msgid "My IP"
+msgstr ""
+
+#: admin/includes/CRB_Log_Quick_Filters.php:153
+msgid "Suspicious requests"
+msgstr ""
+
+#: admin/includes/CRB_Log_Quick_Filters.php:157
+msgid "Errors"
+msgstr ""
+
+#: admin/includes/CRB_Log_Quick_Filters.php:169
+msgid "Form submissions"
+msgstr ""
+
+#: admin/includes/CRB_Log_Quick_Filters.php:173
+msgid "Page Not Found"
+msgstr ""
+
+#: admin/includes/CRB_Log_Quick_Filters.php:185
+msgid "My requests"
+msgstr ""
+
+#. translators: %d is the processing time threshold in milliseconds.
+#: admin/includes/CRB_Log_Quick_Filters.php:201
+#, php-format
+msgid "Longer than %d ms"
 msgstr ""
 
 #: admin/includes/CRB_Sessions_Table.php:23
@@ -2167,1777 +2168,1785 @@ msgid "Terminate"
 msgstr ""
 
 #. translators: %s is a comma-separated list of settings section IDs.
-#: admin/includes/CRB_Settings_Registry.php:246
+#: admin/includes/CRB_Settings_Registry.php:325
 #, php-format
 msgid "An active add-on attempted to redefine WP Cerber settings sections. These section IDs are reserved by WP Cerber, the add-on sections using them have been ignored: %s"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:428
+#: admin/includes/CRB_Settings_Registry.php:507
 msgid "Enable diagnostic logging"
 msgstr ""
 
 #. translators: %s is a link to the Diagnostic Log page.
-#: admin/includes/CRB_Settings_Registry.php:430
+#: admin/includes/CRB_Settings_Registry.php:509
 #, php-format
 msgid "Once enabled, the log is available here: %s"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:483
+#: admin/includes/CRB_Settings_Registry.php:562
 msgid "Initialization Mode"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:484
+#: admin/includes/CRB_Settings_Registry.php:563
 msgid "How WP Cerber loads its core and security mechanisms"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:487
+#: admin/includes/CRB_Settings_Registry.php:566
 msgid "Load security engine"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:490
+#: admin/includes/CRB_Settings_Registry.php:569
 msgid "Legacy mode"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:491
+#: admin/includes/CRB_Settings_Registry.php:570
 msgid "Standard mode"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:500
+#: admin/includes/CRB_Settings_Registry.php:579
 msgid "Brute-force attack mitigation and user authentication settings"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:504
+#: admin/includes/CRB_Settings_Registry.php:583
 msgid "Limit login attempts"
 msgstr ""
 
 #. translators: %1$s and %2$s are input fields for number of retries and time period.
-#: admin/includes/CRB_Settings_Registry.php:506
+#: admin/includes/CRB_Settings_Registry.php:585
 #, php-format
 msgid "%1$s retries are allowed within %2$s minutes"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:520
+#: admin/includes/CRB_Settings_Registry.php:599
 msgid "Block IP address for"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:524
+#: admin/includes/CRB_Settings_Registry.php:603
 msgid "Mitigate aggressive attempts"
 msgstr ""
 
 #. translators: %1$s, %2$s, and %3$s are input fields for hours, number of lockouts, and hours.
-#: admin/includes/CRB_Settings_Registry.php:526
+#: admin/includes/CRB_Settings_Registry.php:605
 #, php-format
 msgid "Increase lockout duration to %1$s hours after %2$s lockouts in the last %3$s hours"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:540
+#: admin/includes/CRB_Settings_Registry.php:619
 msgid "Ignore the Allowed IP Access List"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:541
+#: admin/includes/CRB_Settings_Registry.php:620
 msgid "Apply limit login rules to IP addresses in the Allowed IP Access List"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:545
+#: admin/includes/CRB_Settings_Registry.php:624
 msgid "Processing wp-login.php authentication requests"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:548
+#: admin/includes/CRB_Settings_Registry.php:627
 msgid "Default processing"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:549
+#: admin/includes/CRB_Settings_Registry.php:628
 msgid "Block access to wp-login.php"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:550
+#: admin/includes/CRB_Settings_Registry.php:629
 msgid "Deny authentication through wp-login.php"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:553
-#: admin/includes/CRB_Settings_Registry.php:554
+#: admin/includes/CRB_Settings_Registry.php:632
+#: admin/includes/CRB_Settings_Registry.php:633
 msgid "View violations in the log"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:558
+#: admin/includes/CRB_Settings_Registry.php:637
 msgid "Disable the default login error message"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:559
+#: admin/includes/CRB_Settings_Registry.php:638
 msgid "Do not reveal non-existing usernames and emails in the failed login attempt message"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:563
+#: admin/includes/CRB_Settings_Registry.php:642
 msgid "Custom login error message"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:564
+#: admin/includes/CRB_Settings_Registry.php:643
 msgid "An optional error message to be displayed when attempting to log in with a non-existing username or a non-existing email"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:569
+#: admin/includes/CRB_Settings_Registry.php:648
 msgid "Disable the default password reset error message"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:570
+#: admin/includes/CRB_Settings_Registry.php:649
 msgid "Do not reveal non-existing usernames and emails in the password reset error message"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:575
+#: admin/includes/CRB_Settings_Registry.php:654
 msgid "Custom password reset confirmation message"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:576
+#: admin/includes/CRB_Settings_Registry.php:655
 msgid "An optional message displayed when attempting to reset the password for both existing and non-existing usernames or email addresses."
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:586
+#: admin/includes/CRB_Settings_Registry.php:665
 msgid "Custom login page"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:587
+#: admin/includes/CRB_Settings_Registry.php:666
 msgid "This feature requires WordPress permalinks to be enabled. Set the Permalink structure to any option other than Plain in the WordPress settings."
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:588
+#: admin/includes/CRB_Settings_Registry.php:667
 msgid "Be careful about enabling these options. If you forget your Custom login URL, you will be unable to log in."
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:594
+#: admin/includes/CRB_Settings_Registry.php:673
 msgid "Custom login URL"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:595
+#: admin/includes/CRB_Settings_Registry.php:674
 msgid "A unique string that does not overlap with slugs of the existing pages or posts"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:597
+#: admin/includes/CRB_Settings_Registry.php:676
 msgid "Custom login URL may contain Latin alphanumeric characters, dashes and underscores only"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:602
+#: admin/includes/CRB_Settings_Registry.php:681
 msgid "Deferred rendering"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:603
+#: admin/includes/CRB_Settings_Registry.php:682
 msgid "Defer rendering the custom login page"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:611
+#: admin/includes/CRB_Settings_Registry.php:690
 msgid "Proactive security rules"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:612
+#: admin/includes/CRB_Settings_Registry.php:691
 msgid "Make your protection smarter!"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:615
+#: admin/includes/CRB_Settings_Registry.php:694
 msgid "Disable dashboard redirection"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:616
+#: admin/includes/CRB_Settings_Registry.php:695
 msgid "Disable automatic redirection to the login page when /wp-admin/ is requested by an unauthorized request"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:620
+#: admin/includes/CRB_Settings_Registry.php:699
 msgid "Requests to wp-login.php are strictly prohibited"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:621
+#: admin/includes/CRB_Settings_Registry.php:700
 msgid "Immediately block IP address after any request to wp-login.php"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:625
+#: admin/includes/CRB_Settings_Registry.php:704
 msgid "Block the attacker's subnet"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:626
+#: admin/includes/CRB_Settings_Registry.php:705
 msgid "Block all IP addresses on the same Class C network as the detected attacker's IP address"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:634
+#: admin/includes/CRB_Settings_Registry.php:713
 msgid "Site-specific settings"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:637
+#: admin/includes/CRB_Settings_Registry.php:716
 msgid "Site connection"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:645
+#: admin/includes/CRB_Settings_Registry.php:724
 msgid "The reverse proxy mode has not been enabled. No valid proxy headers found."
 msgstr ""
 
 #. translators: %1$s is the detected IP address, %2$s is a link to verify the IP address.
-#: admin/includes/CRB_Settings_Registry.php:653
+#: admin/includes/CRB_Settings_Registry.php:732
 #, php-format
 msgid "Your IP address is detected as %1$s. Make sure it is equal to your IP address on this page: %2$s."
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:661
+#: admin/includes/CRB_Settings_Registry.php:740
 msgid "Prefix for plugin cookies"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:662
+#: admin/includes/CRB_Settings_Registry.php:741
 msgid "Prefix may contain only Latin alphanumeric characters and underscores"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:676
+#: admin/includes/CRB_Settings_Registry.php:755
 msgid "When attempting to access prohibited URLs"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:679
+#: admin/includes/CRB_Settings_Registry.php:758
 msgid "Use 404 template from the active theme"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:680
+#: admin/includes/CRB_Settings_Registry.php:759
 msgid "Display simple 404 page"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:681
+#: admin/includes/CRB_Settings_Registry.php:760
 msgid "Redirect to the specified URL"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:685
+#: admin/includes/CRB_Settings_Registry.php:764
 msgid "Redirection URL"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:687
+#: admin/includes/CRB_Settings_Registry.php:766
 msgid "Full or relative URL to redirect request to"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:692
-#: admin/includes/CRB_Settings_Registry.php:2440
+#: admin/includes/CRB_Settings_Registry.php:771
+#: admin/includes/CRB_Settings_Registry.php:2527
 msgid "Use WordPress proxy settings"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:693
+#: admin/includes/CRB_Settings_Registry.php:772
 msgid "Use proxy server for outgoing network connections"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:700
+#: admin/includes/CRB_Settings_Registry.php:779
 msgid "Use WP Cerber's plugin repository"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:701
+#: admin/includes/CRB_Settings_Registry.php:780
 msgid "Allow updating WP Cerber and its translations from the official WP Cerber website"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:709
+#: admin/includes/CRB_Settings_Registry.php:788
 msgid "Automatically update WP Cerber"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:710
+#: admin/includes/CRB_Settings_Registry.php:789
 msgid "Automatically install new versions of WP Cerber when they are available"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:715
+#: admin/includes/CRB_Settings_Registry.php:794
 msgid "Collect WP Cerber software errors"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:716
+#: admin/includes/CRB_Settings_Registry.php:795
 msgid "Collect and save WP Cerber software errors to a diagnostic file"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:730
+#: admin/includes/CRB_Settings_Registry.php:809
 msgid "In Citadel Mode, no one can log into the website except IP addresses from the Allowed IP Access List. Active user sessions will not be affected."
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:733
+#: admin/includes/CRB_Settings_Registry.php:812
 msgid "Enable authentication log monitoring"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:738
+#: admin/includes/CRB_Settings_Registry.php:817
 msgid "Citadel mode threshold"
 msgstr ""
 
 #. translators: %1$s and %2$s are input fields for failed attempts and time period.
-#: admin/includes/CRB_Settings_Registry.php:741
+#: admin/includes/CRB_Settings_Registry.php:820
 #, php-format
 msgid "Enable after %1$s failed login attempts in the last %2$s minutes"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:754
+#: admin/includes/CRB_Settings_Registry.php:833
 msgid "Citadel mode duration"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:761
+#: admin/includes/CRB_Settings_Registry.php:840
 msgid "Notify admin"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:763
+#: admin/includes/CRB_Settings_Registry.php:842
 msgid "Send email notification to the admin"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:774
-#: admin/includes/CRB_Settings_Registry.php:1887
+#: admin/includes/CRB_Settings_Registry.php:853
+#: admin/includes/CRB_Settings_Registry.php:1974
 msgid "Keep log records of not logged in visitors for"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:781
-#: admin/includes/CRB_Settings_Registry.php:1903
+#: admin/includes/CRB_Settings_Registry.php:860
+#: admin/includes/CRB_Settings_Registry.php:1990
 msgid "Keep log records of logged in users for"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:788
+#: admin/includes/CRB_Settings_Registry.php:867
 msgid "Cerber Security Cloud connection"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:789
+#: admin/includes/CRB_Settings_Registry.php:868
 msgid "Send malicious IP addresses to the Cerber Security Cloud"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:794
+#: admin/includes/CRB_Settings_Registry.php:873
 msgid "Write failed logins to a log file"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:795
+#: admin/includes/CRB_Settings_Registry.php:874
 msgid "Log failed logins in a syslog-style format for automated IP banning tools"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:810
+#: admin/includes/CRB_Settings_Registry.php:889
 msgid "Personal Preferences"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:813
+#: admin/includes/CRB_Settings_Registry.php:892
 msgid "Show IP WHOIS data"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:814
+#: admin/includes/CRB_Settings_Registry.php:893
 msgid "Retrieve IP address WHOIS information when viewing the logs"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:818
+#: admin/includes/CRB_Settings_Registry.php:897
 msgid "Date format"
 msgstr ""
 
 #. translators: %s is the default date format example.
-#: admin/includes/CRB_Settings_Registry.php:820
+#: admin/includes/CRB_Settings_Registry.php:899
 #, php-format
 msgid "if empty, the default format %s will be used"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:826
+#: admin/includes/CRB_Settings_Registry.php:905
 msgid "Date format for CSV export"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:827
+#: admin/includes/CRB_Settings_Registry.php:906
 msgid "Use ISO 8601 date format for CSV export files"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:837
+#: admin/includes/CRB_Settings_Registry.php:916
 msgid "Language for the plugin admin pages"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:843
+#: admin/includes/CRB_Settings_Registry.php:922
 msgid "Default language"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:856
+#: admin/includes/CRB_Settings_Registry.php:935
 msgid "Translations for the selected language will be installed shortly."
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:863
+#: admin/includes/CRB_Settings_Registry.php:942
 msgid "Shift admin menu"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:864
+#: admin/includes/CRB_Settings_Registry.php:943
 msgid "Shift the WP Cerber admin menu to the top when navigating through WP Cerber admin pages"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:868
+#: admin/includes/CRB_Settings_Registry.php:947
+msgid "Limit Command Palette suggestions"
+msgstr ""
+
+#: admin/includes/CRB_Settings_Registry.php:948
+msgid "Show fewer WP Cerber suggestions in the WordPress Command Palette when working outside WP Cerber."
+msgstr ""
+
+#: admin/includes/CRB_Settings_Registry.php:952
 msgid "My IP address"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:869
+#: admin/includes/CRB_Settings_Registry.php:953
 msgid "Do not add my IP address to the Allowed IP Access List upon plugin activation"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:882
+#: admin/includes/CRB_Settings_Registry.php:966
 msgid "Hardening WordPress"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:883
+#: admin/includes/CRB_Settings_Registry.php:967
 msgid "These restrictions do not apply to IP addresses in the Allowed IP Access List"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:886
-#: admin/includes/CRB_Settings_Registry.php:958
+#: admin/includes/CRB_Settings_Registry.php:970
+#: admin/includes/CRB_Settings_Registry.php:1042
 msgid "Stop user enumeration"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:887
+#: admin/includes/CRB_Settings_Registry.php:971
 msgid "Block access to user pages like /?author=n"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:891
-#: admin/includes/CRB_Settings_Registry.php:896
+#: admin/includes/CRB_Settings_Registry.php:975
+#: admin/includes/CRB_Settings_Registry.php:980
 msgid "Prevent username discovery"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:892
+#: admin/includes/CRB_Settings_Registry.php:976
 msgid "Prevent username discovery via oEmbed"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:897
+#: admin/includes/CRB_Settings_Registry.php:981
 msgid "Prevent username discovery via user XML sitemaps"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:901
+#: admin/includes/CRB_Settings_Registry.php:985
 msgid "Stop exposing user details"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:902
+#: admin/includes/CRB_Settings_Registry.php:986
 msgid "Block access to user pages via their usernames"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:906
+#: admin/includes/CRB_Settings_Registry.php:990
 msgid "Protect admin scripts"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:907
+#: admin/includes/CRB_Settings_Registry.php:991
 msgid "Block unauthorized access to load-scripts.php and load-styles.php"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:923
+#: admin/includes/CRB_Settings_Registry.php:1007
 msgid "Disable PHP in uploads"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:924
+#: admin/includes/CRB_Settings_Registry.php:1008
 msgid "Block execution of PHP scripts in the WordPress media folder"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:934
+#: admin/includes/CRB_Settings_Registry.php:1018
 msgid "Disable PHP error displaying"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:935
+#: admin/includes/CRB_Settings_Registry.php:1019
 msgid "Do not show PHP errors on my website"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:939
+#: admin/includes/CRB_Settings_Registry.php:1023
 msgid "Disable XML-RPC"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:940
+#: admin/includes/CRB_Settings_Registry.php:1024
 msgid "Block access to the XML-RPC server (including Pingbacks and Trackbacks)"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:944
+#: admin/includes/CRB_Settings_Registry.php:1028
 msgid "Disable feeds"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:945
+#: admin/includes/CRB_Settings_Registry.php:1029
 msgid "Block access to the RSS, Atom and RDF feeds"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:953
+#: admin/includes/CRB_Settings_Registry.php:1037
 msgid "Access to WordPress REST API"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:954
+#: admin/includes/CRB_Settings_Registry.php:1038
 msgid "Restrict or completely block access to the WordPress REST API according to your needs"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:959
+#: admin/includes/CRB_Settings_Registry.php:1043
 msgid "Block access to users' data via REST API"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:963
+#: admin/includes/CRB_Settings_Registry.php:1047
 msgid "Allow access to users' data via REST API for these roles"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:968
+#: admin/includes/CRB_Settings_Registry.php:1052
 msgid "Disable REST API"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:969
+#: admin/includes/CRB_Settings_Registry.php:1053
 msgid "Block access to WordPress REST API except any of the following"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:973
+#: admin/includes/CRB_Settings_Registry.php:1057
 msgid "Allow logged-in users"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:974
+#: admin/includes/CRB_Settings_Registry.php:1058
 msgid "Allow access to REST API for logged-in users"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:979
+#: admin/includes/CRB_Settings_Registry.php:1063
 msgid "Allow REST API for these roles"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:984
+#: admin/includes/CRB_Settings_Registry.php:1068
 msgid "Allow these REST API namespaces"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:988
+#: admin/includes/CRB_Settings_Registry.php:1072
 msgid "Specify REST API namespaces to permit when the REST API is disabled. One namespace per line."
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:992
+#: admin/includes/CRB_Settings_Registry.php:1079
 msgid "View all REST API requests"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:992
+#: admin/includes/CRB_Settings_Registry.php:1079
 msgid "View denied REST API requests"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1008
+#: admin/includes/CRB_Settings_Registry.php:1095
 msgid "User accounts protection"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1010
+#: admin/includes/CRB_Settings_Registry.php:1097
 msgid "These security measures protect against site takeovers by preventing creation of unauthorized administrator accounts and escalation of user privileges."
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1013
+#: admin/includes/CRB_Settings_Registry.php:1100
 msgid "Protect user accounts"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1014
+#: admin/includes/CRB_Settings_Registry.php:1101
 msgid "Restrict user account creation and management with the following policies"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1027
+#: admin/includes/CRB_Settings_Registry.php:1114
 msgid "User registrations are limited to these roles"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1032
+#: admin/includes/CRB_Settings_Registry.php:1119
 msgid "Users with these roles are permitted to create new accounts"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1037
+#: admin/includes/CRB_Settings_Registry.php:1124
 msgid "Users with these roles are permitted to change sensitive user data"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1042
-#: admin/includes/CRB_Settings_Registry.php:1080
-#: admin/includes/CRB_Settings_Registry.php:1119
-#: admin/includes/CRB_Settings_Registry.php:1691
-#: admin/includes/CRB_Settings_Registry.php:2275
-#: admin/includes/CRB_Settings_Registry.php:2390
+#: admin/includes/CRB_Settings_Registry.php:1129
+#: admin/includes/CRB_Settings_Registry.php:1167
+#: admin/includes/CRB_Settings_Registry.php:1206
+#: admin/includes/CRB_Settings_Registry.php:1778
+#: admin/includes/CRB_Settings_Registry.php:2362
+#: admin/includes/CRB_Settings_Registry.php:2477
 msgid "Use the Allowed IP Access List"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1043
-#: admin/includes/CRB_Settings_Registry.php:1081
-#: admin/includes/CRB_Settings_Registry.php:1120
+#: admin/includes/CRB_Settings_Registry.php:1130
+#: admin/includes/CRB_Settings_Registry.php:1168
+#: admin/includes/CRB_Settings_Registry.php:1207
 msgid "Do not apply these policies to the IP addresses in the Allowed IP Access List"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1052
+#: admin/includes/CRB_Settings_Registry.php:1139
 msgid "User roles protection"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1053
+#: admin/includes/CRB_Settings_Registry.php:1140
 msgid "These security measures prevent site takeovers by blocking unauthorized creation of new user roles and escalation of role capabilities."
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1056
+#: admin/includes/CRB_Settings_Registry.php:1143
 msgid "Protect user roles"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1057
+#: admin/includes/CRB_Settings_Registry.php:1144
 msgid "Restrict roles and capabilities management with the following policies"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1070
+#: admin/includes/CRB_Settings_Registry.php:1157
 msgid "Users with these roles are permitted to add new roles"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1075
+#: admin/includes/CRB_Settings_Registry.php:1162
 msgid "Users with these roles are permitted to change role capabilities"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1090
+#: admin/includes/CRB_Settings_Registry.php:1177
 msgid "Site settings protection"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1091
+#: admin/includes/CRB_Settings_Registry.php:1178
 msgid "These security measures prevent malware injection by blocking unauthorized changes to vital WordPress settings."
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1094
+#: admin/includes/CRB_Settings_Registry.php:1181
 msgid "Protect site settings"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1095
+#: admin/includes/CRB_Settings_Registry.php:1182
 msgid "Restrict updating site settings with the following policies"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1108
+#: admin/includes/CRB_Settings_Registry.php:1195
 msgid "Users with these roles are permitted to change protected settings"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1113
+#: admin/includes/CRB_Settings_Registry.php:1200
 msgid "Protected WordPress settings"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1130
+#: admin/includes/CRB_Settings_Registry.php:1217
 msgid "User registration"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1131
+#: admin/includes/CRB_Settings_Registry.php:1218
 msgid "These rules control the user registration process. Use them to restrict who can register based on your security requirements and preferences."
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1134
+#: admin/includes/CRB_Settings_Registry.php:1221
 msgid "Registration limit"
 msgstr ""
 
 #. translators: %1$s and %2$s are input fields for number of registrations and time period.
-#: admin/includes/CRB_Settings_Registry.php:1136
+#: admin/includes/CRB_Settings_Registry.php:1223
 #, php-format
 msgid "%1$s registrations are allowed from a single IP address within %2$s minutes"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1148
+#: admin/includes/CRB_Settings_Registry.php:1235
 msgid "Restrict email addresses"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1151
+#: admin/includes/CRB_Settings_Registry.php:1238
 msgid "No restrictions"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1152
+#: admin/includes/CRB_Settings_Registry.php:1239
 msgid "Block registration for email addresses matching the following"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1153
+#: admin/includes/CRB_Settings_Registry.php:1240
 msgid "Allow registration only for email addresses matching the following"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1158
+#: admin/includes/CRB_Settings_Registry.php:1245
 msgid "Specify email addresses, wildcards or REGEX patterns. Use comma to separate items. To specify a REGEX pattern wrap a pattern in two forward slashes."
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1167
-#: admin/includes/CRB_Settings_Registry.php:1178
+#: admin/includes/CRB_Settings_Registry.php:1254
+#: admin/includes/CRB_Settings_Registry.php:1265
 msgid "User message"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1168
+#: admin/includes/CRB_Settings_Registry.php:1255
 msgid "This optional message is shown if a user's email address is not allowed for registration"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1173
+#: admin/includes/CRB_Settings_Registry.php:1260
 msgid "Limit registration to trusted IP addresses only"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1174
+#: admin/includes/CRB_Settings_Registry.php:1261
 msgid "Only users whose IP addresses are on the Allowed IP Access List can register on the website"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1179
+#: admin/includes/CRB_Settings_Registry.php:1266
 msgid "This optional message is shown if a user's IP address is not on the Allowed IP Access List"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1189
+#: admin/includes/CRB_Settings_Registry.php:1276
 msgid "User Authentication"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1190
+#: admin/includes/CRB_Settings_Registry.php:1277
 msgid "These rules apply to the user login process. Use them to control how users sign in and to protect your website from unauthorized access."
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1207
+#: admin/includes/CRB_Settings_Registry.php:1294
 msgid "Non-existing users are strictly prohibited"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1208
+#: admin/includes/CRB_Settings_Registry.php:1295
 msgid "Immediately block IP address when attempting to log in with a non-existing username"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1212
+#: admin/includes/CRB_Settings_Registry.php:1299
 msgid "Prohibited usernames"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1214
+#: admin/includes/CRB_Settings_Registry.php:1301
 msgid "Usernames from this list are not allowed to log in or register. Use comma to separate usernames. To specify a REGEX pattern wrap a pattern in two forward slashes."
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1222
+#: admin/includes/CRB_Settings_Registry.php:1309
 msgid "When attempting to log in with prohibited username"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1225
+#: admin/includes/CRB_Settings_Registry.php:1312
 msgid "Abort user authentication and block remote IP address"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1226
+#: admin/includes/CRB_Settings_Registry.php:1313
 msgid "Abort user authentication"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1231
+#: admin/includes/CRB_Settings_Registry.php:1318
 msgid "minutes (leave empty to use the default WordPress value)"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1238
+#: admin/includes/CRB_Settings_Registry.php:1325
 msgid "Disable \"Remember Me\" on the login form"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1239
+#: admin/includes/CRB_Settings_Registry.php:1326
 msgid "Disable the \"Remember Me\" checkbox on the WordPress login form"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1257
+#: admin/includes/CRB_Settings_Registry.php:1344
 msgid "Limit Website Access"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1258
+#: admin/includes/CRB_Settings_Registry.php:1345
 msgid "Hide your website from the public by allowing access only to logged-in users or trusted IP addresses. All other visitors will be redirected to the login page or a custom URL."
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1262
+#: admin/includes/CRB_Settings_Registry.php:1349
 msgid "Allow access for logged-in users"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1263
+#: admin/includes/CRB_Settings_Registry.php:1350
 msgid "Only registered and logged-in users can access your website"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1267
+#: admin/includes/CRB_Settings_Registry.php:1354
 msgid "Allow access from trusted IP addresses"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1268
+#: admin/includes/CRB_Settings_Registry.php:1355
 msgid "Let visitors from IP addresses in the Allowed IP Access List access your website without logging in"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1273
+#: admin/includes/CRB_Settings_Registry.php:1360
 msgid "Login page message"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1274
+#: admin/includes/CRB_Settings_Registry.php:1361
 msgid "An optional login form message"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1275
+#: admin/includes/CRB_Settings_Registry.php:1362
 msgid "This message appears above the login form. Use it to explain why login is required or to give additional instructions to users."
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1281
+#: admin/includes/CRB_Settings_Registry.php:1368
 msgid "Redirect unauthorized visitors to this URL"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1282
+#: admin/includes/CRB_Settings_Registry.php:1369
 msgid "Optional. Leave blank to show the message above instead of redirecting."
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1294
+#: admin/includes/CRB_Settings_Registry.php:1381
 msgid "Look and Layout"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1295
+#: admin/includes/CRB_Settings_Registry.php:1382
 msgid "Customize how things appear in the login page and admin pages."
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1298
+#: admin/includes/CRB_Settings_Registry.php:1385
 msgid "Disable login language switcher"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1299
+#: admin/includes/CRB_Settings_Registry.php:1386
 msgid "Disable the login language switcher on the WordPress login page"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1307
+#: admin/includes/CRB_Settings_Registry.php:1394
 msgid "Sort users by registration date"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1308
+#: admin/includes/CRB_Settings_Registry.php:1395
 msgid "On the Users admin page, display the most recently registered users first"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1317
+#: admin/includes/CRB_Settings_Registry.php:1404
 msgid "Personal Data"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1319
+#: admin/includes/CRB_Settings_Registry.php:1406
 msgid "These features help your organization to be in compliance with personal data protection laws"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1323
+#: admin/includes/CRB_Settings_Registry.php:1410
 msgid "Enable data erase"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1329
+#: admin/includes/CRB_Settings_Registry.php:1416
 msgid "Terminate user sessions"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1330
+#: admin/includes/CRB_Settings_Registry.php:1417
 msgid "Delete user sessions data when user data is erased"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1335
+#: admin/includes/CRB_Settings_Registry.php:1422
 msgid "Enable data export"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1341
+#: admin/includes/CRB_Settings_Registry.php:1428
 msgid "Include activity log events"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1346
+#: admin/includes/CRB_Settings_Registry.php:1433
 msgid "Include traffic log entries"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1349
+#: admin/includes/CRB_Settings_Registry.php:1436
 msgid "Request URL"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1350
+#: admin/includes/CRB_Settings_Registry.php:1437
 msgid "Form fields data"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1351
+#: admin/includes/CRB_Settings_Registry.php:1438
 msgid "Cookies"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1361
+#: admin/includes/CRB_Settings_Registry.php:1448
 msgid "Email notifications"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1362
+#: admin/includes/CRB_Settings_Registry.php:1449
 msgid "Configure email parameters for notifications, reports, and alerts"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1366
+#: admin/includes/CRB_Settings_Registry.php:1453
 msgid "Where to send emails generated by WP Cerber"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1367
-#: admin/includes/CRB_Settings_Registry.php:1835
+#: admin/includes/CRB_Settings_Registry.php:1454
+#: admin/includes/CRB_Settings_Registry.php:1922
 msgid "Use comma to specify multiple values"
 msgstr ""
 
 #. translators: %s is the website administrator email address.
-#: admin/includes/CRB_Settings_Registry.php:1372
+#: admin/includes/CRB_Settings_Registry.php:1459
 #, php-format
 msgid "if empty, the website administrator email %s will be used"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1375
-#: admin/includes/CRB_Settings_Registry.php:1556
+#: admin/includes/CRB_Settings_Registry.php:1462
+#: admin/includes/CRB_Settings_Registry.php:1643
 msgid "Limit on the allowed number of alerts"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1376
-#: admin/includes/CRB_Settings_Registry.php:1557
+#: admin/includes/CRB_Settings_Registry.php:1463
+#: admin/includes/CRB_Settings_Registry.php:1644
 msgid "notifications are allowed per hour (0 means unlimited)"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1380
-#: admin/includes/CRB_Settings_Registry.php:1562
+#: admin/includes/CRB_Settings_Registry.php:1467
+#: admin/includes/CRB_Settings_Registry.php:1649
 msgid "Mask sensitive data"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1381
-#: admin/includes/CRB_Settings_Registry.php:1563
+#: admin/includes/CRB_Settings_Registry.php:1468
+#: admin/includes/CRB_Settings_Registry.php:1650
 msgid "Mask usernames and IP addresses in notifications and alerts"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1385
-#: admin/includes/CRB_Settings_Registry.php:1568
+#: admin/includes/CRB_Settings_Registry.php:1472
+#: admin/includes/CRB_Settings_Registry.php:1655
 msgid "Message format"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1388
-#: admin/includes/CRB_Settings_Registry.php:1572
+#: admin/includes/CRB_Settings_Registry.php:1475
+#: admin/includes/CRB_Settings_Registry.php:1659
 msgid "Plain"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1389
-#: admin/includes/CRB_Settings_Registry.php:1573
+#: admin/includes/CRB_Settings_Registry.php:1476
+#: admin/includes/CRB_Settings_Registry.php:1660
 msgid "Brief"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1390
-#: admin/includes/CRB_Settings_Registry.php:1574
+#: admin/includes/CRB_Settings_Registry.php:1477
+#: admin/includes/CRB_Settings_Registry.php:1661
 msgid "Verbose"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1394
-#: admin/includes/CRB_Settings_Registry.php:1578
+#: admin/includes/CRB_Settings_Registry.php:1481
+#: admin/includes/CRB_Settings_Registry.php:1665
 msgid "Lockout notification"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1395
-#: admin/includes/CRB_Settings_Registry.php:1579
+#: admin/includes/CRB_Settings_Registry.php:1482
+#: admin/includes/CRB_Settings_Registry.php:1666
 msgid "Send notification if the number of active lockouts above"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1401
+#: admin/includes/CRB_Settings_Registry.php:1488
 msgid "New version of WP Cerber is available"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1402
+#: admin/includes/CRB_Settings_Registry.php:1489
 msgid "Send notification when a new version of WP Cerber is available"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1406
+#: admin/includes/CRB_Settings_Registry.php:1493
 msgid "Plugin update is available"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1407
+#: admin/includes/CRB_Settings_Registry.php:1494
 msgid "Send notification when a new version of a plugin is available"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1416
+#: admin/includes/CRB_Settings_Registry.php:1503
 msgid "Checking frequency"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1417
+#: admin/includes/CRB_Settings_Registry.php:1504
 msgid "hours interval check"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1421
+#: admin/includes/CRB_Settings_Registry.php:1508
 msgid "Brief notification format"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1422
+#: admin/includes/CRB_Settings_Registry.php:1509
 msgid "Hide software versions and website URLs in notifications"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1427
+#: admin/includes/CRB_Settings_Registry.php:1514
 msgid "Where to email notifications"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1428
-#: admin/includes/CRB_Settings_Registry.php:1609
-#: admin/includes/CRB_Settings_Registry.php:1663
-#: admin/includes/CRB_Settings_Registry.php:2068
+#: admin/includes/CRB_Settings_Registry.php:1515
+#: admin/includes/CRB_Settings_Registry.php:1696
+#: admin/includes/CRB_Settings_Registry.php:1750
+#: admin/includes/CRB_Settings_Registry.php:2155
 msgid "if empty, the email addresses from the notification settings will be used"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1441
+#: admin/includes/CRB_Settings_Registry.php:1528
 msgid "Mail Transport"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1442
+#: admin/includes/CRB_Settings_Registry.php:1529
 msgid "Email server for sending emails generated by WP Cerber"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1447
+#: admin/includes/CRB_Settings_Registry.php:1534
 msgid "Use SMTP"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1448
+#: admin/includes/CRB_Settings_Registry.php:1535
 msgid "Use SMTP server to send emails"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1452
+#: admin/includes/CRB_Settings_Registry.php:1539
 msgid "SMTP host"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1461
+#: admin/includes/CRB_Settings_Registry.php:1548
 msgid "SMTP port"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1469
+#: admin/includes/CRB_Settings_Registry.php:1556
 msgid "SMTP encryption"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1472
+#: admin/includes/CRB_Settings_Registry.php:1559
 msgid "None"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1479
+#: admin/includes/CRB_Settings_Registry.php:1566
 msgid "SMTP password"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1486
+#: admin/includes/CRB_Settings_Registry.php:1573
 msgid "SMTP username"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1493
+#: admin/includes/CRB_Settings_Registry.php:1580
 msgid "SMTP From email"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1494
+#: admin/includes/CRB_Settings_Registry.php:1581
 msgid "If empty, the SMTP username is used"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1501
+#: admin/includes/CRB_Settings_Registry.php:1588
 msgid "SMTP From name"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1530
+#: admin/includes/CRB_Settings_Registry.php:1617
 msgid "All connected devices"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1533
+#: admin/includes/CRB_Settings_Registry.php:1620
 msgid "No devices found"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1537
+#: admin/includes/CRB_Settings_Registry.php:1624
 msgid "Not available"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1542
+#: admin/includes/CRB_Settings_Registry.php:1629
 msgid "Push notifications"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1543
+#: admin/includes/CRB_Settings_Registry.php:1630
 msgid "Get notified instantly with mobile and desktop notifications"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1547
+#: admin/includes/CRB_Settings_Registry.php:1634
 msgid "Pushbullet access token"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1550
+#: admin/includes/CRB_Settings_Registry.php:1637
 msgid "Pushbullet device"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1589
+#: admin/includes/CRB_Settings_Registry.php:1676
 msgid "Activity Reports"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1590
+#: admin/includes/CRB_Settings_Registry.php:1677
 msgid "Activity report is a summary of all logged activities and suspicious events occurred during the selected period of time"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1593
+#: admin/includes/CRB_Settings_Registry.php:1680
 msgid "Enable weekly reporting"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1597
+#: admin/includes/CRB_Settings_Registry.php:1684
 msgid "Send weekly reports on"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1602
+#: admin/includes/CRB_Settings_Registry.php:1689
 msgid "Generate 7-day reports"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1603
+#: admin/includes/CRB_Settings_Registry.php:1690
 msgid "Generate report for the last 7 days instead of the previous calendar week"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1608
-#: admin/includes/CRB_Settings_Registry.php:1662
+#: admin/includes/CRB_Settings_Registry.php:1695
+#: admin/includes/CRB_Settings_Registry.php:1749
 msgid "Where to email reports"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1618
+#: admin/includes/CRB_Settings_Registry.php:1705
 msgid "Enable monthly reporting"
 msgstr ""
 
 #. translators: %d is the number of days activity log entries will be kept.
-#: admin/includes/CRB_Settings_Registry.php:1642
+#: admin/includes/CRB_Settings_Registry.php:1729
 #, php-format
 msgid "To generate complete reports, activity log entries will be kept for %d days."
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1650
+#: admin/includes/CRB_Settings_Registry.php:1737
 msgid "Send monthly reports on the nth day of month"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1656
+#: admin/includes/CRB_Settings_Registry.php:1743
 msgid "Generate 30-day reports"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1657
+#: admin/includes/CRB_Settings_Registry.php:1744
 msgid "Generate report for the last 30 days instead of the previous calendar month"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1677
+#: admin/includes/CRB_Settings_Registry.php:1764
 msgid "Traffic Inspection"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1678
+#: admin/includes/CRB_Settings_Registry.php:1765
 msgid "Traffic Inspector is a context-aware web application firewall (WAF) that protects your website by recognizing and denying malicious HTTP requests"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1682
+#: admin/includes/CRB_Settings_Registry.php:1769
 msgid "Firewall inspection mode"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1686
-#: admin/includes/CRB_Settings_Registry.php:1765
+#: admin/includes/CRB_Settings_Registry.php:1773
+#: admin/includes/CRB_Settings_Registry.php:1852
 msgid "Maximum compatibility"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1687
-#: admin/includes/CRB_Settings_Registry.php:1766
+#: admin/includes/CRB_Settings_Registry.php:1774
+#: admin/includes/CRB_Settings_Registry.php:1853
 msgid "Maximum security"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1692
+#: admin/includes/CRB_Settings_Registry.php:1779
 msgid "Use less restrictive security filters for IP addresses in the Allowed IP Access List"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1697
+#: admin/includes/CRB_Settings_Registry.php:1784
 msgid "Exclude these locations from inspection by the firewall"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1701
+#: admin/includes/CRB_Settings_Registry.php:1788
 msgid "Specify a request path to exclude matching requests from firewall inspection. Omit your website domain name and all GET parameters. One exception per line. To specify a REGEX pattern, enclose the exception in two braces."
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1718
+#: admin/includes/CRB_Settings_Registry.php:1805
 #, php-format
 msgid "Full URLs are not supported here: %s"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1724
+#: admin/includes/CRB_Settings_Registry.php:1811
 #, php-format
 msgid "Query parameters are not supported here: %s"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1744
+#: admin/includes/CRB_Settings_Registry.php:1831
 msgid "Exclude requests with these HTTP headers from inspection by the firewall"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1748
+#: admin/includes/CRB_Settings_Registry.php:1835
 msgid "Specify colon-separated name and value pairs to exclude matching requests from firewall inspection. One header per line."
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1756
+#: admin/includes/CRB_Settings_Registry.php:1843
 msgid "Erroneous Request Shielding"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1758
+#: admin/includes/CRB_Settings_Registry.php:1845
 msgid "Block IP addresses that send excessive requests for non-existing pages or scan website for security breaches"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1761
+#: admin/includes/CRB_Settings_Registry.php:1848
 msgid "Error shielding mode"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1770
+#: admin/includes/CRB_Settings_Registry.php:1857
 msgid "Ignore logged-in users"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1779
+#: admin/includes/CRB_Settings_Registry.php:1866
 msgid "Traffic Logging"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1780
+#: admin/includes/CRB_Settings_Registry.php:1867
 msgid "Enable optional traffic logging if you need to monitor suspicious and malicious activity or solve security issues"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1784
+#: admin/includes/CRB_Settings_Registry.php:1871
 msgid "Logging mode"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1787
+#: admin/includes/CRB_Settings_Registry.php:1874
 msgid "Logging disabled"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1789
+#: admin/includes/CRB_Settings_Registry.php:1876
 msgid "Smart"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1790
+#: admin/includes/CRB_Settings_Registry.php:1877
 msgid "All traffic"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1794
+#: admin/includes/CRB_Settings_Registry.php:1881
 msgid "Log all REST API requests"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1799
+#: admin/includes/CRB_Settings_Registry.php:1886
 msgid "Log all XML-RPC requests"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1804
+#: admin/includes/CRB_Settings_Registry.php:1891
 msgid "Do not log known crawlers"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1809
+#: admin/includes/CRB_Settings_Registry.php:1896
 msgid "Do not log these locations"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1813
+#: admin/includes/CRB_Settings_Registry.php:1900
 msgid "Specify a request path to exclude matching requests from logging. Omit the website domain name. One exception per line. To specify a REGEX pattern, enclose the exception in two braces. Requests starting with an excluded path or matching a REGEX pattern are not logged."
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1820
+#: admin/includes/CRB_Settings_Registry.php:1907
 msgid "Do not log these User-Agents"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1824
+#: admin/includes/CRB_Settings_Registry.php:1911
 msgid "Specify User-Agents to exclude requests from logging. One item per line."
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1828
+#: admin/includes/CRB_Settings_Registry.php:1915
 msgid "Save request fields"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1833
+#: admin/includes/CRB_Settings_Registry.php:1920
 msgid "Mask these form fields"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1841
+#: admin/includes/CRB_Settings_Registry.php:1928
 msgid "Save request headers"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1847
+#: admin/includes/CRB_Settings_Registry.php:1934
 msgid "Save response headers"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1853
+#: admin/includes/CRB_Settings_Registry.php:1940
 msgid "Save request cookies"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1858
+#: admin/includes/CRB_Settings_Registry.php:1945
 msgid "Save response cookies"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1863
+#: admin/includes/CRB_Settings_Registry.php:1950
 msgid "Save $_SERVER"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1868
+#: admin/includes/CRB_Settings_Registry.php:1955
 msgid "Save software errors"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1873
+#: admin/includes/CRB_Settings_Registry.php:1960
 msgid "Page generation time threshold"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1874
+#: admin/includes/CRB_Settings_Registry.php:1961
 msgid "milliseconds"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1915
+#: admin/includes/CRB_Settings_Registry.php:2002
 msgid "Scanner settings"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1916
+#: admin/includes/CRB_Settings_Registry.php:2003
 msgid "The scanner monitors file changes, verifies the integrity of WordPress, plugins, and themes, and detects malware"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1920
+#: admin/includes/CRB_Settings_Registry.php:2007
 msgid "Scan for new files"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1924
-#: admin/includes/CRB_Settings_Registry.php:1933
+#: admin/includes/CRB_Settings_Registry.php:2011
+#: admin/includes/CRB_Settings_Registry.php:2020
 msgid "Executable files"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1925
-#: admin/includes/CRB_Settings_Registry.php:1934
+#: admin/includes/CRB_Settings_Registry.php:2012
+#: admin/includes/CRB_Settings_Registry.php:2021
 msgid "All files"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1929
+#: admin/includes/CRB_Settings_Registry.php:2016
 msgid "Scan for file modifications"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1938
+#: admin/includes/CRB_Settings_Registry.php:2025
 msgid "Scan for abandoned plugins"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1939
+#: admin/includes/CRB_Settings_Registry.php:2026
 msgid "Detect and report plugins that received no updates for the specified period of time"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1943
+#: admin/includes/CRB_Settings_Registry.php:2030
 msgid "Months without updates to flag plugin as abandoned"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1949
+#: admin/includes/CRB_Settings_Registry.php:2036
 msgid "Scan for plugin ownership changes"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1950
+#: admin/includes/CRB_Settings_Registry.php:2037
 msgid "Detect and report plugins with changes in ownership"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1954
+#: admin/includes/CRB_Settings_Registry.php:2041
 msgid "Scan temporary directories"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1955
+#: admin/includes/CRB_Settings_Registry.php:2042
 msgid "Scan web server temporary directories for malicious files"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1959
+#: admin/includes/CRB_Settings_Registry.php:2046
 msgid "Scan sessions directory"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1960
+#: admin/includes/CRB_Settings_Registry.php:2047
 msgid "Scan the web server sessions directory for malicious files"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1964
+#: admin/includes/CRB_Settings_Registry.php:2051
 msgid "Unwanted file extensions"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1970
+#: admin/includes/CRB_Settings_Registry.php:2057
 msgid "Specify file extensions to search for. Full scan only. Use comma to separate items."
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1973
+#: admin/includes/CRB_Settings_Registry.php:2060
 msgid "Custom signatures"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1977
+#: admin/includes/CRB_Settings_Registry.php:2064
 msgid "Specify custom PHP code signatures. One item per line. To specify a REGEX pattern, enclose a whole line in two braces."
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1980
+#: admin/includes/CRB_Settings_Registry.php:2067
 msgid "Directories to exclude"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1984
+#: admin/includes/CRB_Settings_Registry.php:2071
 msgid "Specify directories to exclude from scanning. One directory per line."
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1989
+#: admin/includes/CRB_Settings_Registry.php:2076
 msgid "Please run a new scan to get consistent and accurate results."
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:1997
+#: admin/includes/CRB_Settings_Registry.php:2084
 msgid "Miscellaneous Settings"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2000
+#: admin/includes/CRB_Settings_Registry.php:2087
 msgid "Change filesystem permissions"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2001
+#: admin/includes/CRB_Settings_Registry.php:2088
 msgid "Change file and directory permissions if it is required to delete files"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2006
+#: admin/includes/CRB_Settings_Registry.php:2093
 msgid "Delete quarantined files after"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2017
+#: admin/includes/CRB_Settings_Registry.php:2104
 msgid "Automated recurring scan schedule"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2018
+#: admin/includes/CRB_Settings_Registry.php:2105
 msgid "The scanner automatically scans the website, removes malware and sends email reports with the results of a scan"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2022
+#: admin/includes/CRB_Settings_Registry.php:2109
 msgid "Launch Quick Scan"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2027
+#: admin/includes/CRB_Settings_Registry.php:2114
 msgid "Launch Full Scan"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2029
+#: admin/includes/CRB_Settings_Registry.php:2116
 msgid "once a day at"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2036
+#: admin/includes/CRB_Settings_Registry.php:2123
 msgid "Scan results reporting"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2037
+#: admin/includes/CRB_Settings_Registry.php:2124
 msgid "Configure what issues to include in the email report and the condition for sending reports"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2041
+#: admin/includes/CRB_Settings_Registry.php:2128
 msgid "Report an issue if any of the following is true"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2044
-#: admin/includes/CRB_Settings_Registry.php:2093
+#: admin/includes/CRB_Settings_Registry.php:2131
+#: admin/includes/CRB_Settings_Registry.php:2180
 msgid "Low severity"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2045
-#: admin/includes/CRB_Settings_Registry.php:2094
+#: admin/includes/CRB_Settings_Registry.php:2132
+#: admin/includes/CRB_Settings_Registry.php:2181
 msgid "Medium severity"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2046
-#: admin/includes/CRB_Settings_Registry.php:2095
+#: admin/includes/CRB_Settings_Registry.php:2133
+#: admin/includes/CRB_Settings_Registry.php:2182
 msgid "High severity"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2050
+#: admin/includes/CRB_Settings_Registry.php:2137
 msgid "Send email report"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2053
+#: admin/includes/CRB_Settings_Registry.php:2140
 msgid "After every scan"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2054
+#: admin/includes/CRB_Settings_Registry.php:2141
 msgid "If any changes in scan results occurred"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2055
+#: admin/includes/CRB_Settings_Registry.php:2142
 msgid "If new issues found"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2059
+#: admin/includes/CRB_Settings_Registry.php:2146
 msgid "Include file sizes"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2063
+#: admin/includes/CRB_Settings_Registry.php:2150
 msgid "Include scan errors"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2067
+#: admin/includes/CRB_Settings_Registry.php:2154
 msgid "Email Address"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2081
+#: admin/includes/CRB_Settings_Registry.php:2168
 msgid "Automatic cleanup of malware and suspicious files"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2082
+#: admin/includes/CRB_Settings_Registry.php:2169
 msgid "These policies are automatically enforced at the end of every scan based on its results. All affected files are moved to the quarantine."
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2086
+#: admin/includes/CRB_Settings_Registry.php:2173
 msgid "Delete unattended files"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2090
+#: admin/includes/CRB_Settings_Registry.php:2177
 msgid "Delete files in the WordPress uploads directory"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2099
+#: admin/includes/CRB_Settings_Registry.php:2186
 msgid "Delete files with unwanted extensions"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2107
+#: admin/includes/CRB_Settings_Registry.php:2194
 msgid "WordPress uploads analysis"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2108
+#: admin/includes/CRB_Settings_Registry.php:2195
 msgid "Keep the WordPress uploads directory clean and secure. Detect injected files with public web access, report them, and remove malicious ones."
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2113
+#: admin/includes/CRB_Settings_Registry.php:2200
 msgid "Analyze the uploads directory"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2114
+#: admin/includes/CRB_Settings_Registry.php:2201
 msgid "Analyze the WordPress uploads directory to detect injected files"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2118
+#: admin/includes/CRB_Settings_Registry.php:2205
 msgid "Skip files with these extensions"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2120
+#: admin/includes/CRB_Settings_Registry.php:2207
 msgid "Ignore files with these extensions"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2121
-#: admin/includes/CRB_Settings_Registry.php:2133
+#: admin/includes/CRB_Settings_Registry.php:2208
+#: admin/includes/CRB_Settings_Registry.php:2220
 msgid "Use comma to separate multiple extensions"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2130
+#: admin/includes/CRB_Settings_Registry.php:2217
 msgid "Prohibited extensions"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2132
+#: admin/includes/CRB_Settings_Registry.php:2219
 msgid "Delete publicly accessible files with these extensions"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2146
+#: admin/includes/CRB_Settings_Registry.php:2233
 msgid "Automatic recovery of modified and infected files"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2149
+#: admin/includes/CRB_Settings_Registry.php:2236
 msgid "Recover WordPress files"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2153
+#: admin/includes/CRB_Settings_Registry.php:2240
 msgid "Recover plugins' files"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2161
+#: admin/includes/CRB_Settings_Registry.php:2248
 msgid "Global Exclusions"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2162
+#: admin/includes/CRB_Settings_Registry.php:2249
 msgid "These files will never be deleted during automatic cleanup. Be careful about configuring these settings. Improper configuration may lead to failure to delete malicious files."
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2165
+#: admin/includes/CRB_Settings_Registry.php:2252
 msgid "Files in these directories"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2169
+#: admin/includes/CRB_Settings_Registry.php:2256
 msgid "Use absolute or relative to the home directory paths. One directory per line."
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2175
+#: admin/includes/CRB_Settings_Registry.php:2262
 msgid "Files with these extensions"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2181
+#: admin/includes/CRB_Settings_Registry.php:2268
 msgid "Use comma to separate items."
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2184
+#: admin/includes/CRB_Settings_Registry.php:2271
 msgid "Files in temporary directories"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2188
+#: admin/includes/CRB_Settings_Registry.php:2275
 msgid "Files in the sessions directory"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2198
+#: admin/includes/CRB_Settings_Registry.php:2285
 msgid "Cerber anti-spam engine"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2199
+#: admin/includes/CRB_Settings_Registry.php:2286
 msgid "Spam protection for registration, comment, and other forms on the website"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2203
+#: admin/includes/CRB_Settings_Registry.php:2290
 msgid "View bot events"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2212
-#: admin/includes/CRB_Settings_Registry.php:2349
+#: admin/includes/CRB_Settings_Registry.php:2299
+#: admin/includes/CRB_Settings_Registry.php:2436
 msgid "Protect registration form"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2213
+#: admin/includes/CRB_Settings_Registry.php:2300
 msgid "Protect the standard WordPress registration form with bot detection engine"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2217
-#: admin/includes/CRB_Settings_Registry.php:2379
+#: admin/includes/CRB_Settings_Registry.php:2304
+#: admin/includes/CRB_Settings_Registry.php:2466
 msgid "Protect comment form"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2218
+#: admin/includes/CRB_Settings_Registry.php:2305
 msgid "Protect the standard WordPress comment form with bot detection engine"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2222
+#: admin/includes/CRB_Settings_Registry.php:2309
 msgid "Custom comment URL"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2223
+#: admin/includes/CRB_Settings_Registry.php:2310
 msgid "Use custom URL for the WordPress comment form"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2227
+#: admin/includes/CRB_Settings_Registry.php:2314
 msgid "Protect other forms"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2228
+#: admin/includes/CRB_Settings_Registry.php:2315
 msgid "Protect all forms on the website with bot detection engine"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2261
+#: admin/includes/CRB_Settings_Registry.php:2348
 msgid "Adjust anti-spam engine"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2262
+#: admin/includes/CRB_Settings_Registry.php:2349
 msgid "These settings enable you to fine-tune the behavior of anti-spam algorithms and avoid false positives"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2265
+#: admin/includes/CRB_Settings_Registry.php:2352
 msgid "Enable safe AJAX mode"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2266
+#: admin/includes/CRB_Settings_Registry.php:2353
 msgid "Use less strict spam filtering for AJAX form submissions. May increase spam risk slightly."
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2270
+#: admin/includes/CRB_Settings_Registry.php:2357
 msgid "Disable spam checks for logged-in users"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2271
+#: admin/includes/CRB_Settings_Registry.php:2358
 msgid "Disable spam checks and bot detection engine for logged-in users"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2276
+#: admin/includes/CRB_Settings_Registry.php:2363
 msgid "Disable bot detection engine for IP addresses in the Allowed IP Access List"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2280
+#: admin/includes/CRB_Settings_Registry.php:2367
 msgid "Exclude these locations from scanning for spam"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2281
+#: admin/includes/CRB_Settings_Registry.php:2368
 msgid "Specify a string to match anywhere in the request path or query string to exclude matching requests from anti-spam inspection. Omit the website domain name. One exception per line. To specify a REGEX pattern, enclose the exception in two braces."
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2291
+#: admin/includes/CRB_Settings_Registry.php:2378
 msgid "Exclude requests with these HTTP headers from scanning for spam"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2292
+#: admin/includes/CRB_Settings_Registry.php:2379
 msgid "Specify colon-separated name and value pairs to exclude matching requests from scanning for spam. One header per line."
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2302
+#: admin/includes/CRB_Settings_Registry.php:2389
 msgid "Comment processing"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2303
+#: admin/includes/CRB_Settings_Registry.php:2390
 msgid "How the plugin processes comments submitted through the standard comment form"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2306
+#: admin/includes/CRB_Settings_Registry.php:2393
 msgid "If a spam comment detected"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2308
+#: admin/includes/CRB_Settings_Registry.php:2395
 msgid "Deny it completely"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2308
+#: admin/includes/CRB_Settings_Registry.php:2395
 msgid "Mark it as spam"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2311
+#: admin/includes/CRB_Settings_Registry.php:2398
 msgid "Trash spam comments"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2313
+#: admin/includes/CRB_Settings_Registry.php:2400
 msgid "Move spam comments to trash after"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2322
+#: admin/includes/CRB_Settings_Registry.php:2409
 msgid "reCAPTCHA settings"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2323
+#: admin/includes/CRB_Settings_Registry.php:2410
 msgid "Before you can start using reCAPTCHA, you have to obtain Site key and Secret key on the Google website"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2327
+#: admin/includes/CRB_Settings_Registry.php:2414
 msgid "View reCAPTCHA events"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2336
+#: admin/includes/CRB_Settings_Registry.php:2423
 msgid "Site key"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2340
+#: admin/includes/CRB_Settings_Registry.php:2427
 msgid "Secret key"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2344
+#: admin/includes/CRB_Settings_Registry.php:2431
 msgid "Invisible reCAPTCHA"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2345
+#: admin/includes/CRB_Settings_Registry.php:2432
 msgid "Enable invisible reCAPTCHA (do not enable it unless you get and enter the Site and Secret keys for the invisible version)"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2350
+#: admin/includes/CRB_Settings_Registry.php:2437
 msgid "Enable reCAPTCHA for WordPress registration form"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2354
+#: admin/includes/CRB_Settings_Registry.php:2441
 msgid "Protect WooCommerce registration form"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2355
+#: admin/includes/CRB_Settings_Registry.php:2442
 msgid "Enable reCAPTCHA for WooCommerce registration form"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2359
+#: admin/includes/CRB_Settings_Registry.php:2446
 msgid "Protect lost password form"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2360
+#: admin/includes/CRB_Settings_Registry.php:2447
 msgid "Enable reCAPTCHA for WordPress lost password form"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2364
+#: admin/includes/CRB_Settings_Registry.php:2451
 msgid "Protect WooCommerce lost password form"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2365
+#: admin/includes/CRB_Settings_Registry.php:2452
 msgid "Enable reCAPTCHA for WooCommerce lost password form"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2369
+#: admin/includes/CRB_Settings_Registry.php:2456
 msgid "Protect login form"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2370
+#: admin/includes/CRB_Settings_Registry.php:2457
 msgid "Enable reCAPTCHA for WordPress login form"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2374
+#: admin/includes/CRB_Settings_Registry.php:2461
 msgid "Protect WooCommerce login form"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2375
+#: admin/includes/CRB_Settings_Registry.php:2462
 msgid "Enable reCAPTCHA for WooCommerce login form"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2380
+#: admin/includes/CRB_Settings_Registry.php:2467
 msgid "Enable reCAPTCHA for WordPress comment form"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2385
+#: admin/includes/CRB_Settings_Registry.php:2472
 msgid "Disable reCAPTCHA for logged-in users"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2391
+#: admin/includes/CRB_Settings_Registry.php:2478
 msgid "Disable reCAPTCHA for IP addresses in the Allowed IP Access List"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2395
+#: admin/includes/CRB_Settings_Registry.php:2482
 msgid "Limit attempts"
 msgstr ""
 
 #. translators: %1$s, %2$s, and %3$s are input fields for lockout minutes, failed attempts, and time period.
-#: admin/includes/CRB_Settings_Registry.php:2397
+#: admin/includes/CRB_Settings_Registry.php:2484
 #, php-format
 msgid "Lock out IP address for %1$s minutes after %2$s failed attempts within %3$s minutes"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2416
+#: admin/includes/CRB_Settings_Registry.php:2503
 msgid "Main website settings"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2423
+#: admin/includes/CRB_Settings_Registry.php:2510
 msgid "Return to the website list"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2427
+#: admin/includes/CRB_Settings_Registry.php:2514
 msgid "Show \"Switched to\" notification"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2431
+#: admin/includes/CRB_Settings_Registry.php:2518
 msgid "Add @ site to the page title"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2435
+#: admin/includes/CRB_Settings_Registry.php:2522
 msgid "Use my language"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2436
+#: admin/includes/CRB_Settings_Registry.php:2523
 msgid "Display admin pages of remote websites using my language"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2441
+#: admin/includes/CRB_Settings_Registry.php:2528
 msgid "Use proxy server to connect to managed websites"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2462
+#: admin/includes/CRB_Settings_Registry.php:2549
 msgid "Access to this website"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2465
+#: admin/includes/CRB_Settings_Registry.php:2552
 msgid "Full access mode"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2466
+#: admin/includes/CRB_Settings_Registry.php:2553
 msgid "Read-only mode"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2475
+#: admin/includes/CRB_Settings_Registry.php:2562
 msgid "The full access mode requires the PRO version of WP Cerber"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Registry.php:2483
+#: admin/includes/CRB_Settings_Registry.php:2570
 msgid "Limit access by IP address"
 msgstr ""
 
@@ -3945,7 +3954,7 @@ msgstr ""
 msgid "Available in the professional version of WP Cerber"
 msgstr ""
 
-#: admin/includes/CRB_Settings_Renderer.php:341
+#: admin/includes/CRB_Settings_Renderer.php:330
 #: cerber-lab.php:991
 msgid "Know more"
 msgstr ""
@@ -4061,7 +4070,7 @@ msgstr ""
 
 #. translators: %s is the date.
 #: cerber-2fa.php:1212
-#: includes/CRB_Messaging.php:328
+#: includes/CRB_Messaging.php:331
 #, php-format
 msgid "Date: %s"
 msgstr ""
@@ -4313,17 +4322,17 @@ msgid "Request to the Google reCAPTCHA service failed"
 msgstr ""
 
 #: cerber-common.php:2441
-#: cerber-common.php:2703
+#: cerber-common.php:2741
 msgid "Attempt to access prohibited URL"
 msgstr ""
 
 #: cerber-common.php:2442
-#: cerber-common.php:2704
+#: cerber-common.php:2742
 msgid "Attempt to log in with non-existing username"
 msgstr ""
 
 #: cerber-common.php:2443
-#: cerber-common.php:2705
+#: cerber-common.php:2743
 msgid "Attempt to log in with prohibited username"
 msgstr ""
 
@@ -4336,7 +4345,7 @@ msgid "Attempt to register denied"
 msgstr ""
 
 #: cerber-common.php:2448
-#: cerber-common.php:2709
+#: cerber-common.php:2747
 msgid "Probing for vulnerable code"
 msgstr ""
 
@@ -4438,7 +4447,7 @@ msgid "Bot detected"
 msgstr ""
 
 #: cerber-common.php:2491
-#: includes/CRB_Messaging.php:139
+#: includes/CRB_Messaging.php:142
 msgid "Citadel mode is active"
 msgstr ""
 
@@ -4475,7 +4484,7 @@ msgid "Suspicious number of nested values"
 msgstr ""
 
 #: cerber-common.php:2502
-#: cerber-common.php:2710
+#: cerber-common.php:2748
 msgid "Malicious code detected"
 msgstr ""
 
@@ -4625,7 +4634,7 @@ msgid "User's browser does not match the one used to log in"
 msgstr ""
 
 #: cerber-common.php:2561
-#: cerber-common.php:2716
+#: cerber-common.php:2754
 msgid "Exceeded the allowed number of attempts to enter 2FA code"
 msgstr ""
 
@@ -4634,7 +4643,7 @@ msgid "Exceeded the allowed number of 2FA challenges"
 msgstr ""
 
 #: cerber-common.php:2564
-#: cerber-common.php:2718
+#: cerber-common.php:2756
 msgid "Exceeded the allowed number of attempts to reset password"
 msgstr ""
 
@@ -4644,46 +4653,46 @@ msgstr ""
 msgid "Unknown label (%1$d/%2$s)"
 msgstr ""
 
-#: cerber-common.php:2702
+#: cerber-common.php:2740
 msgid "Exceeded the allowed number of login attempts"
 msgstr ""
 
-#: cerber-common.php:2706
+#: cerber-common.php:2744
 msgid "Exceeded the allowed number of failed reCAPTCHA verifications"
 msgstr ""
 
-#: cerber-common.php:2707
+#: cerber-common.php:2745
 msgid "Excessive spam activity detected"
 msgstr ""
 
-#: cerber-common.php:2708
+#: cerber-common.php:2746
 msgid "Multiple suspicious activities detected"
 msgstr ""
 
-#: cerber-common.php:2711
+#: cerber-common.php:2749
 msgid "Attempt to upload a file with malicious code"
 msgstr ""
 
-#: cerber-common.php:2713
+#: cerber-common.php:2751
 msgid "Too many erroneous requests"
 msgstr ""
 
-#: cerber-common.php:2714
+#: cerber-common.php:2752
 msgid "Too many suspicious requests"
 msgstr ""
 
 #. translators: %s is the error message.
-#: cerber-common.php:2806
+#: cerber-common.php:2844
 #, php-format
 msgid "ERROR: %s"
 msgstr ""
 
-#: cerber-common.php:3035
+#: cerber-common.php:3073
 msgid "Invalid Value"
 msgstr ""
 
 #. translators: Indicates time difference in seconds. Placeholder %d will be replaced by the number of seconds, e.g., "1 sec" or "45 secs".
-#: cerber-common.php:3046
+#: cerber-common.php:3084
 #, php-format
 msgid "%d sec"
 msgid_plural "%d secs"
@@ -4691,72 +4700,72 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. translators: Ago refers to a period in the past, starting backwards from now. Placeholder %s will be replaced by a time period in the past, e.g., "2 days ago", "1 hour ago".
-#: cerber-common.php:3054
+#: cerber-common.php:3092
 #, php-format
 msgid "%s ago"
 msgstr ""
 
 #. translators: It is used as a preposition to describe future time, e.g., "in 6 hours" or "in 2 days".
-#: cerber-common.php:3058
+#: cerber-common.php:3096
 #, php-format
 msgctxt "Preposition to describe future time"
 msgid "in %s"
 msgstr ""
 
-#: cerber-common.php:3178
+#: cerber-common.php:3216
 msgid "Bytes"
 msgstr ""
 
-#: cerber-common.php:3386
+#: cerber-common.php:3424
 #, php-format
 msgid "A new version of WP Cerber Security is available. We recommend updating. To stay up to date with security and performance improvements, enable automatic updates. %s"
 msgstr ""
 
-#: cerber-common.php:3387
+#: cerber-common.php:3425
 msgid "Learn how"
 msgstr ""
 
-#: cerber-common.php:3390
+#: cerber-common.php:3428
 msgid "See what’s new in this version:"
 msgstr ""
 
-#: cerber-common.php:3413
+#: cerber-common.php:3451
 #, php-format
 msgid "WP Cerber %s is available. Please update."
 msgstr ""
 
 #. translators: %s is the file path.
-#: cerber-common.php:4776
+#: cerber-common.php:4814
 #, php-format
 msgid "Destination file is not writable: %s"
 msgstr ""
 
 #. translators: %s is the directory path.
-#: cerber-common.php:4785
+#: cerber-common.php:4823
 #, php-format
 msgid "Unable to create required directory: %s"
 msgstr ""
 
 #. translators: %s is the directory path.
-#: cerber-common.php:4791
+#: cerber-common.php:4829
 #, php-format
 msgid "Destination directory is not writable: %s"
 msgstr ""
 
 #. translators: %s is the file path.
-#: cerber-common.php:4796
+#: cerber-common.php:4834
 #, php-format
 msgid "Source file not found: %s"
 msgstr ""
 
 #. translators: %s is the file path.
-#: cerber-common.php:4801
+#: cerber-common.php:4839
 #, php-format
 msgid "Unable to copy file: %s"
 msgstr ""
 
 #. translators: %s is the file path.
-#: cerber-common.php:4811
+#: cerber-common.php:4849
 #, php-format
 msgid "Unable to delete the file: %s"
 msgstr ""
@@ -4812,159 +4821,159 @@ msgstr ""
 msgid "Human verification failed. Please click the square box in the reCAPTCHA block below."
 msgstr ""
 
-#: cerber-load.php:1197
-#: cerber-load.php:2385
+#: cerber-load.php:1199
+#: cerber-load.php:2387
 #: nexus/cerber-nexus-client.php:204
 #: nexus/cerber-nexus-client.php:215
 msgid "ERROR:"
 msgstr ""
 
 #. translators: Here %s is a user login.
-#: cerber-load.php:1403
+#: cerber-load.php:1405
 #, php-format
 msgid "The password you entered for the username %s is incorrect."
 msgstr ""
 
 #. translators: Here %s is an email address.
-#: cerber-load.php:1408
+#: cerber-load.php:1410
 #, php-format
 msgid "The password you entered for the email address %s is incorrect."
 msgstr ""
 
-#: cerber-load.php:1413
+#: cerber-load.php:1415
 msgid "Error"
 msgstr ""
 
-#: cerber-load.php:2071
+#: cerber-load.php:2073
 msgid "User session has been terminated"
 msgstr ""
 
 #. translators: %d is the number of terminated user sessions.
-#: cerber-load.php:2074
+#: cerber-load.php:2076
 #, php-format
 msgid "%d user session has been terminated"
 msgid_plural "%d user sessions have been terminated"
 msgstr[0] ""
 msgstr[1] ""
 
-#: cerber-load.php:2240
+#: cerber-load.php:2242
 msgid "If we have found your account, we have sent the confirmation link to the email address on the account."
 msgstr ""
 
-#: cerber-load.php:2338
-#: cerber-load.php:2345
-#: cerber-load.php:2351
-#: cerber-load.php:2375
-#: cerber-load.php:2380
+#: cerber-load.php:2340
+#: cerber-load.php:2347
+#: cerber-load.php:2353
+#: cerber-load.php:2377
+#: cerber-load.php:2382
 msgid "You are not allowed to register."
 msgstr ""
 
-#: cerber-load.php:2362
+#: cerber-load.php:2364
 msgid "Username is not allowed. Please choose another one."
 msgstr ""
 
-#: cerber-load.php:2369
+#: cerber-load.php:2371
 msgid "Email address is not permitted. Please choose another one."
 msgstr ""
 
-#: cerber-load.php:2712
+#: cerber-load.php:2714
 msgid "ERROR: Sorry, human verification failed."
 msgstr ""
 
-#: cerber-load.php:2771
+#: cerber-load.php:2773
 msgid "The PHP constant CONCATENATE_SCRIPTS is already defined somewhere else"
 msgstr ""
 
-#: cerber-load.php:3975
+#: cerber-load.php:4069
 msgid "Sorry, password reset is not allowed for this user."
 msgstr ""
 
-#: cerber-load.php:4117
+#: cerber-load.php:4211
 msgid "We were unable to complete your sign-in due to a technical issue. Please try again later."
 msgstr ""
 
-#: cerber-load.php:4148
+#: cerber-load.php:4242
 msgid "You are not allowed to proceed. Ask your administrator for assistance."
 msgstr ""
 
-#: cerber-load.php:4161
+#: cerber-load.php:4255
 msgid "Error:"
 msgstr ""
 
-#: cerber-load.php:6032
+#: cerber-load.php:6126
 msgid "We're sorry, you are not allowed to proceed"
 msgstr ""
 
-#: cerber-load.php:6033
+#: cerber-load.php:6127
 msgid "Your request looks suspiciously similar to automated requests from spam posting software or it has been denied by a security policy configured by the website administrator."
 msgstr ""
 
-#: cerber-load.php:6034
+#: cerber-load.php:6128
 msgid "If you believe you should be able to perform this request, please let us know."
 msgstr ""
 
-#: cerber-load.php:6145
+#: cerber-load.php:6240
 msgid "Weekly Report"
 msgstr ""
 
-#: cerber-load.php:6158
+#: cerber-load.php:6253
 msgid "Monthly Report"
 msgstr ""
 
-#: cerber-load.php:6194
+#: cerber-load.php:6288
 msgid "Activity details"
 msgstr ""
 
-#: cerber-load.php:6209
+#: cerber-load.php:6304
 msgid "Attempts to log in with non-existing usernames"
 msgstr ""
 
 #. translators: %1$s is the required PHP version, %2$s is the current PHP version.
-#: cerber-load.php:6771
+#: cerber-load.php:6849
 #, php-format
 msgid "WP Cerber requires PHP version %1$s or higher, but your web server is currently running PHP %2$s."
 msgstr ""
 
 #. translators: %1$s is the required WordPress version, %2$s is the current WordPress version.
-#: cerber-load.php:6776
+#: cerber-load.php:6854
 #: includes/CRB_Issue_Monitor.php:651
 #, php-format
 msgid "WP Cerber requires WordPress version %1$s or higher. Your WordPress version is %2$s. Please update your WordPress to the latest version."
 msgstr ""
 
-#: cerber-load.php:6786
+#: cerber-load.php:6864
 msgid "Can't activate WP Cerber due to a database error."
 msgstr ""
 
 #. translators: %s is the user's IP address.
-#: cerber-load.php:6815
+#: cerber-load.php:6893
 #, php-format
 msgid "Your IP address %s has been added to the Allowed IP Access List"
 msgstr ""
 
-#: cerber-load.php:6830
-#: includes/CRB_Messaging.php:229
+#: cerber-load.php:6908
+#: includes/CRB_Messaging.php:232
 msgid "WP Cerber is now active and has started protecting your site"
 msgstr ""
 
-#: cerber-load.php:6837
-#: includes/CRB_Messaging.php:230
+#: cerber-load.php:6915
+#: includes/CRB_Messaging.php:233
 msgid "Getting Started Guide"
 msgstr ""
 
-#: cerber-load.php:6848
+#: cerber-load.php:6926
 msgid "Import settings"
 msgstr ""
 
-#: cerber-load.php:7469
+#: cerber-load.php:7547
 msgid "Database errors occurred while upgrading WP Cerber database tables."
 msgstr ""
 
-#: cerber-load.php:9396
+#: cerber-load.php:9474
 msgid "We need your support to keep moving forward"
 msgstr ""
 
-#: cerber-load.php:9401
+#: cerber-load.php:9479
 msgid "By sharing your unique opinion on WP Cerber, you help the engineers behind the plugin make greater progress and help other professionals find the right software. You can leave your review on one of the following websites. Feel free to use your native language. Thanks!"
 msgstr ""
 
@@ -5033,7 +5042,7 @@ msgid "Unable to process file"
 msgstr ""
 
 #: cerber-scanner.php:2097
-#: cerber-scanner.php:5663
+#: cerber-scanner.php:6049
 msgid "Unable to open file"
 msgstr ""
 
@@ -5334,35 +5343,63 @@ msgstr ""
 msgid "Please upload another file."
 msgstr ""
 
-#: cerber-scanner.php:5805
+#: cerber-scanner.php:5535
+msgid "The file has been moved to the quarantine."
+msgstr ""
+
+#. translators: %d is the number of files moved to the quarantine.
+#: cerber-scanner.php:5538
+#, php-format
+msgid "%d file has been moved to the quarantine."
+msgid_plural "%d files have been moved to the quarantine."
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %d is the number of days the quarantined file is kept before automatic deletion.
+#: cerber-scanner.php:5550
+#, php-format
+msgid "It will be automatically deleted from the quarantine in %d day."
+msgid_plural "It will be automatically deleted from the quarantine in %d days."
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %d is the number of days the quarantined files are kept before automatic deletion.
+#: cerber-scanner.php:5554
+#, php-format
+msgid "They will be automatically deleted from the quarantine in %d day."
+msgid_plural "They will be automatically deleted from the quarantine in %d days."
+msgstr[0] ""
+msgstr[1] ""
+
+#: cerber-scanner.php:6191
 msgid "Full Scan Report"
 msgstr ""
 
-#: cerber-scanner.php:5805
+#: cerber-scanner.php:6191
 msgid "Quick Scan Report"
 msgstr ""
 
-#: cerber-scanner.php:5881
+#: cerber-scanner.php:6267
 msgid "Deleted"
 msgstr ""
 
-#: cerber-scanner.php:5885
+#: cerber-scanner.php:6271
 msgid "Recovered"
 msgstr ""
 
-#: cerber-scanner.php:5936
+#: cerber-scanner.php:6322
 msgid "Files scanned"
 msgstr ""
 
-#: cerber-scanner.php:5981
+#: cerber-scanner.php:6367
 msgid "Automatically moved to quarantine"
 msgstr ""
 
-#: cerber-scanner.php:5982
+#: cerber-scanner.php:6368
 msgid "Automatically deleted"
 msgstr ""
 
-#: cerber-scanner.php:5986
+#: cerber-scanner.php:6372
 msgid "Automatically recovered"
 msgstr ""
 
@@ -5370,7 +5407,7 @@ msgstr ""
 msgid "Any activity"
 msgstr ""
 
-#: cerber-settings.php:518
+#: cerber-settings.php:519
 msgid "Only registered and logged in users are allowed to view this website"
 msgstr ""
 
@@ -5412,8 +5449,8 @@ msgstr ""
 
 #. translators: %s is the website name.
 #: cerber-toolbox.php:146
-#: includes/CRB_Messaging.php:198
-#: includes/CRB_Messaging.php:212
+#: includes/CRB_Messaging.php:201
+#: includes/CRB_Messaging.php:215
 #, php-format
 msgid "Website: %s"
 msgstr ""
@@ -5531,7 +5568,7 @@ msgstr ""
 
 #. translators: %s is the URL to view activity in the Dashboard.
 #: includes/CRB_Activity_Alerts.php:265
-#: includes/CRB_Messaging.php:147
+#: includes/CRB_Messaging.php:150
 #, php-format
 msgid "View activity in the Dashboard: %s"
 msgstr ""
@@ -5542,11 +5579,11 @@ msgstr ""
 msgid "To delete the alert, click here: %s"
 msgstr ""
 
-#: includes/CRB_Activity_Alerts.php:444
+#: includes/CRB_Activity_Alerts.php:446
 msgid "The alert has been created"
 msgstr ""
 
-#: includes/CRB_Activity_Alerts.php:469
+#: includes/CRB_Activity_Alerts.php:471
 msgid "The alert has been deleted"
 msgstr ""
 
@@ -5662,138 +5699,138 @@ msgid "The installed <strong>cURL</strong> library does not support <strong>SSL/
 msgstr ""
 
 #. translators: %1$d is the number of failed login attempts, %2$d is the time period in minutes.
-#: includes/CRB_Messaging.php:142
+#: includes/CRB_Messaging.php:145
 #, php-format
 msgid "Citadel mode has been activated after %1$d failed login attempts in %2$d minutes."
 msgstr ""
 
 #. translators: %1$s is the date and time, %2$s is the IP address, %3$s is the username.
-#: includes/CRB_Messaging.php:144
+#: includes/CRB_Messaging.php:147
 #, php-format
 msgid "Last failed attempt was at %1$s from IP %2$s using username: %3$s."
 msgstr ""
 
-#: includes/CRB_Messaging.php:171
+#: includes/CRB_Messaging.php:174
 msgid "unspecified"
-msgstr ""
-
-#. translators: %d is the number of active lockouts.
-#: includes/CRB_Messaging.php:175
-#, php-format
-msgid "Number of lockouts is increasing (%d)"
 msgstr ""
 
 #. translators: %d is the number of active lockouts.
 #: includes/CRB_Messaging.php:178
 #, php-format
+msgid "Number of lockouts is increasing (%d)"
+msgstr ""
+
+#. translators: %d is the number of active lockouts.
+#: includes/CRB_Messaging.php:181
+#, php-format
 msgid "Number of active lockouts at the moment: %d"
 msgstr ""
 
 #. translators: %1$s is the IP address with hostname, %2$s is the date and time of the lockout.
-#: includes/CRB_Messaging.php:182
+#: includes/CRB_Messaging.php:185
 #, php-format
 msgid "Last security action: IP address %1$s was locked out at %2$s"
 msgstr ""
 
 #. translators: %s is the lockout reason.
-#: includes/CRB_Messaging.php:184
+#: includes/CRB_Messaging.php:187
 #, php-format
 msgid "Reason: %s"
 msgstr ""
 
 #. translators: %s is the URL to view activity for the IP.
-#: includes/CRB_Messaging.php:188
+#: includes/CRB_Messaging.php:191
 #, php-format
 msgid "View activity for this IP: %s"
 msgstr ""
 
 #. translators: %s is the URL to view all lockouts.
-#: includes/CRB_Messaging.php:190
+#: includes/CRB_Messaging.php:193
 #, php-format
 msgid "View all lockouts: %s"
 msgstr ""
 
 #. translators: %s is the URL to learn more about alerting.
-#: includes/CRB_Messaging.php:193
+#: includes/CRB_Messaging.php:196
 #, php-format
 msgid "Learn more about advanced alerting in WP Cerber: %s"
 msgstr ""
 
-#: includes/CRB_Messaging.php:201
+#: includes/CRB_Messaging.php:204
 msgid "The WP Cerber Security plugin has been deactivated"
 msgstr ""
 
 #. translators: %s is the user name.
-#: includes/CRB_Messaging.php:215
+#: includes/CRB_Messaging.php:218
 #, php-format
 msgid "By the user: %s"
 msgstr ""
 
 #. translators: %s is the IP address.
-#: includes/CRB_Messaging.php:217
+#: includes/CRB_Messaging.php:220
 #, php-format
 msgid "From the IP address: %s"
 msgstr ""
 
 #. translators: %s is the country name.
-#: includes/CRB_Messaging.php:223
+#: includes/CRB_Messaging.php:226
 #, php-format
 msgid "From the country: %s"
 msgstr ""
 
-#: includes/CRB_Messaging.php:228
+#: includes/CRB_Messaging.php:231
 msgid "The WP Cerber Security plugin is now active"
 msgstr ""
 
-#: includes/CRB_Messaging.php:239
+#: includes/CRB_Messaging.php:242
 msgid "New Custom login URL"
 msgstr ""
 
-#: includes/CRB_Messaging.php:243
+#: includes/CRB_Messaging.php:246
 msgid "A new activity has occurred"
 msgstr ""
 
-#: includes/CRB_Messaging.php:252
+#: includes/CRB_Messaging.php:255
 msgid "To change reporting settings visit"
 msgstr ""
 
-#: includes/CRB_Messaging.php:257
+#: includes/CRB_Messaging.php:260
 msgid "Scanner Report"
 msgstr ""
 
-#: includes/CRB_Messaging.php:261
+#: includes/CRB_Messaging.php:264
 msgid "To view full report, navigate to:"
 msgstr ""
 
-#: includes/CRB_Messaging.php:264
+#: includes/CRB_Messaging.php:267
 msgid "To modify your reporting settings, navigate to:"
 msgstr ""
 
 #. translators: %s is the custom login page URL.
-#: includes/CRB_Messaging.php:313
+#: includes/CRB_Messaging.php:316
 #, php-format
 msgid "Your login page: %s"
 msgstr ""
 
 #. translators: %s is the license expiration date.
-#: includes/CRB_Messaging.php:321
+#: includes/CRB_Messaging.php:324
 #, php-format
 msgid "Your license is valid until %s"
 msgstr ""
 
 #. translators: %s is the plugin name and version.
-#: includes/CRB_Messaging.php:326
+#: includes/CRB_Messaging.php:329
 #, php-format
 msgid "This message was created by %s"
 msgstr ""
 
 #. translators: Here the first placeholder %1$s is a date of the last user login and the second placeholder %2$s is the user's IP address.
-#: includes/CRB_Messaging.php:490
+#: includes/CRB_Messaging.php:522
 #, php-format
 msgid "Your last sign-in was at %1$s from the IP address %2$s"
 msgstr ""
 
-#: includes/CRB_Messaging.php:787
+#: includes/CRB_Messaging.php:1019
 msgid "An error occurred while sending email. Security alerts and reports may not reach you. Check email notification settings and recipient addresses."
 msgstr ""
 
@@ -6070,8 +6107,8 @@ msgid "You are here: %s"
 msgstr ""
 
 #: nexus/cerber-nexus-manager.php:1547
-#: nexus/cerber-nexus.php:87
-#: nexus/cerber-nexus.php:97
+#: nexus/cerber-nexus.php:90
+#: nexus/cerber-nexus.php:135
 msgid "My Websites"
 msgstr ""
 
@@ -6091,63 +6128,63 @@ msgstr ""
 msgid "No information available. Refreshed:"
 msgstr ""
 
-#: nexus/cerber-nexus.php:63
+#: nexus/cerber-nexus.php:66
 msgid "Enable managed mode"
 msgstr ""
 
-#: nexus/cerber-nexus.php:64
+#: nexus/cerber-nexus.php:67
 msgid "This website can be managed from a main website"
 msgstr ""
 
-#: nexus/cerber-nexus.php:67
+#: nexus/cerber-nexus.php:70
 msgid "Enable main website mode"
 msgstr ""
 
-#: nexus/cerber-nexus.php:68
+#: nexus/cerber-nexus.php:71
 msgid "Configure this website as main to manage other remote website"
 msgstr ""
 
-#: nexus/cerber-nexus.php:73
+#: nexus/cerber-nexus.php:76
 msgid "To proceed, please select the mode for this website"
 msgstr ""
 
-#: nexus/cerber-nexus.php:93
-#: nexus/cerber-nexus.php:97
+#: nexus/cerber-nexus.php:90
+#: nexus/cerber-nexus.php:141
 msgid "Access Settings"
 msgstr ""
 
-#: nexus/cerber-nexus.php:134
+#: nexus/cerber-nexus.php:160
 msgid "Secret Access Token"
 msgstr ""
 
-#: nexus/cerber-nexus.php:136
+#: nexus/cerber-nexus.php:162
 msgid "To grant access to this website, install this token on the main website. Keep the token secret."
 msgstr ""
 
-#: nexus/cerber-nexus.php:140
+#: nexus/cerber-nexus.php:166
 msgid "To disable remote management and revoke the token, click here:"
 msgstr ""
 
-#: nexus/cerber-nexus.php:140
+#: nexus/cerber-nexus.php:166
 msgid "Disable managed mode"
 msgstr ""
 
-#: nexus/cerber-nexus.php:140
+#: nexus/cerber-nexus.php:166
 msgid "Are you sure? This permanently invalidates the token."
 msgstr ""
 
-#: nexus/cerber-nexus.php:258
+#: nexus/cerber-nexus.php:284
 msgid "This website is set as a main website."
 msgstr ""
 
-#: nexus/cerber-nexus.php:259
+#: nexus/cerber-nexus.php:285
 msgid "Add managed websites by using access tokens."
 msgstr ""
 
-#: nexus/cerber-nexus.php:262
+#: nexus/cerber-nexus.php:288
 msgid "This website is set as a managed website."
 msgstr ""
 
-#: nexus/cerber-nexus.php:263
+#: nexus/cerber-nexus.php:289
 msgid "Install the access token on the main website."
 msgstr ""

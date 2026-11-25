@@ -1101,33 +1101,52 @@ function crb_journaling( $update_details, $diag_log_list ) {
  * @return string CSS class to be used
  */
 function crb_check_enabler( $config, $enab_val ) {
-	if ( ! isset( $config['enabler'] ) ) {
-		return '';
+	return ( ! crb_is_enabler_met( $config, $enab_val ) ) ? ' crb-disable-this' : '';
+}
+
+/**
+ * Tells whether the enabler of a setting field is met, that is, whether the field is displayed.
+ *
+ * A field may depend on another field of the same form, its enabler. The enabler entry of the
+ * field configuration is a list: the ID of the enabler field, optionally followed by the value
+ * the enabler field must have. That value is either a single value or a JSON list of accepted
+ * values written as a string, for instance '[1,2]'. Without it, any non-empty value of the
+ * enabler field meets the enabler. Values are compared loosely, the way stored settings, which
+ * may be strings or numbers, have always been compared here.
+ *
+ * This is the single definition of the condition under which the admin UI collapses the row of
+ * a field. The function is pure: the caller supplies the current value of the enabler field.
+ *
+ * @param array<string,mixed> $field_config Configuration of the dependent setting field.
+ * @param mixed $enabler_value Current value of the enabler field.
+ *
+ * @return bool True when the field has no enabler or its enabler is met, false when the field
+ *              is collapsed.
+ *
+ * @since 10.0.1
+ */
+function crb_is_enabler_met( array $field_config, $enabler_value ): bool {
+	if ( ! isset( $field_config['enabler'] ) ) {
+		return true;
 	}
 
-	$enabled = true;
+	// Without a required value, any non-empty value of the enabler field enables the field
 
-	if ( isset( $config['enabler'][1] ) ) {
-		$target_val = $config['enabler'][1];
-		if ( 0 === strpos( $target_val, '[' ) ) {
-			$list = json_decode( $target_val );
-			if ( ! in_array( $enab_val, $list ) ) {
-				$enabled = false;
-			}
-		}
-		else {
-			if ( $enab_val != $target_val ) {
-				$enabled = false;
-			}
-		}
-	}
-	else {
-		if ( empty( $enab_val ) ) {
-			$enabled = false;
-		}
+	if ( ! isset( $field_config['enabler'][1] ) ) {
+		return ! empty( $enabler_value );
 	}
 
-	return ( ! $enabled ) ? ' crb-disable-this' : '';
+	$required_value = $field_config['enabler'][1];
+
+	// A JSON list of accepted values
+
+	if ( is_string( $required_value ) && 0 === strpos( $required_value, '[' ) ) {
+		$accepted_values = json_decode( $required_value );
+
+		return is_array( $accepted_values ) && in_array( $enabler_value, $accepted_values );
+	}
+
+	return $enabler_value == $required_value;
 }
 
 /**

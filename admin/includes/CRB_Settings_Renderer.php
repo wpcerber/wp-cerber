@@ -254,20 +254,9 @@ final class CRB_Settings_Renderer {
 	 */
 	private static function prepare_field_config( string $setting_id, array $field_config, string $settings_screen_id ): array {
 
-		// Field skip conditions
+		// Field skip conditions, shared with other consumers of the settings registry
 
-		if ( ( $req_wp = $field_config['requires_wp'] ?? false )
-		     && ! crb_wp_version_compare( $req_wp ) ) {
-			return array();
-		}
-
-		if ( ( $cb = $field_config['requires_true'] ?? false )
-		     && is_callable( $cb )
-		     && ! $cb() ) {
-			return array();
-		}
-
-		if ( array_key_exists( $setting_id, CRB_PRO_SETTINGS ) && ! lab_lab() ) {
+		if ( ! CRB_Settings_Registry::is_field_available( $setting_id, $field_config ) ) {
 			return array();
 		}
 

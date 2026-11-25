@@ -967,7 +967,7 @@ final class CRB_Activity {
 		// Activity filter: an explicit filter set takes precedence over the activity list.
 		$falist = array();
 		if ( ! empty( $q->filter_set ) ) {
-			$falist = crb_get_filter_set( $q->filter_set );
+			$falist = crb_resolve_log_filter_set( $q->filter_set );
 		}
 		elseif ( $q->filter_activity ) {
 			$falist = crb_sanitize_int( $q->filter_activity );

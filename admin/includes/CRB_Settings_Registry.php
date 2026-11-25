@@ -160,6 +160,85 @@ final class CRB_Settings_Registry {
 	}
 
 	/**
+	 * Lists the IDs of all settings screens known to the registry.
+	 *
+	 * The list covers built-in and registered add-on screens in registry order. The lookup does
+	 * not hydrate built-in section factories. Resolving registered add-on screens may invoke the
+	 * existing add-on settings configuration providers. A listed screen is a registry entry
+	 * only: the list does not tell whether the admin UI offers the screen in the current context.
+	 *
+	 * @return array<int,string> Settings screen IDs.
+	 *
+	 * @since 10.0.1
+	 */
+	public static function get_screen_ids(): array {
+		$registry = self::get_registry();
+
+		return array_map( 'strval', array_keys( $registry['screens'] ) );
+	}
+
+	/**
+	 * Resolves a settings screen ID to the ID of the admin page tab that displays the screen.
+	 *
+	 * A known screen without an explicit tab mapping resolves to its own ID, because such a
+	 * screen is displayed on the tab of the same name. The returned ID is therefore a navigation
+	 * hint, not a proof that the tab exists: callers building links must still make sure the tab
+	 * belongs to an admin page.
+	 *
+	 * @param string $settings_screen_id Settings screen ID to resolve.
+	 *
+	 * @return string Admin page tab ID, or an empty string when the screen is unknown to the registry.
+	 *
+	 * @since 10.0.1
+	 */
+	public static function get_screen_tab_id( string $settings_screen_id ): string {
+		if ( ! self::is_known_screen( $settings_screen_id ) ) {
+			return '';
+		}
+
+		return self::screen_to_tab( $settings_screen_id );
+	}
+
+	/**
+	 * Tells whether a setting field is available in the current environment.
+	 *
+	 * This is the single definition of the conditions under which a field takes no part in the
+	 * settings UI at all: the installed WordPress version is older than the field requires, the
+	 * requires_true callback of the field returns false, or the setting is PRO-only and no valid
+	 * PRO license is active. The check is not a visibility check: a field rendered as a hidden
+	 * input or collapsed by an unmet enabler is still available.
+	 *
+	 * The requires_true callback comes from trusted plugin or add-on code and is invoked on
+	 * every call.
+	 *
+	 * @param string $setting_id Setting field ID as defined in the settings configuration.
+	 * @param array<string,mixed> $field_config Field configuration from the settings registry or
+	 *                                          an equivalent runtime form definition.
+	 *
+	 * @return bool True when the field is available, false when it must be left out.
+	 *
+	 * @since 10.0.1
+	 */
+	public static function is_field_available( string $setting_id, array $field_config ): bool {
+		if ( ( $required_wp_version = $field_config['requires_wp'] ?? false )
+		     && ! crb_wp_version_compare( $required_wp_version ) ) {
+			return false;
+		}
+
+		if ( ( $requirement_callback = $field_config['requires_true'] ?? false )
+		     && is_callable( $requirement_callback )
+		     && ! $requirement_callback() ) {
+			return false;
+		}
+
+		if ( array_key_exists( $setting_id, CRB_PRO_SETTINGS ) && ! lab_lab() ) {
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
 	 * Returns the effective settings registry for the current request context.
 	 *
 	 * Built-in screens and sections are combined with registered add-on configuration.
@@ -864,6 +943,11 @@ final class CRB_Settings_Registry {
 							'label' => __( 'Shift the WP Cerber admin menu to the top when navigating through WP Cerber admin pages', 'wp-cerber' ),
 							'type'  => 'checkbox',
 						),
+						'wp_palette_reduce' => array(
+							'title' => __( 'Limit Command Palette suggestions', 'wp-cerber' ),
+							'label' => __( 'Show fewer WP Cerber suggestions in the WordPress Command Palette when working outside WP Cerber.', 'wp-cerber' ),
+							'type'  => 'checkbox',
+						),
 						'no_white_my_ip' => array(
 							'title' => __( 'My IP address', 'wp-cerber' ),
 							'label' => __( 'Do not add my IP address to the Allowed IP Access List upon plugin activation', 'wp-cerber' ),
@@ -989,7 +1073,10 @@ final class CRB_Settings_Registry {
 							'doclink'        => 'https://wpcerber.com/restrict-access-to-wordpress-rest-api/',
 							'enabler'        => array( 'norest' ),
 							'callback_under' => function () {
-								return '[ <a href="' . crb_admin_link_for_html( 'traffic', array( 'filter_wp_type' => 520 ) ) . '">' . __( 'View all REST API requests', 'wp-cerber' ) . '</a> ] [ <a href="' . cerber_admin_link( 'activity', array( 'filter_activity' => 70 ) ) . '">' . __( 'View denied REST API requests', 'wp-cerber' ) . '</a>]';
+								// The first link is the REST API quick filter of the Live Traffic log, its URL is defined there
+								$rest_api_url = CRB_Log_Quick_Filters::get_traffic_filters()['rest_api']['url'];
+
+								return '[ <a href="' . crb_escape_url( $rest_api_url ) . '">' . __( 'View all REST API requests', 'wp-cerber' ) . '</a> ] [ <a href="' . cerber_admin_link( 'activity', array( 'filter_activity' => 70 ) ) . '">' . __( 'View denied REST API requests', 'wp-cerber' ) . '</a>]';
 							},
 							'pre_update'     => function ( $val ) {
 								return cerber_text2array( $val, "\n", function ( $v ) {
